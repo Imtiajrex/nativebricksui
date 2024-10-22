@@ -9,6 +9,7 @@
     "build": "expo export --output-dir ./build --platform all",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "build:web": "expo export -p web",
     "eas-build-post-install": "tailwindcss -i ./src/global.css -o ./node_modules/.cache/nativewind/global.css.native.css"
   },
   "dependencies": {
