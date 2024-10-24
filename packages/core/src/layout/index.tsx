@@ -18,15 +18,18 @@ export type PaperProps = ViewProps &
     rounded?: boolean;
     border?: boolean;
   };
-export const Paper = forwardRef<View, PaperProps>(function Paper(props: PaperProps, ref) {
+export const Paper = forwardRef<View, PaperProps>(function Paper(
+  { rounded = true, border = true, shadow = true, ...props }: PaperProps,
+  ref
+) {
   return (
     <Animated.View
       {...props}
       className={mergeClasses(
         'bg-card',
-        props.shadow && 'shadow-sm shadow-shadow',
-        props.rounded && 'rounded-radius',
-        props.border && 'border border-border',
+        shadow && 'shadow-sm shadow-shadow',
+        rounded && 'rounded-radius',
+        border && 'border border-border',
 
         props.className
       )}
@@ -58,3 +61,5 @@ export function Container(props: ViewProps) {
     />
   );
 }
+
+export * from './flatlist';

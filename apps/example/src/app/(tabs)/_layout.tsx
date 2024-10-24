@@ -1,4 +1,3 @@
-import { HeaderNavigation } from '@/components/header-navigation';
 import Colors from '@/constants/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
@@ -11,11 +10,11 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
         tabBarLabelStyle: {
           fontSize: 12,
         },
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Tabs.Screen
@@ -24,7 +23,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ focused, color }) => {
             const name = `home${focused ? '' : '-outline'}`;
-            return <Ionicons size={20} name={name} color={color} />;
+            return <Ionicons size={20} name={name as any} color={color} />;
           },
         }}
       />
@@ -34,7 +33,7 @@ export default function TabLayout() {
           title: 'Package',
           tabBarIcon: ({ focused, color }) => {
             const name = `home${focused ? '' : '-outline'}`;
-            return <Ionicons size={20} name={name} color={color} />;
+            return <Ionicons size={20} name={name as any} color={color} />;
           },
         }}
       />

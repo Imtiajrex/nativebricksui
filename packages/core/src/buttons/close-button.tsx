@@ -13,22 +13,26 @@ const buttonVariants = cva(
         transparent: '',
       },
       size: {
-        default: 'h-9 w-9',
-        sm: 'h-8 w-8',
-        lg: 'h-10 h-10',
+        xs: 'h-3 w-3',
+        sm: 'h-4 w-4',
+        lg: 'h-6 h-6',
+        xl: 'h-8 w-8',
       },
     },
     defaultVariants: {
       variant: 'transparent',
-      size: 'default',
+      size: 'sm',
     },
   }
 );
 
 const iconSize = {
-  default: 20,
-  sm: 16,
-  lg: 24,
+  xs: 10,
+
+  sm: 14,
+
+  lg: 18,
+  xl: 22,
 };
 interface CloseButtonProps extends PressableProps, VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
@@ -48,10 +52,10 @@ const CloseButton = forwardRef<View, CloseButtonProps>(
           e.stopPropagation();
         }}
       >
-        {icon ? icon : <IconX size={iconSize[size] || iconSize.default} />}
+        {icon ? icon : <IconX size={iconSize[size] || iconSize.sm} />}
       </Pressable>
     );
   }
 );
 
-export { CloseButtonProps, CloseButton };
+export { CloseButton, CloseButtonProps };
