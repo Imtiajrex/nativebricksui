@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/ui/src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/core/src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   darkMode: 'class',
   theme: {
@@ -11,7 +11,7 @@ module.exports = {
         card: '#ffffff',
         primary: '#65a5f0',
         "primary-foreground": '#f9f9f9',
-        'light-primary': '#abcdf5',
+        'light-primary': '#abcdf545',
         "light-primary-foreground": '#1e7be8',
         secondary: '#f81ce5',
         "secondary-foreground": '#ffffff',
@@ -25,7 +25,8 @@ module.exports = {
         "error-foreground": '#ffffff',
         destructive: '#ff3860',
         "destructive-foreground": '#ffffff',
-        border: '#eaeaea',
+        'muted-foreground': '#6c757d',
+        border: '#D9D8D8',
         shadow: 'rgba(0, 0, 0, 0.05)',
       },
       dropShadow: {

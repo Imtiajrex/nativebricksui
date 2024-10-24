@@ -1,37 +1,59 @@
 'use client';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
-import { ActivityIndicatorProps, ViewProps, View } from 'react-native';
+import { ActivityIndicatorProps, Text, View, ViewProps } from 'react-native';
 import { cn } from '..';
+import Animated, { AnimateProps } from 'react-native-reanimated';
 
 const badgeVariants = cva(
-  ' gap-2 items-center justify-center  transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  ' gap-2 items-center justify-center px-2 py-1 transition-all border border-transparent',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground  hover:bg-destructive/90',
-        outline: 'border border-input bg-background  hover:bg-accent hover:text-accent-foreground',
-        light: 'bg-light-primary text-light-primary-foreground  hover:bg-light/90',
-        secondary: 'bg-secondary text-secondary-foreground  hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        default: 'bg-primary text-primary-foreground',
+        destructive: 'bg-destructive text-destructive-foreground ',
+        outline: 'border border-border bg-transparent  ',
+        light: 'bg-light-primary text-light-primary-foreground',
+        secondary: 'bg-secondary text-secondary-foreground',
+        card: 'bg-card text-card-foreground',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 px-3 text-xs',
-        lg: 'h-10 px-8',
-        icon: 'h-9 w-9',
+        xs: '',
+        sm: '',
+        lg: '',
+        xl: '',
       },
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default',
+      size: 'sm',
     },
   }
 );
+const textVariants = cva('text-sm font-medium', {
+  variants: {
+    variant: {
+      default: 'text-primary-foreground',
+      destructive: 'text-destructive-foreground',
+      outline: 'text-foreground',
+      light: 'text-light-primary-foreground',
+      secondary: 'text-secondary-foreground',
+      card: 'text-foreground',
+    },
+    size: {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'sm',
+  },
+});
 
-export interface BadgeProps extends ViewProps, VariantProps<typeof badgeVariants> {
+export interface BadgeProps extends AnimateProps<ViewProps>, VariantProps<typeof badgeVariants> {
   isLoading?: boolean;
   children?: React.ReactNode;
   rightSection?: React.ReactNode;
@@ -39,6 +61,7 @@ export interface BadgeProps extends ViewProps, VariantProps<typeof badgeVariants
   activityIndicatorProps?: ActivityIndicatorProps;
   shadow?: boolean;
   rounded?: boolean;
+  textClassName?: string;
 }
 
 const Badge = React.forwardRef<View, BadgeProps>(
@@ -56,18 +79,19 @@ const Badge = React.forwardRef<View, BadgeProps>(
     ref
   ) => {
     return (
-      <View
+      <Animated.View
         className={cn(
-          rounded && 'rounded-radius',
+          'w-max flex-none flex-row items-center rounded-full h-max',
           props.shadow && ' shadow-shadow',
           badgeVariants({ variant, size, className })
         )}
         ref={ref}
         {...props}
       >
-        {children}
+        {props.leftSection}
+        <Text className={cn(textVariants({ variant, size }), props.textClassName)}>{children}</Text>
         {props.rightSection}
-      </View>
+      </Animated.View>
     );
   }
 );

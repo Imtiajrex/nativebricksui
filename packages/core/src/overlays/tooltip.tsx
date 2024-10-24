@@ -28,7 +28,7 @@ export function Tooltip(props: TooltipProps) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const targetRef = useRef<View>(null);
   return (
-    <OverlayProvider>
+    <>
       <TooltipLabel
         isVisible={isTooltipVisible}
         label={props.label}
@@ -43,7 +43,7 @@ export function Tooltip(props: TooltipProps) {
       >
         {props.children}
       </Pressable>
-    </OverlayProvider>
+    </>
   );
 }
 

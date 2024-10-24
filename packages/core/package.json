@@ -27,7 +27,7 @@
     "tailwind-merge": "^2.5.4"
   },
   "peerDependencies": {
-    "nativewind": "^4.0.22",
+    "nativewind": "^4.1.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.73.2",
