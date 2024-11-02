@@ -5,9 +5,9 @@ import Animated, { AnimateProps } from 'react-native-reanimated';
 
 export function Center(props: ViewProps) {
   return (
-    <View
+    <Animated.View
       {...props}
-      className={mergeClasses('items-center justify-center p-12 bg-red-500', props.className)}
+      className={mergeClasses('items-center justify-center', props.className)}
     />
   );
 }
@@ -30,7 +30,6 @@ export const Paper = forwardRef<View, PaperProps>(function Paper(
         shadow && 'shadow-sm shadow-shadow',
         rounded && 'rounded-radius',
         border && 'border border-border',
-
         props.className
       )}
       ref={ref}

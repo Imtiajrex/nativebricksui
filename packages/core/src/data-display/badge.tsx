@@ -81,7 +81,7 @@ const Badge = React.forwardRef<View, BadgeProps>(
     return (
       <Animated.View
         className={cn(
-          'w-max flex-none flex-row items-center rounded-full h-max',
+          'w-max flex-none self-start flex-row items-center rounded-full h-max',
           props.shadow && ' shadow-shadow',
           badgeVariants({ variant, size, className })
         )}

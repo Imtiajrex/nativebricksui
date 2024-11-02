@@ -10,6 +10,7 @@ module.exports = {
         background: '#f9f9f9',
         card: '#ffffff',
         primary: '#65a5f0',
+        foreground: '#222',
         "primary-foreground": '#f9f9f9',
         'light-primary': '#abcdf545',
         "light-primary-foreground": '#1e7be8',

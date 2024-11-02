@@ -10,9 +10,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 import { GestureResponderEvent, PanResponder, PanResponderGestureState } from 'react-native-web';
 
-interface FlatListProps<T> extends Omit<RNFlatListProps<T>, 'ref'> {
+export interface FlatListProps<T> extends Omit<RNFlatListProps<T>, 'ref'> {
   style?: ViewStyle;
   snapToInterval?: number;
   snapToAlignment?: 'start' | 'center' | 'end';
@@ -34,10 +35,16 @@ const DECELERATION_RATE = {
 
 const isWeb = Platform.OS === 'web';
 
-export function FlatList<T>({
+export function FlatList<T>(props: FlatListProps<T>) {
+  if (isWeb) {
+    return <WebFlatlist {...props} />;
+  } else return <BaseFlatList {...props} />;
+}
+
+function WebFlatlist<T>({
   data,
   renderItem,
-  horizontal = true,
+  horizontal,
   style,
   snapToInterval,
   snapToAlignment = 'center',
@@ -299,33 +306,49 @@ export function FlatList<T>({
       document.body.classList?.remove('no-select');
     };
   }, []);
-
+  if (isWeb)
+    return (
+      <View
+        style={[styles.container, wrapperStyle, style]}
+        className={wrapperClassname}
+        {...panResponder.panHandlers}
+        onLayout={onLayout}
+      >
+        <Animated.FlatList
+          ref={flatListRef}
+          data={repeatedData()}
+          renderItem={renderItem}
+          horizontal={horizontal}
+          scrollEventThrottle={16}
+          onScroll={onScroll}
+          onContentSizeChange={onContentSizeChange}
+          snapToInterval={snapToInterval}
+          snapToAlignment={snapToAlignment}
+          decelerationRate={decelerationRate}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          initialScrollIndex={getInitialScrollIndex()}
+          {...props}
+        />
+      </View>
+    );
+}
+const BaseFlatList = <T extends any>({
+  wrapperStyle,
+  style,
+  wrapperClassname,
+  ...props
+}: FlatListProps<T>) => {
   return (
-    <View
-      style={[styles.container, wrapperStyle, style]}
-      className={wrapperClassname}
-      {...panResponder.panHandlers}
-      onLayout={onLayout}
-    >
-      <RNFlatList
-        ref={flatListRef}
-        data={repeatedData()}
-        renderItem={renderItem}
-        horizontal={horizontal}
-        scrollEventThrottle={16}
-        onScroll={onScroll}
-        onContentSizeChange={onContentSizeChange}
-        snapToInterval={snapToInterval}
-        snapToAlignment={snapToAlignment}
-        decelerationRate={decelerationRate}
-        showsHorizontalScrollIndicator={false}
+    <View style={[styles.container, wrapperStyle, style]} className={wrapperClassname}>
+      <Animated.FlatList
         showsVerticalScrollIndicator={false}
-        initialScrollIndex={getInitialScrollIndex()}
+        showsHorizontalScrollIndicator={false}
         {...props}
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

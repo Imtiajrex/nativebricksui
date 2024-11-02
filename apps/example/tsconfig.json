@@ -2,17 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@expo-starter/ui/*": [
-        "../../packages/ui/src/*"
-      ]
-    }
+      "@/*": ["./src/*"],
+      "@expo-starter/ui/*": ["../../packages/ui/src/*"]
+    },
+    "types": ["nativewind/types"]
   },
   "extends": "expo/tsconfig.base",
   "include": [
-    "../../global.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "../../packages/ui/src/**/*.ts",

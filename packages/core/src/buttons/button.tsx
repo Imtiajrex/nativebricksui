@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { cn } from '..';
+import Animated from 'react-native-reanimated';
 
 const buttonVariants = cva(
   'inline-flex gap-2 items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 translate-y-0 active:translate-y-0.5',
@@ -80,7 +81,9 @@ const Button = React.forwardRef<View, ButtonProps>(
         ) : (
           <>
             {props.leftSection}
-            {children}
+            <Animated.Text className={cn('transition-all text-sm text-primary-foreground')}>
+              {children}
+            </Animated.Text>
             {props.rightSection}
           </>
         )}
