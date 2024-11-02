@@ -23,11 +23,16 @@ export function Checkbox({ checked, onChange, label }: CheckboxProps) {
       >
         {checked && (
           <Animated.View
-            entering={FadeInDown.springify(150)}
-            exiting={FadeInUp.springify(150)}
+            entering={FadeInDown.springify().duration(180)}
+            exiting={FadeInUp.springify().duration(180)}
             layout={LinearTransition}
           >
-            <IconCheck className={'text-primary-foreground'} size={12} strokeWidth={3} />
+            <IconCheck
+              className={'text-primary-foreground'}
+              color="white"
+              size={12}
+              strokeWidth={3}
+            />
           </Animated.View>
         )}
       </Paper>

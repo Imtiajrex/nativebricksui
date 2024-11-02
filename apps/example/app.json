@@ -10,15 +10,11 @@
       [
         "expo-router",
         {
-          "origin": "http://localhost:3000"
+          "origin": "http://localhost:8081"
         }
       ]
     ],
     "name": "expo-starter",
     "slug": "expo-starter"
-  },
-  "experiments": {
-    "tsconfigPaths": true,
-    "typedRoutes": true
   }
 }

@@ -52,7 +52,7 @@ const CloseButton = forwardRef<View, CloseButtonProps>(
           e.stopPropagation();
         }}
       >
-        {icon ? icon : <IconX size={iconSize[size] || iconSize.sm} />}
+        {icon ? icon : <IconX size={iconSize[size] || iconSize.sm} color={'black'} />}
       </Pressable>
     );
   }

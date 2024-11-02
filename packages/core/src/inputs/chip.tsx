@@ -3,9 +3,10 @@ import { Pressable } from 'react-native';
 import Animated, { FadeInDown, FadeInUp, LinearTransition } from 'react-native-reanimated';
 import { cn, cva } from '../utils/cn';
 import { VariantProps } from 'tailwind-variants';
+import { Icon } from '../icon/Icon';
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const chipWrapperVariants = cva(
-  'flex-row items-center justify-center gap-1 h-max origin-top-left rounded-full w-max flex-none overflow-hidden',
+  'flex-row items-center justify-center self-start gap-1 h-max origin-top-left rounded-full w-max flex-none overflow-hidden',
   {
     variants: {
       variant: {
@@ -94,19 +95,20 @@ export function Chip({
             className: wrapperActiveClassname,
           })
       )}
-      layout={LinearTransition.springify(150)}
+      layout={LinearTransition.springify().duration(180)}
       onPress={() => onChange && onChange(!checked)}
     >
       {checked && (
         <Animated.View
-          entering={FadeInDown.springify(75)}
-          layout={LinearTransition.springify(75)}
+          entering={FadeInDown.springify().duration(180)}
+          layout={LinearTransition.springify().duration(180)}
           key={'checked'}
           className={'w-4 h-4 items-center justify-center'}
         >
           {icon || (
-            <IconCheck
-              size={16}
+            <Icon
+              icon={IconCheck}
+              size={12}
               className={cn(
                 textVariants({
                   size,
@@ -133,7 +135,7 @@ export function Chip({
             })
         )}
         selectable={false}
-        layout={LinearTransition.springify(75)}
+        layout={LinearTransition.springify().duration(180)}
       >
         {label}
       </Animated.Text>
