@@ -15,7 +15,7 @@ export function ContextMenu() {
 
       <ContextMenuPrimitive.Portal>
         <ContextMenuPrimitive.Overlay
-          className="bg-black/50 backdrop:blur-2xl"
+          className="bg-black/50 backdrop-blur-sm"
           style={StyleSheet.absoluteFill}
         >
           <ContextMenuPrimitive.Content className="bg-card p-3 rounded-radius border border-border">
