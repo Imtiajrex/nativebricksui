@@ -1,6 +1,7 @@
 import { Text } from 'react-native';
 import { Center, FlatList, Paper } from '../layout';
 import { cn } from '../utils/cn';
+import { Picker } from './picker';
 
 export type TimePickerProps = {
   wrapperClassName?: string;
@@ -32,45 +33,9 @@ const ampm = [
 export function TimePicker(props: TimePickerProps) {
   return (
     <Paper className={cn('flex-row p-3 items-start h-64', props.wrapperClassName)}>
-      <FlatList
-        data={hours24.numbersOptions}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-12">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
-        )}
-        snapToInterval={48}
-        style={{
-          height: '100%',
-        }}
-        contentContainerClassName="items-center"
-        infiniteLoop
-      />
-      <FlatList
-        data={minutes.numbersOptions}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-12">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
-        )}
-        snapToInterval={48}
-        contentContainerClassName="items-center"
-        style={{
-          height: '100%',
-        }}
-        infiniteLoop
-      />
-      <FlatList
-        data={ampm}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-12">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
-        )}
-        snapToInterval={48}
-        contentContainerClassName="items-center"
-        className="h-12"
-      />
+      <Picker data={hours24.numbersOptions} infiniteLoop className="w-full" />
+      <Picker data={minutes.numbersOptions} infiniteLoop />
+      <Picker data={ampm} />
     </Paper>
   );
 }

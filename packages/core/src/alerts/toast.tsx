@@ -102,7 +102,7 @@ type ToastType = {
   placement?: PlacementType;
   description?: string;
   duration?: number;
-  type: 'info' | 'success' | 'warning' | 'error';
+  type?: 'info' | 'success' | 'warning' | 'error';
 };
 type ToastProps = ToastType & {
   remove: () => void;

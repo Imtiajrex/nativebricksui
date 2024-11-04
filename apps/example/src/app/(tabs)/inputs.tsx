@@ -1,9 +1,11 @@
 import {
+  AlertDialog,
   ContextMenu,
   Dialog,
   MultiSelect,
   Select,
   Slider,
+  Text,
   toast,
   Toaster,
 } from '@nativebricks/core';
@@ -42,6 +44,19 @@ export default function Inputs() {
       <Toaster />
       <ContextMenu />
       <Dialog />
+      <AlertDialog
+        title="Do you want to delete this?"
+        description="By deleting this, you are completely removing it from our database. You won't be able to recover it in any way"
+        actionText="Confirm"
+        onAction={() => {
+          toast.show({
+            message: 'Successfully delted the app',
+            type: 'error',
+          });
+        }}
+      >
+        <Text>Show Alert Dialog</Text>
+      </AlertDialog>
     </View>
   );
 }
