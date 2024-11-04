@@ -189,8 +189,11 @@ function WebFlatlist<T>({
       if (isWeb) {
         requestAnimationFrame(animate);
       }
+      props.onMomentumScrollEnd?.({
+        nativeEvent: { contentOffset: scrollOffset.current },
+      } as any);
     },
-    [horizontal, getMaxOffset]
+    [horizontal, getMaxOffset, props.onMomentumScrollEnd]
   );
 
   const panResponder = useRef(
@@ -227,7 +230,6 @@ function WebFlatlist<T>({
         const currentOffset = horizontal ? scrollOffset.current.x : scrollOffset.current.y;
         const maxOffset = getMaxOffset();
         const newOffset = Math.max(0, Math.min(currentOffset - delta, maxOffset));
-
         flatListRef.current.scrollToOffset({
           offset: newOffset,
           animated: false,
@@ -306,32 +308,31 @@ function WebFlatlist<T>({
       document.body.classList?.remove('no-select');
     };
   }, []);
-  if (isWeb)
-    return (
-      <View
-        style={[styles.container, wrapperStyle, style]}
-        className={wrapperClassname}
-        {...panResponder.panHandlers}
-        onLayout={onLayout}
-      >
-        <Animated.FlatList
-          ref={flatListRef}
-          data={repeatedData()}
-          renderItem={renderItem}
-          horizontal={horizontal}
-          scrollEventThrottle={16}
-          onScroll={onScroll}
-          onContentSizeChange={onContentSizeChange}
-          snapToInterval={snapToInterval}
-          snapToAlignment={snapToAlignment}
-          decelerationRate={decelerationRate}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          initialScrollIndex={getInitialScrollIndex()}
-          {...props}
-        />
-      </View>
-    );
+  return (
+    <View
+      style={[styles.container, wrapperStyle, style]}
+      className={wrapperClassname}
+      {...panResponder.panHandlers}
+      onLayout={onLayout}
+    >
+      <Animated.FlatList
+        ref={flatListRef}
+        data={repeatedData()}
+        renderItem={renderItem}
+        horizontal={horizontal}
+        scrollEventThrottle={16}
+        onScroll={onScroll}
+        onContentSizeChange={onContentSizeChange}
+        snapToInterval={snapToInterval}
+        snapToAlignment={snapToAlignment}
+        decelerationRate={decelerationRate}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        initialScrollIndex={getInitialScrollIndex()}
+        {...props}
+      />
+    </View>
+  );
 }
 const BaseFlatList = <T extends any>({
   wrapperStyle,

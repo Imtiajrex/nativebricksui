@@ -1,9 +1,13 @@
-import { Text } from 'react-native';
-import { Center, FlatList, Paper } from '../layout';
+import { memo, useCallback } from 'react';
+import { Paper } from '../layout';
 import { cn } from '../utils/cn';
+import { Picker } from './picker';
 
 export type DatePickerProps = {
   wrapperClassName?: string;
+  onDayChange?: (day: number) => void;
+  onMonthChange?: (month: number) => void;
+  onYearChange?: (year: number) => void;
 };
 const getNumberOptions = (from: number, to: number) => {
   const numbers = Array.from({ length: to - from + 1 }, (_, i) => i + from);
@@ -66,51 +70,40 @@ const months = [
     value: 12,
   },
 ];
-const years = getNumberOptions(2000, 2024);
-export function DatePicker(props: DatePickerProps) {
+const years = getNumberOptions(1900, 2024);
+export const DatePicker = memo((props: DatePickerProps) => {
+  console.log('rendering date picker');
   return (
-    <Paper className={cn('flex-row p-3 items-start h-64', props.wrapperClassName)}>
-      <FlatList
+    <Paper className={cn('flex-row p-3 items-start h-64 gap-2', props.wrapperClassName)}>
+      <Picker
         data={days.numbersOptions}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-12">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
+        className="w-full"
+        onChange={useCallback(
+          (value) => {
+            props.onDayChange && props.onDayChange(parseInt(value));
+          },
+          [props.onDayChange]
         )}
-        snapToInterval={48}
-        style={{
-          height: '100%',
-        }}
-        contentContainerClassName="items-center"
-        infiniteLoop
       />
-      <FlatList
-        data={years.numbersOptions}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-24">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
-        )}
-        snapToInterval={48}
-        style={{
-          height: '100%',
-        }}
-        contentContainerClassName="items-center"
-      />
-      <FlatList
+      <Picker
         data={months}
-        renderItem={({ item }) => (
-          <Center className="p-2 h-12 w-12">
-            <Text className="text-center">{item.label}</Text>
-          </Center>
+        onChange={useCallback(
+          (value) => {
+            props.onMonthChange && props.onMonthChange(parseInt(value));
+          },
+          [props.onMonthChange]
         )}
-        snapToInterval={48}
-        contentContainerClassName="items-center"
-        style={{
-          height: '100%',
-        }}
-        infiniteLoop
+      />
+
+      <Picker
+        data={years.numbersOptions.toReversed()}
+        onChange={useCallback(
+          (value) => {
+            props.onYearChange && props.onYearChange(parseInt(value));
+          },
+          [props.onYearChange]
+        )}
       />
     </Paper>
   );
-}
+});
