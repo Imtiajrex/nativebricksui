@@ -16,6 +16,7 @@ export type MultiSelectProps = {
 const isSelectOptionsType = (
   option: SelectOptionsType
 ): option is { label: string; value: string } => typeof option === 'object';
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 export function MultiSelect({ options, value, onChange, label, placeholder }: MultiSelectProps) {
   const selectedOptions = options.filter((option) => {
     const optionValue = isSelectOptionsType(option) ? option.value : option;
@@ -28,7 +29,7 @@ export function MultiSelect({ options, value, onChange, label, placeholder }: Mu
 
   return (
     <PopoverPrimitive.Root className="w-full">
-      <PopoverPrimitive.Trigger className="w-full border border-border bg-card rounded-xl p-3 flex-row items-center justify-between min-h-12 ">
+      <PopoverPrimitive.Trigger className="w-full border border-border overflow-hidden bg-card rounded-xl p-3 flex-row items-center justify-between min-h-12 ">
         <View className="flex-row items-center flex gap-1 flex-wrap">
           {selectedOptions.map((option) => {
             const label = isSelectOptionsType(option) ? option.label : option;
@@ -47,19 +48,23 @@ export function MultiSelect({ options, value, onChange, label, placeholder }: Mu
                       }) || []
                     );
                 }}
+                layout={LinearTransition.springify().duration(180)}
+                exiting={ZoomOut.springify().duration(180)}
+                entering={ZoomIn.springify().duration(180)}
               >
                 {label}
               </Pill>
             );
           })}
-          <Text
+          <Animated.Text
             className={cn(
               'text-sm text-left',
               hasSelection ? 'text-foreground' : 'text-muted-foreground'
             )}
+            layout={LinearTransition.springify().duration(180)}
           >
             {placeholder}
-          </Text>
+          </Animated.Text>
         </View>
         <IconChevronDown size={16} color={'black'} />
       </PopoverPrimitive.Trigger>

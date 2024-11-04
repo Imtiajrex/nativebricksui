@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "private": false,
   "name": "@nativebricks/core",
   "version": "0.0.1",
   "description": "Native Bricks Core",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "src/index.tsx",
   "scripts": {
-    "build": "tsc .",
+    "build": "tsup src/index.tsx --format cjs,esm --dts",
     "lint": "eslint --fix --ext js,ts,tsx ."
   },
   "devDependencies": {

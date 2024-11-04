@@ -63,7 +63,7 @@ const Header = <T extends any>({
     return (
       <View className="flex-row flex-1">
         {columns.map((column) => (
-          <View className="flex-1">
+          <View className="flex-1" key={column.title}>
             <View
               className={cn('flex-1 justify-center', column.headerClassName)}
               style={{
