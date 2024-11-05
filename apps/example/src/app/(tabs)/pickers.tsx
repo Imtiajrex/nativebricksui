@@ -14,10 +14,7 @@ const useSelected = create<{
 });
 export default function Package() {
   return (
-    <ScrollView
-      className="flex-1 p-4 gap-4 items-center w-full"
-      contentContainerClassName="w-full items-center"
-    >
+    <ScrollView className="flex-1 p-4 gap-4 w-full" contentContainerClassName="w-full items-center">
       <TimePicker wrapperClassName="max-w-xs w-full" />
       <SelectedText />
       <UnoptimizedDate />

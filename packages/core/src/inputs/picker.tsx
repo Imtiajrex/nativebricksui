@@ -83,37 +83,21 @@ export function Picker(props: PickerProps) {
         >
           <View className="w-full h-full bg-black/5 rounded-radius" />
         </View>
-        {isWeb ? (
-          <FlatList
-            data={props.data}
-            renderItem={renderItem}
-            snapToInterval={ITEM_HEIGHT}
-            initialNumToRender={5}
-            style={style}
-            contentContainerStyle={contentContainerStyle}
-            className="bg-white rounded-xl"
-            contentContainerClassName="items-center"
-            showsVerticalScrollIndicator={false}
-            onCustomScroll={onWebScroll}
-            onMomentumScrollEnd={onScrollEnd}
-            {...props}
-          />
-        ) : (
-          <Animated.FlatList
-            data={props.data}
-            initialNumToRender={5}
-            renderItem={renderItem}
-            snapToInterval={ITEM_HEIGHT}
-            style={style}
-            contentContainerStyle={contentContainerStyle}
-            className="bg-white rounded-xl"
-            contentContainerClassName="items-center"
-            showsVerticalScrollIndicator={false}
-            onScroll={onScrollHandler}
-            onMomentumScrollEnd={onScrollEnd}
-            {...props}
-          />
-        )}
+        <FlatList
+          data={props.data}
+          renderItem={renderItem}
+          snapToInterval={ITEM_HEIGHT}
+          initialNumToRender={5}
+          style={style}
+          contentContainerStyle={contentContainerStyle}
+          className="bg-white rounded-xl"
+          contentContainerClassName="items-center"
+          showsVerticalScrollIndicator={false}
+          onMomentumScrollEnd={onScrollEnd}
+          {...{
+            [isWeb ? 'onCustomScroll' : 'onScroll']: isWeb ? onWebScroll : onScrollEnd,
+          }}
+        />
       </View>
     </>
   );
@@ -137,19 +121,28 @@ const Item = memo(
       };
     });
     return (
-      <Animated.View
-        style={[
-          {
-            height: ITEM_HEIGHT,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          animatedStyle,
-        ]}
-        className={'px-3'}
+      <View
+        style={{
+          width: '100%',
+          height: ITEM_HEIGHT,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
-        <Text className="text-center">{label}</Text>
-      </Animated.View>
+        <Animated.View
+          style={[
+            {
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            },
+            animatedStyle,
+          ]}
+          className={'px-3'}
+        >
+          <Text className="text-center">{label}</Text>
+        </Animated.View>
+      </View>
     );
   }
 );
