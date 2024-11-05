@@ -1,8 +1,7 @@
-import { View, type ViewProps } from 'react-native';
-import { mergeClasses } from '../utils/cn';
 import { forwardRef } from 'react';
+import { View, type ViewProps } from 'react-native';
 import Animated, { AnimateProps } from 'react-native-reanimated';
-
+import { mergeClasses } from '../utils/cn';
 export function Center(props: ViewProps) {
   return (
     <Animated.View

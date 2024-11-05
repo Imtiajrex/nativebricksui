@@ -1,7 +1,8 @@
 import * as AlertDialogPrimitive from '@rn-primitives/alert-dialog';
-import { ReactNode } from 'react';
+import { ReactNode, useId } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { LinearTransition, ZoomIn, ZoomOut } from 'react-native-reanimated';
+import { LinearTransition } from 'react-native-reanimated';
+import { Entering, Exiting } from '../animations/entering';
 import { HStack, Paper } from '../layout';
 import { cn } from '../utils/cn';
 
@@ -15,6 +16,8 @@ export type AlertDialogProps = {
   onAction?: () => void;
   onCancel?: () => void;
   children?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 export function AlertDialog({
   title,
@@ -26,14 +29,13 @@ export function AlertDialog({
   description,
   onAction,
   onCancel,
+  open,
+  onOpenChange,
 }: AlertDialogProps) {
+  const id = useId();
   return (
-    <AlertDialogPrimitive.Root
-      onOpenChange={(open) => {
-        console.log('open', open);
-      }}
-    >
-      <AlertDialogPrimitive.Trigger>{children}</AlertDialogPrimitive.Trigger>
+    <AlertDialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+      {children && <AlertDialogPrimitive.Trigger>{children}</AlertDialogPrimitive.Trigger>}
 
       <AlertDialogPrimitive.Portal>
         <AlertDialogPrimitive.Overlay
@@ -43,8 +45,8 @@ export function AlertDialog({
           <AlertDialogPrimitive.Content className="w-full items-center justify-center">
             <Paper
               className={'p-3 max-w-sm gap-1 w-full'}
-              entering={ZoomIn.springify().damping(0.2).duration(150)}
-              exiting={ZoomOut.springify().damping(0.2).duration(150)}
+              entering={Entering}
+              exiting={Exiting}
               layout={LinearTransition.springify()}
             >
               <AlertDialogPrimitive.Title className="text-lg text-center font-medium">
