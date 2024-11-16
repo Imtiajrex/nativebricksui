@@ -16,7 +16,7 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@expo/html-elements": "^0.5.1",
     "@expo/vector-icons": "^14.0.4",
-    "@nativebricks/core": "workspace:*",
+    "@nativebricks/core": "0.0.1",
     "@rnx-kit/metro-resolver-symlinks": "^0.2.1",
     "compression": "^1.7.4",
     "expo": "51.0.38",
