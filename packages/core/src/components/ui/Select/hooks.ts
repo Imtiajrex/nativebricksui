@@ -1,9 +1,32 @@
 import { useMemo } from 'react';
-import { SelectOptions } from './types';
+import { SelectItem, SelectOptions } from './types';
 import { isBaseOption, isGroupedOption, isStringOption } from './utils';
 
-export const useSearchedOptions = (options: SelectOptions, searchText: string) => {
-  return useMemo(() => {
+export const useOptions = (options: SelectOptions, searchText: string) => {
+  const normalizedOptions = useMemo(() => {
+    return options.flatMap((option) => {
+      if (isBaseOption(option)) {
+        return [option];
+      } else if (isStringOption(option)) {
+        return [
+          {
+            label: option,
+            value: option,
+          },
+        ];
+      }
+      return option.items.map((o) => {
+        if (isBaseOption(o)) {
+          return o;
+        }
+        return {
+          label: o,
+          value: o,
+        };
+      });
+    });
+  }, [options]);
+  const filteredOptions = useMemo(() => {
     if (!searchText) {
       return options;
     }
@@ -42,4 +65,18 @@ export const useSearchedOptions = (options: SelectOptions, searchText: string) =
         return option;
       });
   }, [options, searchText]);
+  return {
+    filteredOptions,
+    normalizedOptions,
+  };
+};
+
+export const useSelectedOption = (options: SelectItem[], value: string) => {
+  return useMemo(
+    () =>
+      options.find((option) => {
+        return option.value === value;
+      }) || null,
+    [options, value]
+  );
 };

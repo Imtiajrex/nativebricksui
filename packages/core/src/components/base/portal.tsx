@@ -5,7 +5,7 @@ export const PortalHost = () => {
   return (
     <>
       <RNPortal />
-      <Toaster />
+      <Toaster position="top-center" swipeToDismissDirection="left" />
     </>
   );
 };

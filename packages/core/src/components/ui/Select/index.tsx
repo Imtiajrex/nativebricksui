@@ -11,17 +11,16 @@ import {
 } from '~/components/base/select';
 import { Separator } from '~/components/base/separator';
 import { cn } from '~/lib/utils';
-import { InputDetailsProps } from '../Input/types';
-import InputDetails from '../misc/InputDetails';
+import { InputDetails, InputDetailsProps } from '../misc/InputDetails';
 import { getInputBorderState } from '../misc/utils';
-import { useSearchedOptions } from './hooks';
+import { useOptions, useSelectedOption } from './hooks';
 import { SelectOption, SelectOptions, type SelectItem } from './types';
 import { isGroupedOption, isStringOption } from './utils';
 
 export type SelectProps = {
   defaultValue?: NativeSelectOption;
-  value?: NativeSelectOption;
-  onChange?: (value: NativeSelectOption) => void;
+  value?: string;
+  onChange?: (value: string) => void;
   contentClassName?: string;
   triggerClassName?: string;
   valueClassName?: string;
@@ -31,7 +30,8 @@ export type SelectProps = {
 } & InputDetailsProps;
 export const Select = (props: SelectProps) => {
   const [searchText, setSearchText] = useState('');
-  const filteredOptions = useSearchedOptions(props.options, searchText);
+  const { filteredOptions, normalizedOptions } = useOptions(props.options, searchText);
+  const selectedOption = useSelectedOption(normalizedOptions, props.value);
 
   const renderOptions = useMemo(
     () =>
@@ -66,13 +66,15 @@ export const Select = (props: SelectProps) => {
     <InputDetails {...props}>
       <NativeSelect
         defaultValue={props.defaultValue}
-        value={props.value}
-        onValueChange={props.onChange}
+        value={selectedOption}
+        onValueChange={(value) => {
+          props.onChange?.(value.value);
+        }}
       >
         <SelectTrigger className={cn('w-full', props.triggerClassName, getInputBorderState(props))}>
-          {props.value ? (
+          {selectedOption ? (
             <Text className={cn('text-foreground text-sm native:text-lg', props.valueClassName)}>
-              {props.value?.label}
+              {selectedOption?.label}
             </Text>
           ) : (
             <Text className="text-muted-foreground text-sm native:text-lg">
