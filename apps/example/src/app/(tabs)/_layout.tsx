@@ -1,42 +1,18 @@
-import Colors from '@/constants/Colors';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { Text } from 'react-native';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function Layout() {
   return (
-    <Tabs
+    <Stack
       screenOptions={{
-        tabBarActiveTintColor: 'blue',
-        tabBarLabelStyle: {
-          fontSize: 12,
+        headerTitle(props) {
+          return (
+            <Text className="text-center font-medium capitalize">
+              {props.children.replaceAll('components/', '')}
+            </Text>
+          );
         },
-        headerShown: false,
       }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ focused, color }) => {
-            const name = `home${focused ? '' : '-outline'}`;
-            return <Ionicons size={20} name={name as any} color={color} />;
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="package"
-        options={{
-          title: 'Package',
-          tabBarIcon: ({ focused, color }) => {
-            const name = `home${focused ? '' : '-outline'}`;
-            return <Ionicons size={20} name={name as any} color={color} />;
-          },
-        }}
-      />
-    </Tabs>
+    />
   );
 }

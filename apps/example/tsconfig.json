@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@expo-starter/ui/*": ["../../packages/ui/src/*"]
+      "@/*": ["./src/*"]
     },
     "types": ["nativewind/types"]
   },
