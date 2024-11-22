@@ -54,11 +54,14 @@
     "dom-helpers": "^5.2.1",
     "lucide-react-native": "^0.460.0",
     "nativewind": "^4.1.21",
+    "react-hook-form": "^7.53.2",
+    "react-native-actions-sheet": "^0.9.7",
     "react-native-gesture-handler": "^2.16.2",
     "react-native-reanimated": "~3.10.1",
     "sonner": "^1.7.0",
     "sonner-native": "^0.16.1",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
     "nativewind": "^4.1.21",

@@ -1,9 +1,17 @@
 import { useId } from 'react';
 import { Label, Text } from '~/base';
 import { cn } from '~/lib/utils';
-import { InputDetailsProps } from '../Input/types';
+export type InputDetailsProps = {
+  label?: string;
+  helperText?: string;
+  description?: string;
+  message?: string;
+  error?: boolean;
+  success?: boolean;
+  asterisk?: boolean;
+};
 
-export default function InputDetails({
+export function InputDetails({
   description,
   error,
   helperText,

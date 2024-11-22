@@ -17,7 +17,7 @@ export default function index() {
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
       <Input placeholder="Search for a component" value={search} onChangeText={setSearch} />
       {filteredComponents.map((component) => (
-        <NavLink key={component.name} label={component.name} link={component.link} />
+        <NavLink key={component.name} label={component.name} />
       ))}
       {filteredComponents.length === 0 && (
         <View className="p-3 border-b border-muted bg-card rounded-radius">
@@ -32,17 +32,31 @@ const components = [
   {
     name: 'Input',
     description: 'A text input field.',
-    link: '/components/Input',
   },
   {
     name: 'Select',
     description: 'A select input field.',
-    link: '/components/Select',
+  },
+  {
+    name: 'Form',
+    description: 'Form components.',
+  },
+  {
+    name: 'Dialog',
+    description: 'Dialog component',
+  },
+  {
+    name: 'Action-Sheet',
+    description: 'Action Sheet component',
+  },
+  {
+    name: 'Bottom-Sheet',
+    description: 'Bottom Sheet component',
   },
 ];
-const NavLink = ({ label = '', link = '' }) => {
+const NavLink = ({ label = '' }) => {
   return (
-    <Link href={link} asChild>
+    <Link href={`/components/${label}`} asChild>
       <View className="w-full p-3 border-b border-muted flex-row items-center justify-between bg-card rounded-radius">
         <Text>{label}</Text>
         <ChevronRightIcon className="w-5 h-5" />

@@ -59,13 +59,17 @@ const DialogOverlay = Platform.select({
 
 const DialogContent = React.forwardRef<
   DialogPrimitive.ContentRef,
-  DialogPrimitive.ContentProps & { portalHost?: string }
->(({ className, children, portalHost, ...props }, ref) => {
+  DialogPrimitive.ContentProps & {
+    portalHost?: string;
+    showCloseButton?: boolean;
+    overlayClassName?: string;
+  }
+>(({ className, children, portalHost, showCloseButton = true, ...props }, ref) => {
   const { open } = DialogPrimitive.useRootContext();
   return (
     <DialogPortal hostName={portalHost}>
-      <DialogOverlay>
-        <DialogPrimitive.Content
+      <DialogOverlay className={cn('w-full h-full', props.overlayClassName)}>
+        <Animated.View
           ref={ref}
           className={cn(
             'max-w-lg gap-4 border border-border web:cursor-default bg-background p-6 shadow-lg web:duration-200 rounded-lg',
@@ -77,17 +81,19 @@ const DialogContent = React.forwardRef<
           {...props}
         >
           {children}
-          <DialogPrimitive.Close
-            className={
-              'absolute right-4 top-4 p-0.5 web:group rounded-sm opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
-            }
-          >
-            <X
-              size={Platform.OS === 'web' ? 16 : 18}
-              className={cn('text-muted-foreground', open && 'text-accent-foreground')}
-            />
-          </DialogPrimitive.Close>
-        </DialogPrimitive.Content>
+          {showCloseButton && (
+            <DialogPrimitive.Close
+              className={
+                'absolute right-4 top-4 p-0.5 web:group rounded-sm opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
+              }
+            >
+              <X
+                size={Platform.OS === 'web' ? 16 : 18}
+                className={cn('text-muted-foreground', open && 'text-accent-foreground')}
+              />
+            </DialogPrimitive.Close>
+          )}
+        </Animated.View>
       </DialogOverlay>
     </DialogPortal>
   );

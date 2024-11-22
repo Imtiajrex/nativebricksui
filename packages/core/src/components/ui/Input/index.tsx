@@ -2,8 +2,7 @@ import { useId } from 'react';
 import { TextInputProps } from 'react-native';
 import { Input as BaseInput } from '~/base';
 import { cn } from '~/lib/utils';
-import InputDetails from '../misc/InputDetails';
-import { InputDetailsProps } from './types';
+import { InputDetails, InputDetailsProps } from '../misc/InputDetails';
 import { getInputBorderState } from '../misc/utils';
 
 export type InputProps = TextInputProps & InputDetailsProps;
