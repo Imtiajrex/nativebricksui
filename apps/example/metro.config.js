@@ -29,6 +29,10 @@ function withMonorepoPaths(config) {
     path.resolve(workspaceRoot, 'node_modules'),
   ];
 
+  config.resolver.extraNodeModules = {
+    '~': path.resolve(__dirname, '../../packages/core/src'),
+  };
+
   // #3 - Force resolving nested modules to the folders below
   config.resolver.disableHierarchicalLookup = true;
   return config;

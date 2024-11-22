@@ -1,80 +1,76 @@
+const { hairlineWidth } = require('nativewind/theme');
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/core/src/**/*.{js,jsx,ts,tsx}"],
-  presets: [require("nativewind/preset")],
   darkMode: 'class',
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/core/src/**/*.{js,jsx,ts,tsx}"],
+  presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
-        background: 'rgba(var(--background), <alpha-value>)',
-        card: 'rgba(var(--card), <alpha-value>)',
-        primary: 'rgba(var(--primary), <alpha-value>)',
-        foreground: 'rgba(var(--foreground), <alpha-value>)',
-        'primary-foreground': 'rgba(var(--primary-foreground), <alpha-value>)',
-        'light-primary': 'rgba(var(--light-primary), <alpha-value>)',
-        'light-primary-foreground': 'rgba(var(--light-primary-foreground), <alpha-value>)',
-        secondary: 'rgba(var(--secondary), <alpha-value>)',
-        'secondary-foreground': 'rgba(var(--secondary-foreground), <alpha-value>)',
-        accent: 'rgba(var(--accent), <alpha-value>)',
-        'accent-foreground': 'rgba(var(--accent-foreground), <alpha-value>)',
-        warning: 'rgba(var(--warning), <alpha-value>)',
-        'warning-foreground': 'rgba(var(--warning-foreground), <alpha-value>)',
-        success: 'rgba(var(--success), <alpha-value>)',
-        'success-foreground': 'rgba(var(--success-foreground), <alpha-value>)',
-        error: 'rgba(var(--error), <alpha-value>)',
-        'error-foreground': 'rgba(var(--error-foreground), <alpha-value>)',
-        destructive: 'rgba(var(--destructive), <alpha-value>)',
-        'destructive-foreground': 'rgba(var(--destructive-foreground), <alpha-value>)',
-        muted: 'rgba(var(--muted), <alpha-value>)',
-        'muted-foreground': 'rgba(var(--muted-foreground), <alpha-value>)',
-        border: 'rgba(var(--border), <alpha-value>)',
-        divider: 'var(--divider)',
-        shadow: 'var(--shadow)',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
       },
-      dropShadow: {
-        'card': '0px 4px 6px rgba(0, 0, 0, 0.05)',
-        'button': '0px 2px 4px rgba(0, 0, 0, 0.05)',
+      borderWidth: {
+        hairline: hairlineWidth(),
       },
       borderRadius: {
         radius: 'var(--radius)',
+        'input': 'var(--input-radius)'
       },
-      maxWidth: {
-        'container-size': '1280px',
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
   plugins: [
-    ({ addBase }) => addBase({
-      ":root": {
-        "--background": "249, 249, 249",
-        "--card": "255, 255, 255",
-        "--primary": "101, 165, 240",
-        "--foreground": "34, 34, 34",
-        "--primary-foreground": "249, 249, 249",
-        "--light-primary": "101, 165, 240",
-        "--light-primary-foreground": "30, 123, 232",
-        "--secondary": "224, 22, 123",
-        "--secondary-foreground": "255, 255, 255",
-        "--accent": "224, 22, 123",
-        "--accent-foreground": "255, 255, 255",
-        "--warning": "245, 166, 35",
-        "--warning-foreground": "255, 255, 255",
-        "--success": "46, 204, 113",
-        "--success-foreground": "255, 255, 255",
-        "--error": "255, 56, 96",
-        "--error-foreground": "255, 255, 255",
-        "--destructive": "212, 15, 54",
-        "--destructive-foreground": "255, 255, 255",
-        "--muted-foreground": "108, 117, 125",
-        "--border": "217, 216, 216",
-        "--muted": "240, 240, 240",
-        "--radius": "0.65rem",
-        "--shadow": "rgba(0, 0, 0, 0.05)",
-        "--divider": "rgba(0, 0, 0, 0.12)",
-      }
-    })],
+    require('tailwindcss-animate'),
+  ],
 };
-
