@@ -61,7 +61,8 @@
     "sonner": "^1.7.0",
     "sonner-native": "^0.16.1",
     "tailwind-merge": "^2.5.4",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0"
   },
   "peerDependencies": {
     "nativewind": "^4.1.21",

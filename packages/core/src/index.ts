@@ -1,4 +1,4 @@
-export * from './components/base/portal';
+export * from './components/ui/Portal';
 export * from './components/base/sonner';
 export * from './components/ui/Form';
 export * from './components/ui/Input';
@@ -6,6 +6,7 @@ export * from './components/ui/Select';
 export * from './components/ui/Dialog';
 export * from './components/ui/ActionSheet';
 export * from './components/ui/BottomSheet';
+export * from './components/ui/AlertDialog';
 export * from './components/base/button';
 export * from './lib/constants';
 export * from './lib/iconWithClassName';

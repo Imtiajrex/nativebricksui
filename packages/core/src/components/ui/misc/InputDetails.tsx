@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { View } from 'react-native';
 import { Label, Text } from '~/base';
 import { cn } from '~/lib/utils';
 export type InputDetailsProps = {
@@ -27,11 +28,7 @@ export function InputDetails({
 }) {
   const id = useId();
   return (
-    <Label
-      nativeID={propsId || id}
-      htmlFor={propsId || id}
-      className={cn('flex flex-col gap-1', error && 'text-destructive')}
-    >
+    <View className={cn('flex flex-col gap-1')}>
       <Label className={cn('flex-row', error && 'text-destructive')}>
         {label}
         {asterisk ? <Text className="text-base text-destructive leading-none">*</Text> : null}
@@ -56,6 +53,6 @@ export function InputDetails({
           {message}
         </Text>
       ) : null}
-    </Label>
+    </View>
   );
 }

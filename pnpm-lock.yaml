@@ -288,6 +288,9 @@ importers:
       zod:
         specifier: ^3.23.8
         version: 3.23.8
+      zustand:
+        specifier: ^5.0.0
+        version: 5.0.0(@types/react@18.2.79)(react@18.2.0)(use-sync-external-store@1.2.2(react@18.2.0))
     devDependencies:
       '@changesets/cli':
         specifier: ^2.26.0
