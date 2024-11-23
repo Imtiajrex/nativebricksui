@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef } from 'react';
 import {
   DialogContent,
   DialogDescription,
@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Dialog as NativeDialog,
 } from '~/components/base/dialog';
+import { useDialog } from './hooks';
 
 export type DialogProps = {
   title?: string;
@@ -22,31 +23,14 @@ export type Dialog = {
   hide: () => void;
 };
 export const Dialog = forwardRef<Dialog, DialogProps>((props, ref) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(props.open || false);
-  const show = useCallback(() => setIsDialogOpen(true), [setIsDialogOpen]);
-  const hide = useCallback(() => setIsDialogOpen(false), [setIsDialogOpen]);
-
-  useImperativeHandle(
+  const { isDialogOpen, onOpenChange } = useDialog({
+    open: props.open,
+    onOpenChange: props.onOpenChange,
     ref,
-    () => ({
-      show,
-      hide,
-    }),
-    [show, hide]
-  );
-  useEffect(() => {
-    if (props.open !== undefined) {
-      setIsDialogOpen(props.open);
-    }
-  }, [props.open]);
-  useEffect(() => {
-    if (props.onOpenChange) {
-      props.onOpenChange(isDialogOpen);
-    }
-  }, [isDialogOpen]);
+  });
 
   return (
-    <NativeDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <NativeDialog open={isDialogOpen} onOpenChange={onOpenChange}>
       <DialogContent className="md:max-w-[425px] min-w-[250px] w-full">
         <DialogHeader>
           {props.title && <DialogTitle>{props.title}</DialogTitle>}

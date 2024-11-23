@@ -1,8 +1,9 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { Text } from '~/base';
 import { DialogContent, Dialog as NativeDialog } from '~/components/base/dialog';
 import { Separator } from '~/components/base/separator';
+import { useDialog } from '../Dialog/hooks';
 
 type ActionType = {
   label: string;
@@ -23,34 +24,17 @@ export type ActionSheet = {
   hide: () => void;
 };
 export const ActionSheet = forwardRef<ActionSheet, ActionSheetProps>((props, ref) => {
-  const [isActionSheetOpen, setIsActionSheetOpen] = useState(props.open || false);
-  const show = useCallback(() => setIsActionSheetOpen(true), [setIsActionSheetOpen]);
-  const hide = useCallback(() => setIsActionSheetOpen(false), [setIsActionSheetOpen]);
-
-  useImperativeHandle(
+  const { isDialogOpen, onOpenChange, hide } = useDialog({
+    open: props.open,
+    onOpenChange: props.onOpenChange,
     ref,
-    () => ({
-      show,
-      hide,
-    }),
-    [show, hide]
-  );
-  useEffect(() => {
-    if (props.open !== undefined) {
-      setIsActionSheetOpen(props.open);
-    }
-  }, [props.open]);
-  useEffect(() => {
-    if (props.onOpenChange) {
-      props.onOpenChange(isActionSheetOpen);
-    }
-  }, [isActionSheetOpen]);
+  });
   const cancelAction = props.cancelAction || { label: 'Cancel', onPress: hide };
 
   return (
-    <NativeDialog open={isActionSheetOpen} onOpenChange={setIsActionSheetOpen}>
+    <NativeDialog open={isDialogOpen} onOpenChange={onOpenChange}>
       <DialogContent
-        className="md:max-w-[425px] min-w-[250px] w-full bg-transparent p-0 gap-0 border-none rounded-2xl overflow-hidden"
+        className="md:max-w-[425px] min-w-[250px] w-full bg-transparent p-0 gap-0 border-none border-transparent rounded-2xl overflow-hidden"
         overlayClassName="justify-end"
         showCloseButton={false}
       >

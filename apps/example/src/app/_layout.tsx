@@ -4,6 +4,7 @@ import { LogBox } from 'react-native';
 import 'react-native-reanimated';
 import '../global.css';
 import '../components/gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // 'Warning: You are setting the style `{ shadowOffset: ... }` as a prop. You should nest it in a style object. E.g. `{ style: { shadowOffset: ... } }`',
 // create regex to match the warning
@@ -17,9 +18,9 @@ LogBox.ignoreLogs([
 ]);
 export default function Layout() {
   return (
-    <>
+    <GestureHandlerRootView>
       <Slot />
       <PortalHost />
-    </>
+    </GestureHandlerRootView>
   );
 }

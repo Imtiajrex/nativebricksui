@@ -1,8 +1,8 @@
 import { Input } from '@nativebricks/core';
-import { Link, Stack } from 'expo-router';
+import { Link, router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 
 export default function index() {
   const [search, setSearch] = React.useState('');
@@ -53,14 +53,22 @@ const components = [
     name: 'Bottom-Sheet',
     description: 'Bottom Sheet component',
   },
+  {
+    name: 'Alert-Dialog',
+    description: 'Alert Dialog component',
+  },
 ];
 const NavLink = ({ label = '' }) => {
   return (
-    <Link href={`/components/${label}`} asChild>
+    <Pressable
+      onPress={() => {
+        router.push(`/components/${label}`);
+      }}
+    >
       <View className="w-full p-3 border-b border-muted flex-row items-center justify-between bg-card rounded-radius">
         <Text>{label}</Text>
-        <ChevronRightIcon className="w-5 h-5" />
+        <ChevronRightIcon className="w-5 h-5" color={'black'} size={24} />
       </View>
-    </Link>
+    </Pressable>
   );
 };
