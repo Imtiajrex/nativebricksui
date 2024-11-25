@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "expo-starter",
+    "scheme": "nativebricks",
     "userInterfaceStyle": "automatic",
     "web": {
       "output": "startic",
@@ -14,7 +14,7 @@
         }
       ]
     ],
-    "name": "expo-starter",
-    "slug": "expo-starter"
+    "name": "Native Bricks UI",
+    "slug": "nativebricks"
   }
 }

@@ -1,4 +1,4 @@
-import { ActionSheet, Button, Dialog, Input, toast } from '@nativebricks/core';
+import { actionsheet, ActionSheet, Button, toast } from '@nativebricks/core';
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -8,6 +8,7 @@ export default function ActionSheetPage() {
     <View className="container">
       <ActionSheet
         title="Edit profile"
+        description='Would you like to "Edit" or "Save" your changes?'
         ref={dialogRef}
         actions={[
           {
@@ -31,7 +32,33 @@ export default function ActionSheetPage() {
           dialogRef.current?.show();
         }}
       >
-        <Text className="font-bold">Open Actions</Text>
+        <Text className="font-bold">Open Actions With Ref</Text>
+      </Button>
+      <Button
+        onPress={() => {
+          actionsheet({
+            title: 'Edit profile',
+            actions: [
+              {
+                label: 'Edit',
+                onPress: () => {
+                  toast.error('Failed to save changes');
+                  actionsheet.close();
+                },
+              },
+              {
+                label: 'Save',
+                onPress: () => {
+                  toast.success('Changes saved successfully');
+                  actionsheet.close();
+                },
+              },
+            ],
+          });
+        }}
+        variant="outline"
+      >
+        <Text className="font-bold">Open Global Action</Text>
       </Button>
     </View>
   );

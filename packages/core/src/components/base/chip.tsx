@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { cn } from '~/lib/utils';
 import { TextClassContext } from '~/components/base/text';
 
-const badgeVariants = cva(
+const chipVariants = cva(
   'web:inline-flex items-center rounded-full border border-border px-2.5 py-0.5 web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2',
   {
     variants: {
@@ -22,7 +22,7 @@ const badgeVariants = cva(
   }
 );
 
-const badgeTextVariants = cva('text-xs font-semibold ', {
+const chipTextVariants = cva('text-xs font-semibold ', {
   variants: {
     variant: {
       default: 'text-primary-foreground',
@@ -36,16 +36,16 @@ const badgeTextVariants = cva('text-xs font-semibold ', {
   },
 });
 
-type BadgeProps = SlottableViewProps & VariantProps<typeof badgeVariants>;
+type ChipProps = SlottableViewProps & VariantProps<typeof chipVariants>;
 
-function Badge({ className, variant, asChild, ...props }: BadgeProps) {
+function Chip({ className, variant, asChild, ...props }: ChipProps) {
   const Component = asChild ? Slot.View : View;
   return (
-    <TextClassContext.Provider value={badgeTextVariants({ variant })}>
-      <Component className={cn(badgeVariants({ variant }), className)} {...props} />
+    <TextClassContext.Provider value={chipTextVariants({ variant })}>
+      <Component className={cn(chipVariants({ variant }), className)} {...props} />
     </TextClassContext.Provider>
   );
 }
 
-export { Badge, badgeTextVariants, badgeVariants };
-export type { BadgeProps };
+export { Chip, chipTextVariants, chipVariants };
+export type { ChipProps };

@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import { View } from 'react-native';
 import { Label, Text } from '~/base';
 import { cn } from '~/lib/utils';
@@ -20,13 +19,11 @@ export function InputDetails({
   message,
   success,
   children,
-  id: propsId,
   asterisk,
 }: InputDetailsProps & {
   children?: React.ReactNode;
   id?: string;
 }) {
-  const id = useId();
   return (
     <View className={cn('flex flex-col gap-1')}>
       <Label className={cn('flex-row', error && 'text-destructive')}>

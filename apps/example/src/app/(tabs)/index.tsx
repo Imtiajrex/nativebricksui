@@ -57,6 +57,54 @@ const components = [
     name: 'Alert-Dialog',
     description: 'Alert Dialog component',
   },
+  {
+    name: 'Accordion',
+    description: 'Accordion component',
+  },
+  {
+    name: 'Avatar',
+    description: 'Avatar component',
+  },
+  {
+    name: 'Progress',
+    description: 'Progress component',
+  },
+  {
+    name: 'Radio',
+    description: 'Radio component',
+  },
+  {
+    name: 'Checkbox',
+    description: 'Checkbox component',
+  },
+  {
+    name: 'Switch',
+    description: 'Switch component',
+  },
+  {
+    name: 'Skeleton',
+    description: 'Skeleton component',
+  },
+  {
+    name: 'Table',
+    description: 'Table component',
+  },
+  {
+    name: 'Data-Table',
+    description: 'Data Table component',
+  },
+  {
+    name: 'Toggle',
+    description: 'Toggle component',
+  },
+  {
+    name: 'Toggle-Group',
+    description: 'Toggle Group component',
+  },
+  {
+    name: 'Chip',
+    description: 'Chip component',
+  },
 ];
 const NavLink = ({ label = '' }) => {
   return (
