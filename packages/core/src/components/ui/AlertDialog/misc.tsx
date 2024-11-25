@@ -20,7 +20,19 @@ export const GlobalAlertProvider = () => {
 };
 
 const alert = function (alertDetails: AlertType) {
-  useAlertStore.setState({ alertDetails });
+  useAlertStore.setState({
+    alertDetails: {
+      ...alertDetails,
+      buttons: !alertDetails?.buttons?.length
+        ? [
+            {
+              onPress: () => alert.close(),
+              text: 'Ok',
+            },
+          ]
+        : alertDetails?.buttons,
+    },
+  });
 };
 alert.close = () => {
   useAlertStore.setState({ alertDetails: null });

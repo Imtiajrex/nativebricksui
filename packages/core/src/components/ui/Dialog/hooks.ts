@@ -1,4 +1,4 @@
-import { ForwardedRef, useCallback, useImperativeHandle, useState } from 'react';
+import { ForwardedRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 export const useDialog = (props: {
   open?: boolean;
@@ -7,12 +7,22 @@ export const useDialog = (props: {
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(props.open || false);
 
+  console.log(props.open, isDialogOpen);
   if (props.open !== undefined && props.open != isDialogOpen) {
     setIsDialogOpen(props.open);
   }
-
+  useEffect(() => {
+    if (props.onOpenChange) {
+      props.onOpenChange(isDialogOpen);
+    }
+  }, [isDialogOpen]);
   const show = useCallback(() => setIsDialogOpen(true), [setIsDialogOpen]);
-  const hide = useCallback(() => setIsDialogOpen(false), [setIsDialogOpen]);
+  const hide = useCallback(() => {
+    if (props.open != undefined && props.onOpenChange) {
+      props.onOpenChange(false);
+    }
+    setIsDialogOpen(false);
+  }, [setIsDialogOpen, props.open, props.onOpenChange]);
 
   useImperativeHandle(
     props.ref,

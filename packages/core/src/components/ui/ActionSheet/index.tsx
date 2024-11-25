@@ -4,6 +4,7 @@ import { Text } from '~/base';
 import { DialogContent, Dialog as NativeDialog } from '~/components/base/dialog';
 import { Separator } from '~/components/base/separator';
 import { useDialog } from '../Dialog/hooks';
+import { actionsheet } from './misc';
 
 type ActionType = {
   label: string;
@@ -23,6 +24,7 @@ export type ActionSheet = {
   show: () => void;
   hide: () => void;
 };
+export { actionsheet };
 export const ActionSheet = forwardRef<ActionSheet, ActionSheetProps>((props, ref) => {
   const { isDialogOpen, onOpenChange, hide } = useDialog({
     open: props.open,
@@ -41,6 +43,17 @@ export const ActionSheet = forwardRef<ActionSheet, ActionSheetProps>((props, ref
         {/* {props.title && <Text className='text-center text-base'>{props.title}</Text>}
         {props.description && <Text className='text-center text-sm'>{props.description}</Text>} */}
         <View className="bg-card rounded-xl overflow-hidden">
+          <View className="py-4 gap-1">
+            {props.title && (
+              <Text className="text-center text-sm native:text-base font-medium">
+                {props.title}
+              </Text>
+            )}
+            {props.description && (
+              <Text className="text-center text-sm text-muted-foreground">{props.description}</Text>
+            )}
+          </View>
+          <Separator />
           {props.actions?.map((action, index) => (
             <View key={`action-${index}`}>
               <Pressable

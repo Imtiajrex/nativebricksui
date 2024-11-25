@@ -2,7 +2,7 @@ export * from './components/base/accordion';
 export * from './components/base/alert-dialog';
 export * from './components/base/aspect-ratio';
 export * from './components/base/avatar';
-export * from './components/base/badge';
+export * from './components/base/chip';
 export * from './components/base/button';
 export * from './components/base/card';
 export * from './components/base/checkbox';

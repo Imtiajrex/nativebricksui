@@ -82,7 +82,10 @@ const TableCell = React.forwardRef<TablePrimitive.CellRef, TablePrimitive.CellPr
   ({ className, ...props }, ref) => (
     <TablePrimitive.Cell
       ref={ref}
-      className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', className)}
+      className={cn(
+        'p-2 flex-col justify-center align-middle [&:has([role=checkbox])]:pr-0',
+        className
+      )}
       {...props}
     />
   )
