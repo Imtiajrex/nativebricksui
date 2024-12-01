@@ -51,6 +51,7 @@ export default function DataTablePage() {
             label: 'Amount',
           },
         ]}
+        bodyRowClassName="odd:bg-card"
       />
     </View>
   );
