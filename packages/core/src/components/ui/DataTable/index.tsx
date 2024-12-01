@@ -53,7 +53,12 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
       return evenWidth > minWidth ? evenWidth : minWidth;
     });
   }, [width]);
-
+  const oddClassName = useNthClassNames('odd', props.bodyRowClassName);
+  const evenClassName = useNthClassNames('even', props.bodyRowClassName);
+  const oddEvenRemovedClassName = props.bodyRowClassName
+    .split(' ')
+    .filter((c) => !c.includes('odd') && !c.includes('even'))
+    .join(' ');
   return (
     <ScrollView horizontal bounces={false} showsHorizontalScrollIndicator={false}>
       <Table aria-labelledby="invoice-table">
@@ -87,37 +92,42 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
             contentContainerStyle={{
               paddingBottom: insets.bottom,
             }}
+            extraData={[oddClassName, evenClassName]}
             showsVerticalScrollIndicator={false}
             keyExtractor={(_, index) => `row-${index}`}
             renderItem={({ item, index }) => {
+              const nth = (index + 1) % 2 === 0 ? 'even' : 'odd';
               return (
-                <TableRow
-                  className={cn(
-                    'active:bg-secondary',
-                    index % 2 && 'bg-muted ',
-                    props.bodyRowClassName
-                  )}
-                >
-                  {props.columns.map((col, idx) => {
-                    return (
-                      <TableCell
-                        style={{ width: columnWidths[idx] }}
-                        key={`row-${index}-column-${idx}`}
-                        className={cn(props.bodyColumnClassName, col.cellClassName)}
-                      >
-                        <Text
-                          className={cn(
-                            'text-sm ',
-                            props.bodyColumnTextClassName,
-                            col.cellTextClassName
-                          )}
+                <>
+                  {nth === 'even' && <TableRow />}
+                  <TableRow
+                    className={cn(
+                      'active:bg-secondary',
+                      nth === 'even' ? evenClassName : oddClassName,
+                      oddEvenRemovedClassName
+                    )}
+                  >
+                    {props.columns.map((col, idx) => {
+                      return (
+                        <TableCell
+                          style={{ width: columnWidths[idx] }}
+                          key={`row-${index}-column-${idx}`}
+                          className={cn(props.bodyColumnClassName, col.cellClassName)}
                         >
-                          {col.accessor(item)}
-                        </Text>
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
+                          <Text
+                            className={cn(
+                              'text-sm ',
+                              props.bodyColumnTextClassName,
+                              col.cellTextClassName
+                            )}
+                          >
+                            {col.accessor(item)}
+                          </Text>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                </>
               );
             }}
             ListFooterComponent={() => {
@@ -135,3 +145,17 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
     </ScrollView>
   );
 }
+
+const useNthClassNames = (type: 'odd' | 'even', className: string) => {
+  return React.useMemo(() => {
+    return type === 'odd'
+      ? className
+          .split(' ')
+          .filter((c) => c.includes('odd:'))
+          .join(' ')
+      : className
+          .split(' ')
+          .filter((c) => c.includes('even'))
+          .join(' ');
+  }, [type, className]);
+};
