@@ -10,8 +10,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "../../packages/ui/src/**/*.ts",
-    "../../packages/ui/src/**/*.tsx",
+    "../../packages/core/src/**/*.ts",
+    "../../packages/core/src/**/*.tsx",
     "nativewind-env.d.ts"
   ]
 }

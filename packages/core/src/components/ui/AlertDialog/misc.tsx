@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { create } from 'zustand';
 import { AlertDialog, AlertDialogProps } from '.';
 type AlertType = {

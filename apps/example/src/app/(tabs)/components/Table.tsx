@@ -25,16 +25,15 @@ const INVOICES = [
   },
 ];
 
-const MIN_COLUMN_WIDTHS = [120, 120, 100, 120];
+const MIN_COLUMN_WIDTHS = [50, 80, 50, 120];
 
 export default function TablePage() {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   const columnWidths = React.useMemo(() => {
-    return MIN_COLUMN_WIDTHS.map((minWidth) => {
-      const evenWidth = width / MIN_COLUMN_WIDTHS.length;
-      return evenWidth > minWidth ? evenWidth : minWidth;
+    return MIN_COLUMN_WIDTHS.map((minWidth, index) => {
+      return minWidth;
     });
   }, [width]);
 
@@ -44,20 +43,21 @@ export default function TablePage() {
       bounces={false}
       showsHorizontalScrollIndicator={false}
       className="container"
+      contentContainerClassName="min-w-full"
     >
-      <Table aria-labelledby="invoice-table">
+      <Table aria-labelledby="invoice-table" className="min-w-full">
         <TableHeader>
           <TableRow>
-            <TableHead className="px-0.5" style={{ width: columnWidths[0] }}>
+            <TableHead className="px-0.5" style={{ minWidth: columnWidths[0] }}>
               <Text className="text-sm font-medium">Invoice</Text>
             </TableHead>
-            <TableHead style={{ width: columnWidths[1] }}>
+            <TableHead style={{ minWidth: columnWidths[1] }}>
               <Text className="text-sm font-medium">Status</Text>
             </TableHead>
-            <TableHead style={{ width: columnWidths[2] }}>
+            <TableHead style={{ minWidth: columnWidths[2] }}>
               <Text className="text-sm font-medium">Method</Text>
             </TableHead>
-            <TableHead style={{ width: columnWidths[3] }}>
+            <TableHead style={{ minWidth: columnWidths[3] }}>
               <Text className="text-center md:text-right md:pr-5 font-medium text-sm">Amount</Text>
             </TableHead>
           </TableRow>
@@ -69,6 +69,7 @@ export default function TablePage() {
             contentContainerStyle={{
               paddingBottom: insets.bottom,
             }}
+            extraData={[width]}
             showsVerticalScrollIndicator={false}
             renderItem={({ item: invoice, index }) => {
               return (
@@ -76,16 +77,16 @@ export default function TablePage() {
                   key={invoice.invoice}
                   className={cn('active:bg-secondary', index % 2 && 'bg-muted/40 ')}
                 >
-                  <TableCell style={{ width: columnWidths[0] }}>
+                  <TableCell style={{ minWidth: columnWidths[0] }}>
                     <Text className="text-sm ">{invoice.invoice}</Text>
                   </TableCell>
-                  <TableCell style={{ width: columnWidths[1] }}>
+                  <TableCell style={{ minWidth: columnWidths[1] }}>
                     <Text className="text-sm ">{invoice.paymentStatus}</Text>
                   </TableCell>
-                  <TableCell style={{ width: columnWidths[2] }}>
+                  <TableCell style={{ minWidth: columnWidths[2] }}>
                     <Text className="text-sm ">{invoice.paymentMethod}</Text>
                   </TableCell>
-                  <TableCell style={{ width: columnWidths[3] }} className="items-end ">
+                  <TableCell style={{ minWidth: columnWidths[3] }} className="items-end ">
                     <Button
                       variant="secondary"
                       size="sm"

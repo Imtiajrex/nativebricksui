@@ -1,6 +1,7 @@
-import { Select } from '@nativebricks/core';
+import { Select, Text } from '@nativebricks/core';
+import { AxeIcon } from 'lucide-react-native';
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 export default function SelectPage() {
   const [value, setValue] = useState('');
@@ -39,6 +40,15 @@ export default function SelectPage() {
       />
       <Select
         options={['Option 4', 'Option 5', 'Option 6']}
+        renderOption={(option) => (
+          <Pressable
+            className="p-2 bg-primary/25 flex-row items-center gap-2 rounded-xl mb-0.5 hover:bg-primary/15 active:bg-primary/30 transition-all "
+            onPress={() => option.setOption()}
+          >
+            {option.isSelected && <AxeIcon className="text-primary" />}
+            <Text className="text-black text-xs">{option.option}</Text>
+          </Pressable>
+        )}
         placeholder="Select an option"
         value={value}
         onChange={setValue}
