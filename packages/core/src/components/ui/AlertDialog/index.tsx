@@ -2,7 +2,9 @@ import { forwardRef } from 'react';
 import { Pressable } from 'react-native';
 import {
   AlertDialogContent,
+  AlertDialogDescription,
   AlertDialogFooter,
+  AlertDialogTitle,
   AlertDialog as BaseAlertDialog,
 } from '~/components/base/alert-dialog';
 import { Text } from '~/components/base/text';
@@ -37,9 +39,15 @@ export const AlertDialog = forwardRef<AlertDialog, AlertDialogProps>((props, ref
   return (
     <BaseAlertDialog open={isDialogOpen} onOpenChange={onOpenChange}>
       <AlertDialogContent className="gap-1 max-w-sm sm:max-w-md w-full">
-        {props.title && <Text className="text-base font-medium text-center">{props.title}</Text>}
+        {props.title && (
+          <AlertDialogTitle className="text-base font-medium text-center">
+            {props.title}
+          </AlertDialogTitle>
+        )}
         {props.description && (
-          <Text className="text-sm text-muted-foreground text-center">{props.description}</Text>
+          <AlertDialogDescription className="text-sm text-muted-foreground text-center">
+            {props.description}
+          </AlertDialogDescription>
         )}
         <AlertDialogFooter
           className={cn(

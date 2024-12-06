@@ -12,4 +12,4 @@ export interface SelectItemGroup<T = SelectItem | string> {
   items: T[];
 }
 export type SelectOption = string | SelectItem | SelectItemGroup;
-export type SelectOptions = Array<SelectOption> | ReadonlyArray<SelectOption>;
+export type SelectOptions<Option extends SelectOption> = Array<Option> | ReadonlyArray<Option>;
