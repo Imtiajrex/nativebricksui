@@ -37,6 +37,7 @@ type ClassNames = {
   bodyRowClassName?: string;
   bodyColumnClassName?: string;
   bodyColumnTextClassName?: string;
+  bodyRowSelectedClassName?: string;
 };
 
 export type DataTableProps<TData extends Record<string, any>> = {
@@ -50,6 +51,7 @@ export type DataTableProps<TData extends Record<string, any>> = {
   tableClassName?: string;
   tableHeaderClassName?: string;
   tableBodyClassName?: string;
+  selectedIndices?: number[];
 } & ClassNames;
 export function DataTable<TData extends Record<string, any>>(props: DataTableProps<TData>) {
   const { width } = useWindowDimensions();
@@ -82,9 +84,9 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
       {...props.containerScrollViewProps}
       contentContainerClassName={cn(
         'min-w-full ',
-        props.containerScrollViewProps.contentContainerClassName
+        props?.containerScrollViewProps?.contentContainerClassName
       )}
-      className={cn('w-full', props.containerScrollViewProps.className)}
+      className={cn('w-full', props?.containerScrollViewProps?.className)}
     >
       <Table className={cn('w-full', props.tableClassName)}>
         <TableHeader className={props.tableHeaderClassName}>
@@ -117,10 +119,11 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
             contentContainerStyle={{
               paddingBottom: insets.bottom,
             }}
-            extraData={[oddClassName, evenClassName]}
+            extraData={[oddClassName, evenClassName, props.selectedIndices]}
             showsVerticalScrollIndicator={false}
             keyExtractor={(_, index) => `row-${index}`}
             renderItem={({ item, index }) => {
+              const isSelected = !!props.selectedIndices?.includes(index);
               const nth = (index + 1) % 2 === 0 ? 'even' : 'odd';
               if (props.renderRow) {
                 return props.renderRow(item, index);
@@ -132,7 +135,8 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
                     className={cn(
                       'active:bg-secondary',
                       nth === 'even' ? evenClassName : oddClassName,
-                      oddEvenRemovedClassName
+                      oddEvenRemovedClassName,
+                      isSelected && props.bodyRowSelectedClassName
                     )}
                     onPress={() => {
                       if (props.onRowPress) {

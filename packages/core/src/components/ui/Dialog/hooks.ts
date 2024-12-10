@@ -6,8 +6,6 @@ export const useDialog = (props: {
   ref: ForwardedRef<any>;
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(props.open || false);
-
-  console.log(props.open, isDialogOpen);
   if (props.open !== undefined && props.open != isDialogOpen) {
     setIsDialogOpen(props.open);
   }
