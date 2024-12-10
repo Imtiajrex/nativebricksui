@@ -1,4 +1,4 @@
-import { remapProps } from 'nativewind';
+import { cssInterop, remapProps } from 'nativewind';
 import { forwardRef, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ActionSheet, { ActionSheetProps, ActionSheetRef } from 'react-native-actions-sheet';
@@ -20,11 +20,9 @@ export type BottomSheetProps = {
 export type BottomSheet = ActionSheetRef;
 export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(props.open || false);
-  useEffect(() => {
-    if (props.open !== undefined) {
-      setIsBottomSheetOpen(props.open);
-    }
-  }, [props.open]);
+  if (props.open !== undefined) {
+    setIsBottomSheetOpen(props.open);
+  }
   useEffect(() => {
     if (props.onOpenChange) {
       props.onOpenChange(isBottomSheetOpen);
@@ -38,6 +36,7 @@ export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref
       onClose={() => setIsBottomSheetOpen(false)}
       gestureEnabled
       {...props}
+      containerClassName={cn('bg-background', props.containerClassName)}
     >
       <View className={cn('bg-background px-4 pb-4 pt-2 gap-2', props.contentClassName)}>
         <Text className={cn('text-center text-base font-medium mb-1', props.titleClassName)}>
