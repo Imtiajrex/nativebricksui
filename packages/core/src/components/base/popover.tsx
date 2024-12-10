@@ -8,6 +8,7 @@ import { TextClassContext } from '~/components/base/text';
 const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
+export type PopoverContentRef = PopoverPrimitive.ContentRef;
 
 const PopoverContent = React.forwardRef<
   PopoverPrimitive.ContentRef,

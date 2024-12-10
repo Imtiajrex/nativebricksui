@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { Input, Text } from '~/base';
+import { Fragment, useId, useMemo, useState } from 'react';
+import { Input, PortalHost, Text } from '~/base';
 import {
   Select as NativeSelect,
   SelectItem as NativeSelectItem,
@@ -15,7 +15,10 @@ import { getInputBorderState } from '../misc/utils';
 import { useOptions, useSelectedOption } from './hooks';
 import { SelectOption, SelectOptions, type SelectItem } from './types';
 import { isGroupedOption, isStringOption } from './utils';
+import { Platform } from 'react-native';
+import { FullWindowOverlay } from 'react-native-screens';
 
+const WindowOverlay = Platform.OS === 'ios' ? FullWindowOverlay : Fragment;
 export type SelectProps<Option extends SelectOption> = {
   defaultValue?: string;
   value?: string;
@@ -35,6 +38,7 @@ export type SelectProps<Option extends SelectOption> = {
 } & InputDetailsProps;
 export const Select = <Option extends SelectOption>(props: SelectProps<Option>) => {
   const [searchText, setSearchText] = useState('');
+  const portalId = useId();
   const { filteredOptions, normalizedOptions } = useOptions(props.options, searchText);
   const selectedOption = useSelectedOption(normalizedOptions, props.value);
 
@@ -89,35 +93,45 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
       : option.value === props.defaultValue;
   });
   return (
-    <InputDetails {...props}>
-      <NativeSelect
-        defaultValue={defaultOption}
-        value={selectedOption}
-        onValueChange={(value) => {
-          props.onChange?.(value.value);
-        }}
-      >
-        <SelectTrigger className={cn('w-full', props.triggerClassName, getInputBorderState(props))}>
-          {selectedOption ? (
-            props.renderSelectedOption ? (
-              props.renderSelectedOption({ option: selectedOption })
+    <>
+      <WindowOverlay>
+        {/* #7 */}
+        <PortalHost name={portalId} />
+      </WindowOverlay>
+      <InputDetails {...props}>
+        <NativeSelect
+          defaultValue={defaultOption}
+          value={selectedOption}
+          onValueChange={(value) => {
+            props.onChange?.(value.value);
+          }}
+        >
+          <SelectTrigger
+            className={cn('w-full', props.triggerClassName, getInputBorderState(props))}
+          >
+            {selectedOption ? (
+              props.renderSelectedOption ? (
+                props.renderSelectedOption({ option: selectedOption })
+              ) : (
+                <Text
+                  className={cn('text-foreground text-sm native:text-lg', props.valueClassName)}
+                >
+                  {selectedOption?.label}
+                </Text>
+              )
             ) : (
-              <Text className={cn('text-foreground text-sm native:text-lg', props.valueClassName)}>
-                {selectedOption?.label}
+              <Text className="text-muted-foreground text-sm native:text-lg">
+                {props.placeholder}
               </Text>
-            )
-          ) : (
-            <Text className="text-muted-foreground text-sm native:text-lg">
-              {props.placeholder}
-            </Text>
-          )}
-        </SelectTrigger>
-        <SelectContent>
-          {renderSearch}
-          {renderOptions}
-        </SelectContent>
-      </NativeSelect>
-    </InputDetails>
+            )}
+          </SelectTrigger>
+          <SelectContent portalHost={portalId}>
+            {renderSearch}
+            {renderOptions}
+          </SelectContent>
+        </NativeSelect>
+      </InputDetails>
+    </>
   );
 };
 
