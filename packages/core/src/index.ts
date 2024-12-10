@@ -22,6 +22,7 @@ export * from './components/base/skeleton';
 export * from './components/base/table';
 export * from './components/base/chip';
 export * from './components/base/text';
+export * from './components/base/popover';
 export * from './components/ui/State';
 export * from './lib/constants';
 export * from './lib/iconWithClassName';

@@ -1,4 +1,4 @@
-import { cssInterop, remapProps } from 'nativewind';
+import { remapProps } from 'nativewind';
 import { forwardRef, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ActionSheet, { ActionSheetProps, ActionSheetRef } from 'react-native-actions-sheet';

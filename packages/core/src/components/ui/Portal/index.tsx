@@ -1,7 +1,7 @@
-import { PortalHost as RNPortal } from '@rn-primitives/portal';
+import { PortalHost as RNPortal } from '~/components/base/portal';
 import { Toaster } from '~/components/base/sonner';
-import { GlobalAlertProvider } from '../AlertDialog/misc';
 import { GlobalActionSheetProvider } from '../ActionSheet/misc';
+import { GlobalAlertProvider } from '../AlertDialog/misc';
 
 export const PortalHost = () => {
   return (

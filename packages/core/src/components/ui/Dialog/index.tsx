@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Dialog as NativeDialog,
 } from '~/components/base/dialog';
+import { cn } from '~/lib/utils';
 import { useDialog } from './hooks';
 
 export type DialogProps = {
@@ -17,6 +18,9 @@ export type DialogProps = {
   Footer?: React.ReactNode;
   children?: React.ReactNode;
   onOpenChange?: (open: boolean) => void;
+  className?: string;
+  headerClassName?: string;
+  footerClassName?: string;
 };
 export type Dialog = {
   show: () => void;
@@ -28,17 +32,25 @@ export const Dialog = forwardRef<Dialog, DialogProps>((props, ref) => {
     onOpenChange: props.onOpenChange,
     ref,
   });
+  const showHeader = props.title || props.description || props.Header;
 
   return (
     <NativeDialog open={isDialogOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="md:max-w-[425px] min-w-[250px] w-full">
-        <DialogHeader>
-          {props.title && <DialogTitle>{props.title}</DialogTitle>}
-          {props.description && <DialogDescription>{props.description}</DialogDescription>}
-          {props.Header}
-        </DialogHeader>
+      <DialogContent
+        className={cn('md:max-w-[425px] min-w-[250px] w-full', props.className)}
+        overlayClassName="p-0"
+      >
+        {showHeader && (
+          <DialogHeader className={cn(props.headerClassName)}>
+            {props.title && <DialogTitle>{props.title}</DialogTitle>}
+            {props.description && <DialogDescription>{props.description}</DialogDescription>}
+            {props.Header}
+          </DialogHeader>
+        )}
         {props.children}
-        <DialogFooter>{props.Footer}</DialogFooter>
+        {props.Footer && (
+          <DialogFooter className={props.footerClassName}>{props.Footer}</DialogFooter>
+        )}
       </DialogContent>
     </NativeDialog>
   );

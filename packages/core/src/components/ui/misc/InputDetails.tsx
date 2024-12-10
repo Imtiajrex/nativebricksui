@@ -9,6 +9,11 @@ export type InputDetailsProps = {
   error?: boolean;
   success?: boolean;
   asterisk?: boolean;
+  containerClassName?: string;
+  labelClassName?: string;
+  descriptionClassName?: string;
+  helperTextClassName?: string;
+  messageClassName?: string;
 };
 
 export function InputDetails({
@@ -20,29 +25,47 @@ export function InputDetails({
   success,
   children,
   asterisk,
+  containerClassName,
+  labelClassName,
+  descriptionClassName,
+  helperTextClassName,
+  messageClassName,
 }: InputDetailsProps & {
   children?: React.ReactNode;
   id?: string;
 }) {
   return (
-    <View className={cn('flex flex-col gap-1')}>
-      <Label className={cn('flex-row', error && 'text-destructive')}>
+    <View className={cn('flex flex-col gap-1', containerClassName)}>
+      <Label className={cn('flex-row', labelClassName, error && 'text-destructive')}>
         {label}
         {asterisk ? <Text className="text-base text-destructive leading-none">*</Text> : null}
       </Label>
       {description ? (
-        <Text className="text-sm text-muted-foreground font-normal leading-none">
+        <Text
+          className={cn(
+            'text-sm text-muted-foreground font-normal leading-none',
+            descriptionClassName
+          )}
+        >
           {description}
         </Text>
       ) : null}
       {children}
       {helperText ? (
-        <Text className="text-sm text-muted-foreground font-normal leading-none">{helperText}</Text>
+        <Text
+          className={cn(
+            'text-sm text-muted-foreground font-normal leading-none',
+            helperTextClassName
+          )}
+        >
+          {helperText}
+        </Text>
       ) : null}
       {message ? (
         <Text
           className={cn(
             'text-sm text-muted-foreground font-normal leading-none',
+            messageClassName,
             success && 'text-success',
             error && 'text-destructive'
           )}
