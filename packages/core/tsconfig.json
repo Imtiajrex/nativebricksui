@@ -8,5 +8,5 @@
     "jsx": "react-jsx"
   },
   "extends": "expo/tsconfig.base",
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "nativewind-env.d.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "nativewind-env.d.ts", "src/contexts/Theme.tsx"]
 }
