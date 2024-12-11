@@ -1,6 +1,6 @@
 import * as AlertDialogPrimitive from '@rn-primitives/alert-dialog';
 import * as React from 'react';
-import { Modal, Platform, StyleSheet, View, type ViewProps } from 'react-native';
+import { Platform, StyleSheet, View, type ViewProps } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { buttonTextVariants, buttonVariants } from '~/components/base/button';
 import { TextClassContext } from '~/components/base/text';
@@ -18,23 +18,15 @@ const AlertDialogOverlayWeb = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const { open, onOpenChange } = AlertDialogPrimitive.useRootContext();
   return (
-    <Modal
-      visible={open}
-      onRequestClose={() => {
-        onOpenChange(false);
-      }}
-      transparent
-    >
-      <AlertDialogPrimitive.Overlay
-        className={cn(
-          'z-50 bg-black/80 flex justify-center items-center p-2 absolute top-0 right-0 bottom-0 left-0',
-          open ? 'web:animate-in web:fade-in-0' : 'web:animate-out web:fade-out-0',
-          className
-        )}
-        {...props}
-        ref={ref}
-      />
-    </Modal>
+    <AlertDialogPrimitive.Overlay
+      className={cn(
+        'z-50 bg-black/80 flex justify-center items-center p-2 absolute top-0 right-0 bottom-0 left-0',
+        open ? 'web:animate-in web:fade-in-0' : 'web:animate-out web:fade-out-0',
+        className
+      )}
+      {...props}
+      ref={ref}
+    />
   );
 });
 

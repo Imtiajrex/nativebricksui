@@ -35,8 +35,9 @@ export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref
       onOpen={() => setIsBottomSheetOpen(true)}
       onClose={() => setIsBottomSheetOpen(false)}
       gestureEnabled
-      {...props}
+      isModal={true}
       containerClassName={cn('bg-background', props.containerClassName)}
+      {...props}
     >
       <View className={cn('bg-background px-4 pb-4 pt-2 gap-2', props.contentClassName)}>
         <Text className={cn('text-center text-base font-medium mb-1', props.titleClassName)}>

@@ -12,6 +12,7 @@
     "**/*.tsx",
     "../../packages/core/src/**/*.ts",
     "../../packages/core/src/**/*.tsx",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "../../packages/core/src/contexts/Theme.tsx"
   ]
 }

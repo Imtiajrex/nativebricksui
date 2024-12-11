@@ -1,5 +1,5 @@
 import { Input } from '@nativebricks/core';
-import { Link, router, Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
@@ -104,6 +104,18 @@ const components = [
   {
     name: 'Chip',
     description: 'Chip component',
+  },
+  {
+    name: 'Tab',
+    description: 'Tabs component',
+  },
+  {
+    name: 'Calendar',
+    description: 'Calendar component',
+  },
+  {
+    name: 'WheelPicker',
+    description: 'Wheel picker component',
   },
 ];
 const NavLink = ({ label = '' }) => {
