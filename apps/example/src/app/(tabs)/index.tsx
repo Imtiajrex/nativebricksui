@@ -38,6 +38,10 @@ const components = [
     description: 'A select input field.',
   },
   {
+    name: 'MultiSelect',
+    description: 'A multi select input field.',
+  },
+  {
     name: 'Form',
     description: 'Form components.',
   },

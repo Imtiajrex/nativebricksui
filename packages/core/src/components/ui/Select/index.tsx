@@ -38,7 +38,6 @@ export type SelectProps<Option extends SelectOption> = {
 } & InputDetailsProps;
 export const Select = <Option extends SelectOption>(props: SelectProps<Option>) => {
   const [searchText, setSearchText] = useState('');
-  const portalId = useId();
   const { filteredOptions, normalizedOptions } = useOptions(props.options, searchText);
   const selectedOption = useSelectedOption(normalizedOptions, props.value);
 
