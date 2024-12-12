@@ -1,178 +1,116 @@
-// WheelPicker.tsx
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import {
-  StyleProp,
-  TextStyle,
-  ViewStyle,
-  View,
-  ViewProps,
-  ScrollView,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-} from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolate,
-  Extrapolation,
-} from 'react-native-reanimated';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import styles from './style';
-import WheelPickerItem from './Item';
+import React, { useState, useRef, useEffect } from 'react';
+import { FlatList, StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
 
-interface Props {
-  selectedIndex: number;
-  options: string[];
-  onChange: (index: number) => void;
-  selectedIndicatorStyle?: StyleProp<ViewStyle>;
-  itemTextStyle?: TextStyle;
-  itemStyle?: ViewStyle;
-  itemHeight?: number;
-  containerStyle?: ViewStyle;
-  containerProps?: Omit<ViewProps, 'style'>;
-  scaleFunction?: (x: number) => number;
-  rotationFunction?: (x: number) => number;
-  opacityFunction?: (x: number) => number;
-  visibleRest?: number;
-  decelerationRate?: number;
-}
+const { width } = Dimensions.get('window');
+const ITEM_HEIGHT = 40; // Adjust based on your design
+const VISIBLE_ITEMS = 5; // Number of visible items at once
 
-const WheelPicker: React.FC<Props> = ({
-  selectedIndex,
-  options,
-  onChange,
-  selectedIndicatorStyle = {},
-  containerStyle = {},
-  itemStyle = {},
-  itemTextStyle = {},
-  itemHeight = 40,
-  scaleFunction = (x: number) => 1.0 ** x,
-  rotationFunction = (x: number) => 1 - Math.pow(1 / 2, x),
-  opacityFunction = (x: number) => Math.pow(1 / 3, x),
-  visibleRest = 2,
-  decelerationRate = 0.9,
-}) => {
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [scrollOffset, setScrollOffset] = useState(selectedIndex * itemHeight);
-  const scrollY = useSharedValue(scrollOffset);
+const WheelPicker = ({ data, onValueChange }) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const flatListRef = useRef(null);
 
-  const containerHeight = (1 + visibleRest * 2) * itemHeight;
-  const paddedOptions = useMemo(() => {
-    const array: (string | null)[] = [...options];
-    for (let i = 0; i < visibleRest; i++) {
-      array.unshift(null);
-      array.push(null);
-    }
-    return array;
-  }, [options, visibleRest]);
+  // Center offset
+  const CENTER_INDEX = Math.floor(VISIBLE_ITEMS / 2);
+  const OFFSET = ((VISIBLE_ITEMS - 1) / 2) * ITEM_HEIGHT;
 
-  const calculateNearestIndex = (offset: number): number => {
-    let index = Math.round(offset / itemHeight);
-    return Math.max(0, Math.min(index, options.length - 1));
-  };
+  useEffect(() => {
+    scrollToIndex(selectedIndex, false);
+  }, [selectedIndex]);
 
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const { contentOffset } = event.nativeEvent;
-    const newOffset = contentOffset.y;
-
-    scrollY.value = newOffset;
-    setScrollOffset(newOffset);
-
-    const nearestIndex = calculateNearestIndex(newOffset);
-    if (nearestIndex !== selectedIndex) {
-      onChange(nearestIndex);
+  const scrollToIndex = (index, animated = true) => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToOffset({
+        offset: index * ITEM_HEIGHT,
+        animated,
+      });
     }
   };
 
-  const panGesture = Gesture.Pan()
-    .onUpdate((event) => {
-      const newOffset = scrollOffset - event.translationY;
-
-      scrollViewRef.current?.scrollTo({
-        y: newOffset,
-        animated: false,
-      });
-
-      scrollY.value = newOffset;
-      setScrollOffset(newOffset);
-    })
-    .onEnd((event) => {
-      const newOffset = scrollOffset - event.translationY;
-      const nearestIndex = calculateNearestIndex(newOffset);
-
-      scrollViewRef.current?.scrollTo({
-        y: nearestIndex * itemHeight,
-        animated: true,
-      });
-
-      if (nearestIndex !== selectedIndex) {
-        onChange(nearestIndex);
-      }
-    });
-
-  // Scroll to selected index effect
-  React.useEffect(() => {
-    if (selectedIndex >= 0 && selectedIndex < options.length) {
-      const targetOffset = selectedIndex * itemHeight;
-
-      scrollViewRef.current?.scrollTo({
-        y: targetOffset,
-        animated: false,
-      });
-
-      scrollY.value = targetOffset;
-      setScrollOffset(targetOffset);
+  const handleScroll = (event) => {
+    const y = event.nativeEvent.contentOffset.y;
+    const index = Math.round(y / ITEM_HEIGHT);
+    if (index !== selectedIndex) {
+      setSelectedIndex(index);
+      onValueChange(data[index]);
     }
-  }, [selectedIndex, options.length]);
+  };
 
-  const selectedIndicatorAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: -itemHeight / 2 }],
-  }));
+  const renderItem = ({ item, index }) => (
+    <View
+      style={[
+        styles.itemContainer,
+        {
+          height: ITEM_HEIGHT,
+        },
+      ]}
+    >
+      <Text style={[styles.itemText, index === selectedIndex && styles.selectedText]}>{item}</Text>
+    </View>
+  );
 
   return (
-    <GestureDetector gesture={panGesture}>
-      <View style={[styles.container, { height: containerHeight }, containerStyle]}>
-        <Animated.View
-          style={[
-            styles.selectedIndicator,
-            selectedIndicatorStyle,
-            selectedIndicatorAnimatedStyle,
-            { height: itemHeight },
-          ]}
-        />
-        <ScrollView
-          ref={scrollViewRef}
-          style={styles.scrollView}
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={handleScroll}
-          decelerationRate={decelerationRate}
-          contentContainerStyle={{
-            paddingTop: visibleRest * itemHeight,
-            paddingBottom: visibleRest * itemHeight,
-          }}
-        >
-          {paddedOptions.map((option, index) => (
-            <WheelPickerItem
-              key={`option-${index}`}
-              index={index}
-              option={option}
-              style={itemStyle}
-              textStyle={itemTextStyle}
-              height={itemHeight}
-              scrollY={scrollY}
-              visibleRest={visibleRest}
-              scaleFunction={scaleFunction}
-              rotationFunction={rotationFunction}
-              opacityFunction={opacityFunction}
-            />
-          ))}
-        </ScrollView>
-      </View>
-    </GestureDetector>
+    <View style={styles.container}>
+      <FlatList
+        ref={flatListRef}
+        data={data}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+        snapToInterval={ITEM_HEIGHT}
+        decelerationRate="fast"
+        contentContainerStyle={{
+          paddingVertical: OFFSET,
+        }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      />
+      {/* Center Overlay */}
+      <View style={styles.overlay} pointerEvents="none" />
+    </View>
   );
 };
 
-export default WheelPicker;
+export default function App() {
+  const data = Array.from({ length: 50 }, (_, i) => `${i + 1}`);
+  return (
+    <View style={styles.appContainer}>
+      <WheelPicker data={data} onValueChange={(value) => console.log('Selected Value:', value)} />
+    </View>
+  );
+}
 
-// Item.tsx remains the same as in the previous implementation
+const styles = StyleSheet.create({
+  appContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  container: {
+    width: width * 0.8,
+    height: ITEM_HEIGHT * VISIBLE_ITEMS,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  itemContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  itemText: {
+    fontSize: 18,
+    color: '#888',
+  },
+  selectedText: {
+    fontSize: 20,
+    color: '#000',
+    fontWeight: 'bold',
+  },
+  overlay: {
+    position: 'absolute',
+    top: ITEM_HEIGHT * (VISIBLE_ITEMS / 2) - ITEM_HEIGHT / 2,
+    left: 0,
+    right: 0,
+    height: ITEM_HEIGHT,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+});

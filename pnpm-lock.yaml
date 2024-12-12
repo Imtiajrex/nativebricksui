@@ -288,6 +288,9 @@ importers:
       react-native-actions-sheet:
         specifier: ^0.9.7
         version: 0.9.7(react-native-gesture-handler@2.20.1(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.12.0(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0))(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))
+      react-native-calendario:
+        specifier: ^3.5.2
+        version: 3.5.2(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0)
       react-native-calendars:
         specifier: ^1.1307.0
         version: 1.1307.0(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0)
@@ -5313,6 +5316,12 @@ packages:
       react-native-gesture-handler: '*'
       react-native-safe-area-context: '*'
 
+  react-native-calendario@3.5.2:
+    resolution: {integrity: sha512-1NdcA0RwAnpskZ8ArC1JrIWjv6/1iofCLUXohpKNlBBJ90bylUMfWuB5ebexuCXAK2TaiZhZcPI3p7WRhVPWfA==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+
   react-native-calendars@1.1307.0:
     resolution: {integrity: sha512-Fl9NxPgkXw6aboGOifER8Np+p8im753IUGh1sOy7eMuDAP+x5fSDw1K5GnChdVAKWAdLfsNWFIyYehHChf5vmw==}
 
@@ -5354,6 +5363,12 @@ packages:
     peerDependencies:
       react: '>=18.2.0'
       react-native: '>=0.73.0'
+
+  react-native-month@1.6.3:
+    resolution: {integrity: sha512-Rs4k2R8AwbwMKRH3Mm3RGN6OBBRFoIINHFvFtyQeL9MCQ2+jKgTh9+D+cWAU2i1hwWo6qqeJ6SzclW31l1/nyg==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   react-native-reanimated@3.10.1:
     resolution: {integrity: sha512-sfxg6vYphrDc/g4jf/7iJ7NRi+26z2+BszPmvmk0Vnrz6FL7HYljJqTf531F1x6tFmsf+FEAmuCtTUIXFLVo9w==}
@@ -12610,8 +12625,7 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
-  moment@2.30.1:
-    optional: true
+  moment@2.30.1: {}
 
   morgan@1.10.0:
     dependencies:
@@ -13089,6 +13103,13 @@ snapshots:
       react-native-gesture-handler: 2.20.1(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0)
       react-native-safe-area-context: 4.12.0(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0)
 
+  react-native-calendario@3.5.2(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0):
+    dependencies:
+      moment: 2.30.1
+      react: 18.2.0
+      react-native: 0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0)
+      react-native-month: 1.6.3(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0)
+
   react-native-calendars@1.1307.0(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0):
     dependencies:
       hoist-non-react-statics: 3.3.2
@@ -13178,6 +13199,11 @@ snapshots:
     dependencies:
       react: 18.2.0
       react-native: 0.76.3(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0)
+
+  react-native-month@1.6.3(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-native: 0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0)
 
   react-native-reanimated@3.10.1(@babel/core@7.26.0)(react-native@0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.25.8(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.13)(react@18.2.0))(react@18.2.0):
     dependencies:
