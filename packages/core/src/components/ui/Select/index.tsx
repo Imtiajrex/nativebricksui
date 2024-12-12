@@ -1,15 +1,8 @@
-import { Fragment, useId, useMemo, useState } from 'react';
-import { Platform } from 'react-native';
+import { Check } from 'lucide-react-native';
+import { Fragment, useCallback, useMemo, useState } from 'react';
+import { Platform, Pressable, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
-import { Input, Text } from '~/base';
-import {
-  Select as NativeSelect,
-  SelectItem as NativeSelectItem,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectTrigger,
-} from '~/components/base/select';
+import { Input, Select as NativeSelect, SelectContent, SelectTrigger, Text } from '~/base';
 import { Separator } from '~/components/base/separator';
 import { cn } from '~/lib/utils';
 import { InputDetails, InputDetailsProps } from '../misc/InputDetails';
@@ -46,8 +39,8 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
       filteredOptions.map((option: SelectOption) => {
         if (isGroupedOption(option)) {
           return (
-            <SelectGroup key={option.group} className="w-full">
-              <SelectLabel>{option.group}</SelectLabel>
+            <View key={option.group} className="w-full gap-1 pb-1 mb-1">
+              <Text className="font-medium text-sm px-2 py-1">{option.group}</Text>
               {option.items.map((option) => {
                 return (
                   <Option
@@ -60,7 +53,7 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
                 );
               })}
               <Separator />
-            </SelectGroup>
+            </View>
           );
         }
         return (
@@ -94,13 +87,17 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
   return (
     <InputDetails {...props}>
       <NativeSelect
-        defaultValue={defaultOption}
         value={selectedOption}
-        onValueChange={(value) => {
-          props.onChange?.(value.value);
-        }}
+        defaultValue={defaultOption}
+        onValueChange={
+          props.onChange
+            ? (option) => {
+                props.onChange?.(isStringOption(option) ? option : option.value);
+              }
+            : undefined
+        }
       >
-        <SelectTrigger className={cn('w-full', props.triggerClassName, getInputBorderState(props))}>
+        <SelectTrigger className={cn('', props.triggerClassName, getInputBorderState(props))}>
           {selectedOption ? (
             props.renderSelectedOption ? (
               props.renderSelectedOption({ option: selectedOption })
@@ -115,7 +112,7 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
             </Text>
           )}
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className={cn('p-1', props.contentClassName)} viewPortClassName="gap-1">
           {renderSearch}
           {renderOptions}
         </SelectContent>
@@ -135,30 +132,65 @@ const Option = <Option extends SelectItem | string>({
   selectedValue?: string;
   setSelectedValue?: (value: string) => void;
 }) => {
+  const isSelected = isStringOption(option)
+    ? option === selectedValue
+    : option.value === selectedValue;
+  const handleSelect = useCallback(() => {
+    setSelectedValue?.(isStringOption(option) ? (option as string) : (option as SelectItem).value);
+  }, [selectedValue, option]);
   if (renderOption) {
     return renderOption({
       option,
-      isSelected: isStringOption(option)
-        ? option === selectedValue
-        : option.value === selectedValue,
-      setOption: () => {
-        setSelectedValue?.(
-          isStringOption(option) ? (option as string) : (option as SelectItem).value
-        );
-      },
+      isSelected,
+      setOption: handleSelect,
     });
   }
   if (isStringOption(option)) {
     return (
-      <NativeSelectItem key={option} value={option} label={option}>
-        {option}
-      </NativeSelectItem>
+      <SelectItem
+        key={option}
+        value={option}
+        label={option}
+        onPress={handleSelect}
+        isSelected={isSelected}
+      />
     );
   }
 
   return (
-    <NativeSelectItem key={option.value} value={option.value} label={option.label}>
-      {option.label}
-    </NativeSelectItem>
+    <SelectItem
+      key={option.value}
+      value={option.value}
+      label={option.label}
+      onPress={handleSelect}
+      isSelected={isSelected}
+    />
+  );
+};
+
+const SelectItem = ({
+  value,
+  label,
+  onPress,
+  isSelected,
+}: SelectItem & {
+  onPress: () => void;
+  isSelected?: boolean;
+}) => {
+  return (
+    <Pressable
+      key={value}
+      onPress={onPress}
+      className={cn(
+        'flex-row items-center justify-between gap-2 h-9 p-2 bg-card active:bg-background hover:bg-background rounded-radius',
+        isSelected && 'bg-muted'
+      )}
+    >
+      <Text className="text-sm">{label}</Text>
+      <Check
+        size={16}
+        className={cn('text-foreground w-4 h-4', isSelected ? 'opacity-100' : 'opacity-0')}
+      />
+    </Pressable>
   );
 };

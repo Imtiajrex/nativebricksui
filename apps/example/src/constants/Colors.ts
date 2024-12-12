@@ -1,22 +1,56 @@
-import colors from 'tailwindcss/colors';
-
 export default {
   light: {
-    // react-navigation defaults
-    primary: colors.neutral[900], // rgb(15, 23, 42)
-    background: colors.white, //rgb(255, 255, 255)
-    card: 'rgb(253, 253, 253)',
-    text: colors.neutral[800], //rgb(36, 42, 49)
-    border: colors.neutral[500], //rbg(229, 231, 235)
-    notification: colors.neutral[700], //rgb(107, 114, 128)
+    background: 'hsl(0 0% 96%)',
+    foreground: 'hsl(20 14.3% 4.1%)',
+    card: 'hsl(0 0% 100%)',
+    cardForeground: 'hsl(20 14.3% 4.1%)',
+    popover: 'hsl(0 0% 100%)',
+    'popover-foreground': 'hsl(20 14.3% 4.1%)',
+    primary: 'hsl(24.6 95% 53.1%)',
+    'primary-foreground': 'hsl(60 9.1% 97.8%)',
+    secondary: 'hsl(0 0% 87%)',
+    'secondary-foreground': 'hsl(24 9.8% 10%)',
+    muted: 'hsl(0 0% 93%)',
+    'muted-foreground': 'hsl(25 5.3% 44.7%)',
+    accent: 'hsl(0 0% 90%)',
+    'accent-foreground': 'hsl(24 9.8% 10%)',
+    success: 'hsl(157 76% 41%)',
+    'success-foreground': 'hsl(157 75% 46%)',
+    destructive: 'hsl(0 84.2% 60.2%)',
+    'destructive-foreground': 'hsl(60 9.1% 97.8%)',
+    border: 'hsl(20 5.9% 90%)',
+    input: 'hsl(20 5.9% 90%)',
+    ring: 'hsl(24.6 95% 53.1%)',
+    chart1: 'hsl(12 76% 61%)',
+    chart2: 'hsl(173 58% 39%)',
+    chart3: 'hsl(197 37% 24%)',
+    chart4: 'hsl(43 74% 66%)',
+    chart5: 'hsl(27 87% 67%)',
   },
   dark: {
-    // react-navigation defaults
-    primary: colors.neutral[100], // rgb(15, 23, 42)
-    background: colors.black, // rgb(255, 255, 255)
-    card: colors.neutral[950], // rgb(249, 250, 251)
-    text: colors.neutral[300], // rgb(36, 42, 49)
-    border: colors.neutral[500], // rbg(229, 231, 235)
-    notification: colors.neutral[700], // rgb(107, 114, 128)
+    background: 'hsl(20 14.3% 5.1%)',
+    foreground: 'hsl(60 9.1% 97.8%)',
+    card: 'hsl(20 14.3% 7.5%)',
+    cardForeground: 'hsl(60 9.1% 97.8%)',
+    popover: 'hsl(20 14.3% 4.1%)',
+    popoverForeground: 'hsl(60 9.1% 97.8%)',
+    primary: 'hsl(20.5 90.2% 48.2%)',
+    primaryForeground: 'hsl(60 9.1% 97.8%)',
+    secondary: 'hsl(12 6.5% 15.1%)',
+    secondaryForeground: 'hsl(60 9.1% 97.8%)',
+    muted: 'hsl(12 6.5% 15.1%)',
+    mutedForeground: 'hsl(24 5.4% 63.9%)',
+    accent: 'hsl(12 6.5% 15.1%)',
+    accentForeground: 'hsl(60 9.1% 97.8%)',
+    destructive: 'hsl(0 72.2% 50.6%)',
+    destructiveForeground: 'hsl(60 9.1% 97.8%)',
+    border: 'hsl(12 6.5% 15.1%)',
+    input: 'hsl(12 6.5% 15.1%)',
+    ring: 'hsl(20.5 90.2% 48.2%)',
+    chart1: 'hsl(220 70% 50%)',
+    chart2: 'hsl(160 60% 45%)',
+    chart3: 'hsl(30 80% 55%)',
+    chart4: 'hsl(280 65% 60%)',
+    chart5: 'hsl(340 75% 55%)',
   },
 };

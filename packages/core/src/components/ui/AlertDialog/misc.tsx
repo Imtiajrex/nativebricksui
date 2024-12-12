@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { AlertDialog, AlertDialogProps } from '.';
+import { AlertDialog, AlertDialogProps } from './alert-dialog';
 type AlertType = {
   title?: string;
   description?: string;

@@ -1,37 +1,19 @@
+import { cssInterop } from 'nativewind';
 import {
   Calendar as BaseCalendar,
   CalendarProps as BaseCalendarProps,
-} from '@marceloterreiro/flash-calendar';
+} from 'react-native-calendars';
 
-export type CalendarProps = BaseCalendarProps;
+cssInterop(BaseCalendar, {
+  className: 'style',
+  headerClassName: 'headerStyle',
+});
+export type CalendarProps = BaseCalendarProps & {
+  headerClassName?: string;
+  className?: string;
+  contentClassName?: string;
+};
+
 export const Calendar = (props: CalendarProps) => {
-  return (
-    <BaseCalendar
-      theme={{
-        itemDay: {
-          active: (theme) => ({
-            container: {},
-            content: {},
-          }),
-          base: (theme) => ({
-            container: {},
-            content: {},
-          }),
-          disabled: (theme) => ({
-            container: {},
-            content: {},
-          }),
-          idle: (theme) => ({
-            container: {},
-            content: {},
-          }),
-          today: (theme) => ({
-            container: {},
-            content: {},
-          }),
-        },
-      }}
-      {...props}
-    />
-  );
+  return <BaseCalendar {...props} />;
 };
