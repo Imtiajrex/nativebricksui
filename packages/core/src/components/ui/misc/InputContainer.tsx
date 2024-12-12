@@ -23,6 +23,7 @@ export function InputContainer(
         props.state == 'valid' && 'border-success',
         props.state == 'focused' && 'border-primary'
       )}
+      onFocus={props.focus}
       onPress={props.focus}
     >
       {props.leading}
