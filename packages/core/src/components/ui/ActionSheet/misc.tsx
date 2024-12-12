@@ -1,5 +1,6 @@
+import { useCallback } from 'react';
 import { create } from 'zustand';
-import { ActionSheet, ActionSheetProps } from '.';
+import { ActionSheet, ActionSheetProps } from './action-sheet';
 type AlertType = {
   title?: string;
   description?: string;
@@ -15,18 +16,17 @@ const useAlertStore = create<AlertStoreType>((set) => ({
 }));
 export const GlobalActionSheetProvider = () => {
   const actionSheetDetails = useAlertStore((state) => state.actionSheetDetails);
+  const onOpenChange = useCallback(
+    (open) => {
+      if (!open) {
+        useAlertStore.setState({ actionSheetDetails: null });
+      }
+    },
+    [useAlertStore]
+  );
 
   return (
-    <ActionSheet
-      {...actionSheetDetails}
-      open={!!actionSheetDetails}
-      onOpenChange={(open) => {
-        console.log('open', open);
-        if (!open) {
-          useAlertStore.setState({ actionSheetDetails: null });
-        }
-      }}
-    />
+    <ActionSheet {...actionSheetDetails} open={!!actionSheetDetails} onOpenChange={onOpenChange} />
   );
 };
 

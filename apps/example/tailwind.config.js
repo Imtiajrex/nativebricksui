@@ -1,4 +1,6 @@
 const { hairlineWidth } = require('nativewind/theme');
+const Colors = require('./src/constants/Colors');
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,45 +9,6 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
-      colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        success: {
-          DEFAULT: 'hsl(var(--success))',
-          foreground: 'hsl(var(--success-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-      },
       borderWidth: {
         hairline: hairlineWidth(),
       },
@@ -71,5 +34,58 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-animate'),
+    plugin(function ({ addBase }) {
+      const lightColors = Object.entries(Colors.default.light).reduce((acc, [key, value]) => {
+        acc[`--${key}`] = value;
+        return acc;
+      }, {});
+      addBase({
+        ":root": lightColors
+      })
+    }, {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border)',
+            input: 'hsl(var(--input)',
+            ring: 'hsl(var(--ring)',
+            background: 'hsl(var(--background)',
+            foreground: 'hsl(var(--foreground)',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary)',
+              foreground: 'hsl(var(--secondary-foreground)',
+            },
+            success: {
+              DEFAULT: 'hsl(var(--success)',
+              foreground: 'hsl(var(--success-foreground)',
+            },
+            destructive: {
+              DEFAULT: 'hsl(var(--destructive)',
+              foreground: 'hsl(var(--destructive-foreground)',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted)',
+              foreground: 'hsl(var(--muted-foreground)',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent)',
+              foreground: 'hsl(var(--accent-foreground)',
+            },
+            popover: {
+              DEFAULT: 'hsl(var(--popover)',
+              foreground: 'hsl(var(--popover-foreground)',
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card)',
+              foreground: 'hsl(var(--card-foreground)',
+            },
+          }
+        }
+      }
+    })
   ],
 };

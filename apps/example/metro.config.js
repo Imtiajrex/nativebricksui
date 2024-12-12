@@ -31,6 +31,7 @@ function withMonorepoPaths(config) {
 
   config.resolver.extraNodeModules = {
     '~': path.resolve(__dirname, '../../packages/core/src'),
+    // "@nativebricks/primitives": path.resolve(__dirname, '../../packages/primitives/src'),
   };
 
   // #3 - Force resolving nested modules to the folders below

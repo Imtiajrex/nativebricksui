@@ -6,7 +6,7 @@ import { Pressable, View } from 'react-native';
 export default function SelectPage() {
   const [value, setValue] = useState([]);
   return (
-    <View className="container">
+    <View className="container bg-primary/20">
       <MultiSelect
         options={[
           {

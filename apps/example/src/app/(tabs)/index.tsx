@@ -1,20 +1,36 @@
-import { Input } from '@nativebricks/core';
+import { Button, Dialog, Input, Select } from '@nativebricks/core';
 import { router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-
 export default function index() {
   const [search, setSearch] = React.useState('');
   const filteredComponents = components.filter((component) =>
     component.name.toLowerCase().includes(search.toLowerCase())
   );
+  const dialogRef = React.useRef(null);
+  const [value, setValue] = React.useState('');
   return (
     <ScrollView
       className="flex-1"
-      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2"
+      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/20"
     >
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
+      <Button onPress={() => dialogRef.current?.show()}>
+        <Text className="text-white">Open Dialog</Text>
+      </Button>
+      <Dialog ref={dialogRef}>
+        <Text className="text-black">Dialog</Text>
+        <Select
+          options={['Option 1', 'Option 2', 'Option 3']}
+          placeholder="Select an option"
+          value={value}
+          onChange={setValue}
+          label="Select an option"
+          helperText="Select an option from the list"
+          asterisk
+        />
+      </Dialog>
       <Input placeholder="Search for a component" value={search} onChangeText={setSearch} />
       {filteredComponents.map((component) => (
         <NavLink key={component.name} label={component.name} />

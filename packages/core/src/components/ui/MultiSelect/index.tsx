@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react-native';
 import { useCallback, useMemo, useState } from 'react';
 import { Pressable, View } from 'react-native';
-import { Chip, Input, Popover, PopoverContent, PopoverTrigger, Text } from '~/base';
+import { Chip, Input, Text } from '~/base';
 import {
   Select,
   SelectContent,
@@ -44,8 +44,8 @@ export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps
       filteredOptions.map((option: SelectOption) => {
         if (isGroupedOption(option)) {
           return (
-            <SelectGroup key={option.group} className="w-full">
-              <SelectLabel>{option.group}</SelectLabel>
+            <View key={option.group} className="w-full gap-1">
+              <Text className="px-2 py-1 text-sm font-medium">{option.group}</Text>
               {option.items.map((option) => {
                 return (
                   <Option
@@ -58,7 +58,7 @@ export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps
                 );
               })}
               <Separator />
-            </SelectGroup>
+            </View>
           );
         }
         return (
@@ -94,7 +94,7 @@ export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps
             getInputBorderState(props)
           )}
         >
-          {selectedOptions ? (
+          {selectedOptions.length > 0 ? (
             <View className="flex-row gap-1 flex-wrap flex-1">
               {selectedOptions.map((selectedOption) =>
                 props.renderSelectedOption ? (
@@ -116,7 +116,7 @@ export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps
             </Text>
           )}
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="gap-1 p-2" viewPortClassName="gap-1">
           {renderSearch}
           {renderOptions}
         </SelectContent>
@@ -184,13 +184,16 @@ const SelectItem = ({
     <Pressable
       key={value}
       onPress={onPress}
-      className="flex-row items-center gap-2 h-8 p-2 bg-card hover:bg-muted rounded-radius"
+      className={cn(
+        'flex-row items-center justify-between gap-2 h-8 p-2 bg-card hover:bg-background active:bg-background rounded-radius',
+        isSelected && 'bg-primary'
+      )}
     >
+      <Text className="text-sm">{label}</Text>
       <Check
         size={16}
         className={cn('text-primary w-4 h-4', isSelected ? 'opacity-100' : 'opacity-0')}
       />
-      <Text className="text-sm">{label}</Text>
     </Pressable>
   );
 };

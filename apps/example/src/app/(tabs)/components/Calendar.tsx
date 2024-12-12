@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native';
+import { Calendar } from '@nativebricks/core/src/components/ui/Calendar';
 import React from 'react';
+import { View } from 'react-native';
 
-export default function Calendar() {
+export default function CalendarPage() {
   return (
     <View>
-      <Text>Calendar</Text>
+      <Calendar />
     </View>
   );
 }

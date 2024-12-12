@@ -81,7 +81,6 @@ const NavigationMenuTrigger = React.forwardRef<
         <ChevronDown
           size={12}
           className={cn('relative text-foreground h-3 w-3 web:transition web:duration-200')}
-          aria-hidden={true}
         />
       </Animated.View>
     </NavigationMenuPrimitive.Trigger>
@@ -162,7 +161,7 @@ const NavigationMenuIndicator = React.forwardRef<
       )}
       {...props}
     >
-      <View className='relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md shadow-foreground/5' />
+      <View className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md shadow-foreground/5" />
     </NavigationMenuPrimitive.Indicator>
   );
 });

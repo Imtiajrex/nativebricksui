@@ -1,6 +1,6 @@
-import * as SelectPrimitive from '@rn-primitives/select';
+import { SelectPrimitive } from '@nativebricks/primitives';
 import * as React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { Modal, Platform, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Check } from '~/lib/icons/Check';
 import { ChevronDown } from '~/lib/icons/ChevronDown';
@@ -27,7 +27,7 @@ const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimiti
       {...props}
     >
       <>{children}</>
-      <ChevronDown size={16} aria-hidden={true} className="text-foreground opacity-50" />
+      <ChevronDown size={16} className="text-foreground opacity-50" />
     </SelectPrimitive.Trigger>
   )
 );
@@ -69,42 +69,47 @@ const SelectScrollDownButton = ({ className, ...props }: SelectPrimitive.ScrollD
 
 const SelectContent = React.forwardRef<
   SelectPrimitive.ContentRef,
-  SelectPrimitive.ContentProps & { portalHost?: string }
->(({ className, children, position = 'popper', portalHost, ...props }, ref) => {
-  const { open } = SelectPrimitive.useRootContext();
+  SelectPrimitive.ContentProps & { portalHost?: string; viewPortClassName?: string }
+>(({ className, children, position = 'popper', portalHost, viewPortClassName, ...props }, ref) => {
+  const { open, onOpenChange } = SelectPrimitive.useRootContext();
 
   return (
     <SelectPrimitive.Portal hostName={portalHost}>
-      <SelectPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
-        <Animated.View entering={FadeIn} exiting={FadeOut} className={'px-4'}>
-          <SelectPrimitive.Content
-            ref={ref}
-            className={cn(
-              'relative z-50 max-h-96 min-w-[50%] w-full rounded-md border border-border bg-popover shadow-md shadow-foreground/10 py-2 px-1 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-              position === 'popper' &&
-                'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
-              open
-                ? 'web:zoom-in-95 web:animate-in web:fade-in-0'
-                : 'web:zoom-out-95 web:animate-out web:fade-out-0',
-              className
-            )}
-            position={position}
-            {...props}
-          >
-            <SelectScrollUpButton />
-            <SelectPrimitive.Viewport
+      <Modal visible={open} onRequestClose={() => onOpenChange(false)} transparent>
+        <SelectPrimitive.Overlay
+          style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}
+        >
+          <Animated.View entering={FadeIn} exiting={FadeOut} className={'px-4'}>
+            <SelectPrimitive.Content
+              ref={ref}
               className={cn(
-                'p-1',
+                'relative z-50 max-h-96 min-w-[50%] w-full rounded-md border border-border bg-popover shadow-md shadow-foreground/10 py-2 px-1 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
                 position === 'popper' &&
-                  'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]'
+                  'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
+                open
+                  ? 'web:zoom-in-95 web:animate-in web:fade-in-0'
+                  : 'web:zoom-out-95 web:animate-out web:fade-out-0',
+                className
               )}
+              position={position}
+              {...props}
             >
-              {children}
-            </SelectPrimitive.Viewport>
-            <SelectScrollDownButton />
-          </SelectPrimitive.Content>
-        </Animated.View>
-      </SelectPrimitive.Overlay>
+              <SelectScrollUpButton />
+              <SelectPrimitive.Viewport
+                className={cn(
+                  'p-1',
+                  position === 'popper' &&
+                    'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+                  viewPortClassName
+                )}
+              >
+                {children}
+              </SelectPrimitive.Viewport>
+              <SelectScrollDownButton />
+            </SelectPrimitive.Content>
+          </Animated.View>
+        </SelectPrimitive.Overlay>
+      </Modal>
     </SelectPrimitive.Portal>
   );
 });
