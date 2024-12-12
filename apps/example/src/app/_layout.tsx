@@ -1,4 +1,6 @@
-import { PortalHost } from '@nativebricks/core';
+import Colors from '@/constants/Colors';
+import { PortalHost, ThemeProvider, useColor, useColorScheme } from '@nativebricks/core';
+import { DefaultTheme, ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
 import { Slot } from 'expo-router';
 import Head from 'expo-router/head';
 import { LogBox } from 'react-native';
@@ -26,11 +28,33 @@ LogBox.ignoreLogs([
 export default function Layout() {
   return (
     <GestureHandlerRootView>
+      <ThemeProvider tailwindConfig={require('../../tailwind.config')} colors={Colors}>
+        <Root />
+      </ThemeProvider>
+    </GestureHandlerRootView>
+  );
+}
+const Root = () => {
+  return (
+    <NavigationThemeProvider
+      value={{
+        ...DefaultTheme,
+        colors: {
+          background: useColor('background'),
+          border: useColor('border'),
+          card: useColor('card'),
+          primary: useColor('primary'),
+          text: useColor('foreground'),
+          notification: useColor('card'),
+        },
+        dark: useColorScheme().colorScheme === 'dark',
+      }}
+    >
       <Head>
         <title>Native Bricks UI</title>
       </Head>
       <Slot />
       <PortalHost />
-    </GestureHandlerRootView>
+    </NavigationThemeProvider>
   );
-}
+};

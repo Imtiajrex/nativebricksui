@@ -1,15 +1,21 @@
-import { Input } from '@nativebricks/core';
+import { Input, useColor } from '@nativebricks/core';
 import React from 'react';
 import { View } from 'react-native';
+import { User } from 'lucide-react-native';
 
 export default function InputPage() {
   return (
     <View className="container">
-      <View className=" flex-1 p-2">
-        <Input label="Full Name" placeholder="Ex: John Doe" helperText="Enter your full name" />
-        <Input label="Email" placeholder="Ex: example@gmail.com" message="Invalid Email" error />
-        <Input label="Password" message="Password looks good!" success />
-      </View>
+      <Input
+        placeholder="Ex: John Doe"
+        leading={
+          <View className="p-2">
+            <User size={24} color={useColor('muted-foreground')} />
+          </View>
+        }
+      />
+      <Input placeholder="Ex: example@gmail.com" state="invalid" />
+      <Input />
     </View>
   );
 }

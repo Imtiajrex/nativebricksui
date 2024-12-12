@@ -8,7 +8,7 @@ import { cn } from '~/lib/utils';
 remapProps(ActionSheet, {
   containerClassName: 'containerStyle',
 });
-export type BottomSheetProps = {
+export type BottomSheetProps = ActionSheetProps & {
   title?: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -16,7 +16,7 @@ export type BottomSheetProps = {
   contentClassName?: string;
   containerClassName?: string;
   titleClassName?: string;
-} & ActionSheetProps;
+};
 export type BottomSheet = ActionSheetRef;
 export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(props.open || false);
@@ -35,7 +35,6 @@ export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref
       onOpen={() => setIsBottomSheetOpen(true)}
       onClose={() => setIsBottomSheetOpen(false)}
       gestureEnabled
-      isModal={true}
       containerClassName={cn('bg-background', props.containerClassName)}
       {...props}
     >

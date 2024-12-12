@@ -22,6 +22,7 @@ export * from './components/ui/Dialog';
 export * from './components/ui/Form';
 export * from './components/ui/Input';
 export * from './components/ui/MultiSelect';
+export * from './components/ui/Calendar';
 export * from './components/ui/Portal';
 export * from './components/ui/Radio';
 export * from './components/ui/Select';

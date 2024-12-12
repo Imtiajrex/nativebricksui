@@ -1,8 +1,8 @@
-import { Button, Dialog, Input, Select } from '@nativebricks/core';
+import { Button, Dialog, Input, Select, Text, useColor } from '@nativebricks/core';
 import { router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
 import React from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 export default function index() {
   const [search, setSearch] = React.useState('');
   const filteredComponents = components.filter((component) =>
@@ -13,7 +13,7 @@ export default function index() {
   return (
     <ScrollView
       className="flex-1"
-      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/20"
+      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/10"
     >
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
       <Button onPress={() => dialogRef.current?.show()}>
@@ -147,7 +147,7 @@ const NavLink = ({ label = '' }) => {
     >
       <View className="w-full p-3 border-b border-muted flex-row items-center justify-between bg-card rounded-radius">
         <Text>{label}</Text>
-        <ChevronRightIcon className="w-5 h-5" color={'black'} size={24} />
+        <ChevronRightIcon className="w-5 h-5" color={useColor('foreground')} size={24} />
       </View>
     </Pressable>
   );
