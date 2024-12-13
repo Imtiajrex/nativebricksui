@@ -1,0 +1,100 @@
+# DatePicker
+
+A date input component that combines a text input with a calendar popover for selecting dates.
+
+## Installation
+
+```bash
+npm install @ui/components
+```
+
+## Import
+
+```tsx
+import { DatePicker } from '@ui/components';
+```
+
+## Usage
+
+```tsx
+export default function DatePickerDemo() {
+  const [date, setDate] = useState<Date>();
+
+  return <DatePicker value={date} onChange={setDate} placeholder="Select date" />;
+}
+```
+
+## Features
+
+- Date selection via text input or calendar
+- Flexible date formatting
+- Keyboard navigation
+- Mobile responsive
+- Customizable styling
+- Form integration
+- Validation support
+
+## Props
+
+### Root
+
+| Prop            | Type                   | Description                        |
+| --------------- | ---------------------- | ---------------------------------- |
+| `value`         | `Date \| undefined`    | Selected date value                |
+| `onChange`      | `(date: Date) => void` | Change callback for date selection |
+| `placeholder`   | `string`               | Input placeholder text             |
+| `format`        | `string`               | Date format string (default: 'PP') |
+| `disabled`      | `boolean`              | Disable the input                  |
+| `error`         | `boolean`              | Show error state                   |
+| `required`      | `boolean`              | Mark as required field             |
+| `className`     | `string`               | Optional class name for styling    |
+| `popoverProps`  | `PopoverProps`         | Props for the calendar popover     |
+| `calendarProps` | `CalendarProps`        | Props for the calendar component   |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<DatePicker value={date} onChange={setDate} placeholder="Pick a date" />
+```
+
+### Custom Format
+
+```tsx
+<DatePicker value={date} onChange={setDate} format="MM/dd/yyyy" placeholder="MM/DD/YYYY" />
+```
+
+### With Validation
+
+```tsx
+<DatePicker value={date} onChange={setDate} required error={!date} placeholder="Required date" />
+```
+
+### Form Integration
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <DatePicker value={date} onChange={setDate} name="eventDate" required placeholder="Event date" />
+  <Button type="submit">Submit</Button>
+</form>
+```
+
+### With Custom Calendar Props
+
+```tsx
+<DatePicker
+  value={date}
+  onChange={setDate}
+  placeholder="Select date"
+  calendarProps={{
+    mode: 'single',
+    disabled: { before: new Date() },
+    className: 'rounded-lg border',
+  }}
+  popoverProps={{
+    align: 'start',
+    sideOffset: 4,
+  }}
+/>
+```

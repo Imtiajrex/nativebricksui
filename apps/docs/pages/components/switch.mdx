@@ -1,0 +1,115 @@
+# Switch
+
+A toggle switch component that allows users to switch between two states.
+
+## Installation
+
+```bash
+npm install @ui/components
+```
+
+## Import
+
+```tsx
+import { Switch } from '@ui/components';
+```
+
+## Usage
+
+```tsx
+export default function SwitchDemo() {
+  const [enabled, setEnabled] = useState(false);
+
+  return <Switch checked={enabled} onCheckedChange={setEnabled} />;
+}
+```
+
+## Features
+
+- Smooth animations
+- Cross-platform support (Web & Native)
+- Accessible WAI-ARIA toggle
+- Keyboard navigation
+- Focus management
+- Custom styling support
+- Form integration
+- Disabled state
+
+## Props
+
+### Root
+
+| Prop              | Type                         | Description                         |
+| ----------------- | ---------------------------- | ----------------------------------- |
+| `checked`         | `boolean`                    | The controlled checked state        |
+| `defaultChecked`  | `boolean`                    | The default checked state           |
+| `onCheckedChange` | `(checked: boolean) => void` | Callback when checked state changes |
+| `disabled`        | `boolean`                    | Whether the switch is disabled      |
+| `required`        | `boolean`                    | Whether the switch is required      |
+| `className`       | `string`                     | Optional class name for styling     |
+
+## Examples
+
+### Basic Switch
+
+```tsx
+<Switch />
+```
+
+### Controlled Switch
+
+```tsx
+const [enabled, setEnabled] = useState(false);
+
+<Switch checked={enabled} onCheckedChange={setEnabled} />;
+```
+
+### With Label
+
+```tsx
+<View className="flex-row items-center gap-2">
+  <Switch id="airplane-mode" />
+  <Label htmlFor="airplane-mode">Airplane Mode</Label>
+</View>
+```
+
+### Disabled State
+
+```tsx
+<Switch disabled />
+<Switch disabled checked />
+```
+
+### Form Integration
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <View className="flex-col gap-4">
+    <View className="flex-row items-center gap-2">
+      <Switch id="notifications" name="notifications" required />
+      <Label htmlFor="notifications">Enable notifications</Label>
+    </View>
+    <Button type="submit">Save Settings</Button>
+  </View>
+</form>
+```
+
+### Custom Styling
+
+```tsx
+<Switch className="data-[state=checked]:bg-green-500" thumbClassName="bg-white" />
+```
+
+### With Description
+
+```tsx
+<View className="flex gap-2">
+  <View className="flex-row items-center gap-2">
+    <Switch id="sync" />
+    <Label htmlFor="sync">Sync Data</Label>
+  </View>
+  <Text className="text-sm text-muted-foreground">
+    Automatically sync your data across all devices.
+  </Text>
+</View>
+```

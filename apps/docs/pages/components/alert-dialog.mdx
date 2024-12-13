@@ -1,0 +1,108 @@
+# AlertDialog
+
+A modal dialog that interrupts the user with important content and expects a response.
+
+## Installation
+
+```bash
+npm install @ui/components
+```
+
+## Import
+
+```tsx
+import { AlertDialog } from '@ui/components';
+```
+
+## Usage
+
+```tsx
+export default function AlertDialogDemo() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Delete Account</Button>
+      <AlertDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Are you absolutely sure?"
+        description="This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+        cancelText="Cancel"
+        actionText="Delete Account"
+        onAction={() => handleDeleteAccount()}
+      />
+    </>
+  );
+}
+```
+
+## Features
+
+- Accessible modal dialog
+- Keyboard navigation and focus management
+- Customizable content and actions
+- Backdrop overlay with click to dismiss
+- Animated transitions
+
+## Props
+
+### Root
+
+| Prop | Type | Description |
+| ---------------------- | --------------------- | ------------------------------- |
+| `open` | `boolean` | Whether the dialog is open |
+| `onOpenChange` | `(open: boolean) => void` | Callback when open state changes |
+| `title` | `string` | Title of the alert dialog |
+| `description` | `string` | Description text |
+| `cancelText` | `string` | Text for the cancel button |
+| `actionText` | `string` | Text for the action button |
+| `onAction` | `() => void` | Callback when action button is clicked |
+| `variant` | `'default' \| 'destructive'` | Visual style variant |
+| `className` | `string` | Optional class name for styling |
+
+## Examples
+
+### Basic Alert
+
+```tsx
+<AlertDialog
+  open={open}
+  onOpenChange={setOpen}
+  title="Confirm Action"
+  description="Are you sure you want to perform this action?"
+  cancelText="No, cancel"
+  actionText="Yes, continue"
+  onAction={() => handleAction()}
+/>
+```
+
+### Destructive Alert
+
+```tsx
+<AlertDialog
+  open={open}
+  onOpenChange={setOpen}
+  title="Delete Item"
+  description="This action cannot be undone."
+  cancelText="Cancel"
+  actionText="Delete"
+  variant="destructive"
+  onAction={() => handleDelete()}
+/>
+```
+
+### Custom Styled Alert
+
+```tsx
+<AlertDialog
+  open={open}
+  onOpenChange={setOpen}
+  title="Update Available"
+  description="A new version is available. Would you like to update now?"
+  cancelText="Later"
+  actionText="Update"
+  className="max-w-md"
+  onAction={() => handleUpdate()}
+/>
+```
