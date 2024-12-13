@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@nativebricks/core",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Native Bricks Core",
   "author": "Imtiaj Bin Aoual <imtiajbinaoual@gmail.com>",
   "license": "MIT",
@@ -55,6 +55,7 @@
     "@tabler/icons-react-native": "^3.19.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "dom-helpers": "^5.2.1",
     "lucide-react-native": "^0.460.0",
     "nativewind": "^4.1.21",

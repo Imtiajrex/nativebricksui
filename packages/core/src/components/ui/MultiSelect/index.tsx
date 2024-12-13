@@ -1,21 +1,16 @@
 import { Check } from 'lucide-react-native';
 import { useCallback, useMemo, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { Chip, Input, Text } from '~/base';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectTrigger,
-} from '~/components/base/select';
+import { Select, SelectContent, SelectTrigger } from '~/components/base/select';
 import { Separator } from '~/components/base/separator';
 import { iconWithClassName } from '~/lib/iconWithClassName';
 import { cn } from '~/lib/utils';
 import { InputDetails, InputDetailsProps } from '../misc/InputDetails';
 import { getInputBorderState } from '../misc/utils';
+import { SelectItem } from '../Select';
 import { useOptions } from '../Select/hooks';
-import { SelectOption, SelectOptions, type SelectItem } from '../Select/types';
+import { SelectItemOption, SelectOption, SelectOptions } from '../Select/types';
 import { isGroupedOption, isStringOption } from '../Select/utils';
 import { useSelectedOptions } from './hooks';
 export type MultiSelectProps<Option extends SelectOption> = {
@@ -31,7 +26,7 @@ export type MultiSelectProps<Option extends SelectOption> = {
     isSelected: boolean;
     setOption: () => void;
   }) => JSX.Element;
-  renderSelectedOption?: (data: { option: SelectItem }) => JSX.Element;
+  renderSelectedOption?: (data: { option: SelectItemOption }) => JSX.Element;
   searchEnabled?: boolean;
 } & InputDetailsProps;
 export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps<Option>) => {
@@ -125,7 +120,7 @@ export const MultiSelect = <Option extends SelectOption>(props: MultiSelectProps
   );
 };
 
-const Option = <Option extends SelectItem | string>({
+const Option = <Option extends SelectItemOption | string>({
   option,
   renderOption,
   selectedValue,
@@ -138,9 +133,9 @@ const Option = <Option extends SelectItem | string>({
 }) => {
   const isSelected = isStringOption(option)
     ? selectedValue?.includes(option)
-    : selectedValue?.includes((option as SelectItem).value);
+    : selectedValue?.includes((option as SelectItemOption).value);
   const handleSelect = useCallback(() => {
-    const value = isStringOption(option) ? (option as string) : (option as SelectItem).value;
+    const value = isStringOption(option) ? (option as string) : (option as SelectItemOption).value;
     setSelectedValue?.(
       selectedValue?.includes(value)
         ? selectedValue?.filter((v) => v !== value)
@@ -171,29 +166,3 @@ const Option = <Option extends SelectItem | string>({
   );
 };
 iconWithClassName(Check);
-const SelectItem = ({
-  value,
-  label,
-  onPress,
-  isSelected,
-}: SelectItem & {
-  onPress: () => void;
-  isSelected?: boolean;
-}) => {
-  return (
-    <Pressable
-      key={value}
-      onPress={onPress}
-      className={cn(
-        'flex-row items-center justify-between gap-2 h-8 p-2 bg-card hover:bg-background active:bg-background rounded-radius',
-        isSelected && 'bg-primary'
-      )}
-    >
-      <Text className="text-sm">{label}</Text>
-      <Check
-        size={16}
-        className={cn('text-primary w-4 h-4', isSelected ? 'opacity-100' : 'opacity-0')}
-      />
-    </Pressable>
-  );
-};

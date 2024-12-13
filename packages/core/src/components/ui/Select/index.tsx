@@ -8,7 +8,7 @@ import { cn } from '~/lib/utils';
 import { InputDetails, InputDetailsProps } from '../misc/InputDetails';
 import { getInputBorderState } from '../misc/utils';
 import { useOptions, useSelectedOption } from './hooks';
-import { SelectOption, SelectOptions, type SelectItem } from './types';
+import { SelectOption, SelectOptions, type SelectItemOption } from './types';
 import { isGroupedOption, isStringOption } from './utils';
 
 const WindowOverlay = Platform.OS === 'ios' ? FullWindowOverlay : Fragment;
@@ -26,7 +26,7 @@ export type SelectProps<Option extends SelectOption> = {
     isSelected: boolean;
     setOption: () => void;
   }) => JSX.Element;
-  renderSelectedOption?: (data: { option: SelectItem }) => JSX.Element;
+  renderSelectedOption?: (data: { option: SelectItemOption }) => JSX.Element;
   searchEnabled?: boolean;
 } & InputDetailsProps;
 export const Select = <Option extends SelectOption>(props: SelectProps<Option>) => {
@@ -121,7 +121,7 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
   );
 };
 
-const Option = <Option extends SelectItem | string>({
+const Option = <Option extends SelectItemOption | string>({
   option,
   renderOption,
   selectedValue,
@@ -136,7 +136,9 @@ const Option = <Option extends SelectItem | string>({
     ? option === selectedValue
     : option.value === selectedValue;
   const handleSelect = useCallback(() => {
-    setSelectedValue?.(isStringOption(option) ? (option as string) : (option as SelectItem).value);
+    setSelectedValue?.(
+      isStringOption(option) ? (option as string) : (option as SelectItemOption).value
+    );
   }, [selectedValue, option]);
   if (renderOption) {
     return renderOption({
@@ -168,12 +170,12 @@ const Option = <Option extends SelectItem | string>({
   );
 };
 
-const SelectItem = ({
+export const SelectItem = ({
   value,
   label,
   onPress,
   isSelected,
-}: SelectItem & {
+}: SelectItemOption & {
   onPress: () => void;
   isSelected?: boolean;
 }) => {
