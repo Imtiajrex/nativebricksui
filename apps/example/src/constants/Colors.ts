@@ -28,29 +28,29 @@ export default {
     chart5: 'rgb(207, 174, 45)', // hsl(27, 87%, 67%)
   },
   dark: {
-    background: 'rgb(34, 34, 34)', // hsl(20, 14.3%, 5.1%)
-    foreground: 'rgb(127, 127, 127)', // hsl(60, 9.1%, 50%)
-    card: 'rgb(27, 27, 27)', // hsl(20, 14.3%, 7.5%)
-    'card-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    popover: 'rgb(51, 36, 10)', // hsl(20, 14.3%, 4.1%)
-    'popover-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    primary: 'rgb(64, 130, 122)', // hsl(20.5, 90.2%, 48.2%)
-    'primary-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    secondary: 'rgb(34, 34, 34)', // hsl(12, 6.5%, 15.1%)
-    'secondary-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    muted: 'rgb(34, 34, 34)', // hsl(12, 6.5%, 15.1%)
-    'muted-foreground': 'rgb(61, 53, 39)', // hsl(24, 5.4%, 63.9%)
-    accent: 'rgb(34, 34, 34)', // hsl(12, 6.5%, 15.1%)
-    'accent-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    destructive: 'rgb(255, 148, 63)', // hsl(0, 72.2%, 50.6%)
-    'destructive-foreground': 'rgb(253, 253, 253)', // hsl(60, 9.1%, 97.8%)
-    border: 'rgb(34, 34, 34)', // hsl(12, 6.5%, 15.1%)
-    input: 'rgb(34, 34, 34)', // hsl(12, 6.5%, 15.1%)
-    ring: 'rgb(64, 130, 122)', // hsl(20.5, 90.2%, 48.2%)
-    chart1: 'rgb(0, 117, 204)', // hsl(220, 70%, 50%)
-    chart2: 'rgb(66, 131, 116)', // hsl(160, 60%, 45%)
-    chart3: 'rgb(255, 204, 153)', // hsl(30, 80%, 55%)
-    chart4: 'rgb(105, 84, 138)', // hsl(280, 65%, 60%)
-    chart5: 'rgb(255, 102, 153)', // hsl(340, 75%, 55%)
+    background: 'rgb(9, 9, 10)',
+    foreground: 'rgb(255, 255, 253)',
+    card: 'rgb(38, 38, 38)',
+    'card-foreground': 'rgb(255, 255, 253)',
+    popover: 'rgb(9, 9, 10)',
+    'popover-foreground': 'rgb(255, 255, 253)',
+    primary: 'rgb(255, 255, 253)',
+    'primary-foreground': 'rgb(0,0,0)',
+    secondary: 'rgb(15, 15, 39)',
+    'secondary-foreground': 'rgb(255, 255, 253)',
+    muted: 'rgb(15, 15, 39)',
+    'muted-foreground': 'rgb(145, 145, 145)',
+    accent: 'rgb(15, 15, 39)',
+    'accent-foreground': 'rgb(255, 255, 253)',
+    destructive: 'rgb(77, 159, 76)',
+    'destructive-foreground': 'rgb(255, 255, 253)',
+    border: 'rgb(15, 15, 39)',
+    input: 'rgb(15, 15, 39)',
+    ring: 'rgb(61, 61, 213)',
+    'chart-1': 'rgb(66, 168, 224)',
+    'chart-2': 'rgb(98, 153, 119)',
+    'chart-3': 'rgb(142, 186, 76)',
+    'chart-4': 'rgb(138, 108, 166)',
+    'chart-5': 'rgb(196, 78, 68)',
   },
 };

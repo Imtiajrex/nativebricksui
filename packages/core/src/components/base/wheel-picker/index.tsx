@@ -1,3 +1,3 @@
-import WheelPicker from './WheelPicker';
+import WheelPicker, { WheelPickerProps } from './WheelPicker';
 
-export { WheelPicker };
+export { WheelPicker, WheelPickerProps };

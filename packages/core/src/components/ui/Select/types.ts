@@ -3,13 +3,13 @@ export interface SelectStringItem {
   disabled?: boolean;
 }
 
-export interface SelectItem extends SelectStringItem {
+export interface SelectItemOption extends SelectStringItem {
   label: string;
 }
 
-export interface SelectItemGroup<T = SelectItem | string> {
+export interface SelectItemGroup<T = SelectItemOption | string> {
   group: string;
   items: T[];
 }
-export type SelectOption = string | SelectItem | SelectItemGroup;
+export type SelectOption = string | SelectItemOption | SelectItemGroup;
 export type SelectOptions<Option extends SelectOption> = Array<Option> | ReadonlyArray<Option>;

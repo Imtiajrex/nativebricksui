@@ -6,7 +6,7 @@ import {
 } from '@rn-primitives/hooks';
 import * as Slot from '@rn-primitives/slot';
 import * as React from 'react';
-import { GestureResponderEvent, Pressable, Text, View } from 'react-native';
+import { GestureResponderEvent, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import type {
   ContentProps,
   ContentRef,
@@ -136,8 +136,8 @@ const Trigger = React.forwardRef<TriggerRef, TriggerProps>(
 
     function onPress(ev: GestureResponderEvent) {
       if (disabled) return;
-      onOpenChange(!open);
-      // onPressProp?.(ev);
+      if (ev.nativeEvent?.pointerType === 'touch') onOpenChange(!open);
+      onPressProp?.(ev);
     }
 
     const Component = asChild ? Slot.Pressable : Pressable;
@@ -221,6 +221,9 @@ const Content = React.forwardRef<ContentRef, ContentProps>(
         alignOffset={alignOffset}
         avoidCollisions={avoidCollisions}
         position={position}
+        onBlur={(e) => {
+          e.preventDefault();
+        }}
       >
         <Component ref={ref} {...props} />
       </Select.Content>
