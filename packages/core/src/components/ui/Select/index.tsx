@@ -1,7 +1,6 @@
 import { Check } from 'lucide-react-native';
-import { Fragment, useCallback, useMemo, useState } from 'react';
-import { Platform, Pressable, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import { useCallback, useMemo, useState } from 'react';
+import { Pressable, View } from 'react-native';
 import { Input, Select as NativeSelect, SelectContent, SelectTrigger, Text } from '~/base';
 import { Separator } from '~/components/base/separator';
 import { cn } from '~/lib/utils';
@@ -11,7 +10,6 @@ import { useOptions, useSelectedOption } from './hooks';
 import { SelectOption, SelectOptions, type SelectItemOption } from './types';
 import { isGroupedOption, isStringOption } from './utils';
 
-const WindowOverlay = Platform.OS === 'ios' ? FullWindowOverlay : Fragment;
 export type SelectProps<Option extends SelectOption> = {
   defaultValue?: string;
   value?: string;

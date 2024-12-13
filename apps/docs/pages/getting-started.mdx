@@ -1,0 +1,42 @@
+## Getting Started
+
+NativeBricks is easy to set up and use. If you’re familiar with Tailwind CSS or NativeWind, you’ll feel right at home.
+
+### Installation
+
+Install the NativeBricks library using npm or yarn:
+
+```bash
+npm install @nativebricks/core
+```
+
+or
+
+```bash
+yarn add @nativebricks/core
+```
+
+Then, follow our [Quick Start Guide](#) to configure your project and start building.
+
+### Example
+
+Here’s a simple example of using NativeBricks to create a card with a button:
+
+```javascript
+import React from 'react';
+import { View } from 'react-native';
+import { Button, Card, TextInput } from '@nativebricks/core';
+
+const App = () => (
+  <View className="flex-1 justify-center items-center bg-gray-100">
+    <Card className="w-80 p-4">
+      <TextInput placeholder="Enter your name" className="mb-4" />
+      <Button className="bg-blue-500 text-white" onPress={() => alert('Hello, NativeBricks!')}>
+        Click Me
+      </Button>
+    </Card>
+  </View>
+);
+
+export default App;
+```
