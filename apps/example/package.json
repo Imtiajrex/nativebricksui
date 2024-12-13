@@ -15,7 +15,6 @@
   "dependencies": {
     "@expo/html-elements": "^0.5.1",
     "@expo/metro-runtime": "^4.0.0",
-    "@nativebricks/primitives": "workspace:*",
     "@expo/vector-icons": "^14.0.4",
     "@hookform/resolvers": "^3.9.1",
     "@nativebricks/core": "workspace:*",
