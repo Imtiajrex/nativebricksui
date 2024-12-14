@@ -62,13 +62,17 @@ export function DatePicker({
       />
     );
   }, [selectedYear, updateTime, pickYear, showLabel]);
-  const renderMonth = useMemo(() => {
-    const monthArray =
+
+  const monthArray = useMemo(
+    () =>
       props.monthFormat === 'full'
         ? fullMonths
         : props.monthFormat === 'short'
         ? shortMonths
-        : numericMonths;
+        : numericMonths,
+    [props.monthFormat]
+  );
+  const renderMonth = useMemo(() => {
     if (!pickMonth) return null;
     return (
       <WheelPickerContainer
@@ -79,7 +83,7 @@ export function DatePicker({
         selectedIndex={selectedMonth}
       />
     );
-  }, [selectedMonth, updateTime, pickMonth, showLabel]);
+  }, [selectedMonth, updateTime, pickMonth, showLabel, monthArray]);
   const renderDay = useMemo(() => {
     if (!pickDay) return null;
     return (
@@ -91,7 +95,7 @@ export function DatePicker({
         selectedIndex={selectedDay}
       />
     );
-  }, [selectedDay, days, updateTime, pickDay, showLabel]);
+  }, [selectedDay, days.length, updateTime, pickDay, showLabel]);
   return (
     <View className={cn('flex-row gap-2 w-full', props.containerClassName)}>
       {renderYear}
