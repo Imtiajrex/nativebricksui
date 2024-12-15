@@ -82,7 +82,7 @@ const DateComponent = () => {
       <DateInput
         placeholder="Select Date"
         value={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
+        onChange={updateDate}
         datePickerProps={{
           monthFormat: 'short',
         }}
