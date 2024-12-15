@@ -19,10 +19,11 @@ export function InputContainer(
   return (
     <Pressable
       className={cn(
-        'web:flex flex-row items-center h-10 native:h-12 web:w-full rounded-input border border-input bg-card text-foreground gap-0',
+        'web:flex flex-row items-center overflow-hidden h-10 native:h-12 web:w-full rounded-input border border-input bg-card text-foreground gap-0',
         props.state == 'invalid' && 'border-destructive',
         props.state == 'valid' && 'border-success',
-        props.state == 'focused' && 'border-primary'
+        props.state == 'focused' && 'border-primary',
+        props.containerClassName
       )}
       onFocus={props.focus}
       onPress={props.focus}
@@ -46,6 +47,7 @@ export const useFocus = (
     onFocus: useCallback(() => setIsFocused(true), []),
     onBlur: useCallback(() => setIsFocused(false), []),
     isFocused,
+    focused: isFocused ? ('focused' as const) : undefined,
     focus: useCallback(() => inputRef.current?.focus?.(), [inputRef]),
     blur: useCallback(() => inputRef.current?.blur?.(), [inputRef]),
   };

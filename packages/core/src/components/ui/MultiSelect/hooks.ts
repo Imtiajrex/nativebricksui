@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { SelectItem } from '../Select/types';
+import { SelectItemOption } from '../Select/types';
 
-export const useSelectedOptions = (options: SelectItem[], value: string[]) => {
+export const useSelectedOptions = (options: SelectItemOption[], value: string[]) => {
   return useMemo(
     () =>
       options.filter((option) => {
