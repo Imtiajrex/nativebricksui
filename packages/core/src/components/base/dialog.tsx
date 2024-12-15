@@ -66,15 +66,12 @@ const DialogContent = React.forwardRef<
   }
 >(({ className, children, portalHost, showCloseButton = true, ...props }, ref) => {
   const { open, onOpenChange } = DialogPrimitive.useRootContext();
+  const close = React.useCallback(() => {
+    onOpenChange(false);
+  }, [onOpenChange]);
   return (
     <DialogPortal hostName={portalHost}>
-      <Modal
-        visible={open}
-        transparent
-        onRequestClose={() => {
-          onOpenChange(false);
-        }}
-      >
+      <Modal visible={open} transparent onRequestClose={close}>
         <DialogOverlay className={cn('w-full h-full', props.overlayClassName)}>
           <Animated.View
             ref={ref}

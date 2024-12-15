@@ -1,6 +1,6 @@
 import * as AlertDialogPrimitive from '@rn-primitives/alert-dialog';
 import * as React from 'react';
-import { Platform, StyleSheet, View, type ViewProps } from 'react-native';
+import { Modal, Platform, StyleSheet, View, type ViewProps } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { buttonTextVariants, buttonVariants } from '~/components/base/button';
 import { TextClassContext } from '~/components/base/text';
@@ -66,19 +66,21 @@ const AlertDialogContent = React.forwardRef<
 
   return (
     <AlertDialogPortal hostName={portalHost}>
-      <AlertDialogOverlay>
-        <AlertDialogPrimitive.Content
-          ref={ref}
-          className={cn(
-            'z-50 max-w-lg gap-4 border border-border bg-background p-6 shadow-lg shadow-foreground/10 web:duration-200 rounded-lg',
-            open
-              ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-              : 'web:animate-out web:fade-out-0 web:zoom-out-95',
-            className
-          )}
-          {...props}
-        />
-      </AlertDialogOverlay>
+      <Modal visible={open} transparent>
+        <AlertDialogOverlay>
+          <AlertDialogPrimitive.Content
+            ref={ref}
+            className={cn(
+              'z-50 max-w-lg gap-4 border border-border bg-background p-6 shadow-lg shadow-foreground/10 web:duration-200 rounded-lg',
+              open
+                ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
+                : 'web:animate-out web:fade-out-0 web:zoom-out-95',
+              className
+            )}
+            {...props}
+          />
+        </AlertDialogOverlay>
+      </Modal>
     </AlertDialogPortal>
   );
 });
