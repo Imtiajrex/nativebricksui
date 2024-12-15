@@ -64,7 +64,7 @@ export const Select = <Option extends SelectOption>(props: SelectProps<Option>) 
           />
         );
       }),
-    [filteredOptions]
+    [filteredOptions, props.value, props.onChange, props.renderOption]
   );
   const renderSearch = useMemo(() => {
     if (!props.searchEnabled) return null;

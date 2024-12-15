@@ -38,7 +38,7 @@ export default {
     'primary-foreground': 'rgb(0,0,0)',
     secondary: 'rgb(15, 15, 39)',
     'secondary-foreground': 'rgb(255, 255, 253)',
-    muted: 'rgb(15, 15, 39)',
+    muted: 'rgb(21, 21, 21)',
     'muted-foreground': 'rgb(145, 145, 145)',
     accent: 'rgb(15, 15, 39)',
     'accent-foreground': 'rgb(255, 255, 253)',

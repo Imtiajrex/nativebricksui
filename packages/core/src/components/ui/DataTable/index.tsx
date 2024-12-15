@@ -83,7 +83,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
       bounces={false}
       {...props.containerScrollViewProps}
       contentContainerClassName={cn(
-        'min-w-full ',
+        'w-full ',
         props?.containerScrollViewProps?.contentContainerClassName
       )}
       className={cn('w-full', props?.containerScrollViewProps?.className)}
@@ -112,7 +112,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
             })}
           </TableRow>
         </TableHeader>
-        <TableBody className={cn('min-w-full', props.tableBodyClassName)}>
+        <TableBody className={cn('w-full', props.tableBodyClassName)}>
           <FlashList
             data={props.data}
             estimatedItemSize={45}
