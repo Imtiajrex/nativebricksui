@@ -15,19 +15,11 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
+export type SelectTriggerRef = SelectPrimitive.TriggerRef;
 const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimitive.TriggerProps>(
   ({ className, children, ...props }, ref) => (
-    <SelectPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        'flex flex-row h-10 native:h-12 items-center text-sm justify-between rounded-md border border-input bg-card px-3 py-2 web:ring-offset-background text-muted-foreground web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 [&>span]:line-clamp-1',
-        props.disabled && 'web:cursor-not-allowed opacity-50',
-        className
-      )}
-      {...props}
-    >
+    <SelectPrimitive.Trigger ref={ref} className={cn('flex-1', className)} {...props}>
       <>{children}</>
-      <ChevronDown size={16} className="text-foreground opacity-50" />
     </SelectPrimitive.Trigger>
   )
 );

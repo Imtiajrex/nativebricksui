@@ -42,8 +42,10 @@ export const Dialog = forwardRef<Dialog, DialogProps>((props, ref) => {
       >
         {showHeader && (
           <DialogHeader className={cn(props.headerClassName)}>
-            {props.title && <DialogTitle>{props.title}</DialogTitle>}
-            {props.description && <DialogDescription>{props.description}</DialogDescription>}
+            {props.title && <DialogTitle className="text-foreground">{props.title}</DialogTitle>}
+            {props.description && (
+              <DialogDescription className="text-foreground">{props.description}</DialogDescription>
+            )}
             {props.Header}
           </DialogHeader>
         )}

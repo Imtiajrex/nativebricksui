@@ -20,15 +20,12 @@ export default function index() {
         <Text className="">Open Dialog</Text>
       </Button>
       <Dialog ref={dialogRef}>
-        <Text className="text-black">Dialog</Text>
+        <Text className="">Dialog</Text>
         <Select
           options={['Option 1', 'Option 2', 'Option 3']}
           placeholder="Select an option"
           value={value}
           onChange={setValue}
-          label="Select an option"
-          helperText="Select an option from the list"
-          asterisk
         />
       </Dialog>
       <Input placeholder="Search for a component" value={search} onChangeText={setSearch} />
