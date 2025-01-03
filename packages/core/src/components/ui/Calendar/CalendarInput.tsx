@@ -38,7 +38,7 @@ export function CalendarInput({
   const renderContent = useMemo(() => {
     return <CalendarPicker {...props.calendarProps} {...props} />;
   }, [props.calendarProps, props.onChange, props.value]);
-  const toDateString = (date: Date) =>
+  const toDateString = (date?: Date) =>
     date
       ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
       : '';

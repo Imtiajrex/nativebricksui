@@ -6,15 +6,9 @@ export const FormInput = <T extends FormFields>(props: InputProps & FormControlP
   return (
     <Controller
       render={({ field, fieldState }) => (
-        <Input
-          {...props}
-          value={field.value}
-          onChangeText={field.onChange}
-          error={fieldState.invalid}
-          message={fieldState.error?.message}
-        />
+        <Input {...props} value={field.value} onChangeText={field.onChange} />
       )}
-      name={props.name}
+      name={props.name!}
       control={props.control}
     />
   );

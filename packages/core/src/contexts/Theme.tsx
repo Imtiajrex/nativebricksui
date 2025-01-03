@@ -50,5 +50,5 @@ export const useTw = () => {
   if (!context) {
     throw new Error('useTw must be used within a ThemeProvider');
   }
-  return context.tailwind;
+  return context.tailwind!;
 };

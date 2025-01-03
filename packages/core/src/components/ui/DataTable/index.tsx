@@ -62,7 +62,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
       return [];
     }
     return props.columns?.map((_, index) => {
-      const minWidth = props.minColumnWidths[index];
+      const minWidth = props.minColumnWidths![index];
       const evenWidth = width / props.columns.length;
       return evenWidth > minWidth ? evenWidth : minWidth;
     });

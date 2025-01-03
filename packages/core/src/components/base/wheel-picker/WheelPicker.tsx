@@ -1,4 +1,4 @@
-import { AnimatedFlashList, FlashList } from '@shopify/flash-list';
+import { AnimatedFlashList, FlashListProps, FlashList } from '@shopify/flash-list';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   FlatListProps,
@@ -29,7 +29,7 @@ export type WheelPickerProps = {
   opacityFunction?: (x: number) => number;
   visibleRest?: number;
   decelerationRate?: 'normal' | 'fast' | number;
-  flatListProps?: Omit<FlatListProps<string | null>, 'data' | 'renderItem'>;
+  flatListProps?: Partial<Omit<FlashListProps<string | null>, 'data' | 'renderItem'>>;
   containerClassName?: string;
   showScrollIndicator?: boolean;
 };

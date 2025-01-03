@@ -13,6 +13,7 @@ import { Pressable, Text, View } from 'react-native';
 import { Separator } from '../../base/separator';
 import { cn } from '../../../lib/utils';
 import { Input } from '../Input';
+import { Option } from '../../../base';
 
 export const useOptions = ({
   options,
@@ -101,8 +102,8 @@ export const useOptions = ({
   const onValueChange = useMemo(
     () =>
       props.onChange
-        ? (option: SelectItemOption) => {
-            props.onChange?.(option.value);
+        ? (option: Option) => {
+            props.onChange?.(option?.value!);
           }
         : undefined,
     [props.onChange]
@@ -202,16 +203,16 @@ const Option = <IValue extends string | string[]>({
     if (typeof selectedValue == 'string') {
       return optionValue === selectedValue;
     } else {
-      return selectedValue.includes(optionValue);
+      return selectedValue?.includes(optionValue);
     }
   }, [option, selectedValue, optionValue]);
   const handleSelect = useCallback(() => {
-    onChange(optionValue);
+    onChange?.(optionValue);
   }, [onChange, optionValue]);
   if (renderOption) {
     return renderOption({
       option,
-      isSelected,
+      isSelected: isSelected!,
       setOption: handleSelect,
     });
   }
