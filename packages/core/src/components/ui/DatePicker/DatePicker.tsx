@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { View } from 'react-native';
-import { Text } from '~/base';
-import { WheelPicker, WheelPickerProps } from '~/components/base/wheel-picker';
-import { cn } from '~/lib/utils';
+import { Text } from '../../../base';
+import { WheelPicker, WheelPickerProps } from '../../../components/base/wheel-picker';
+import { cn } from '../../../lib/utils';
 import { getNumberOptions } from '../TimePicker/utils';
 import { formatNumber } from './utils';
 export interface DatePickerProps {

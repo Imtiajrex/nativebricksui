@@ -1,8 +1,8 @@
 import * as TablePrimitive from '@rn-primitives/table';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
-import { TextClassContext } from '~/components/base/text';
-import { cn } from '~/lib/utils';
+import { TextClassContext } from '../../components/base/text';
+import { cn } from '../../lib/utils';
 
 const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps>(
   ({ className, ...props }, ref) => (

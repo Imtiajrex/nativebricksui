@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { cn } from '~/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export type StateProps = {
   icon?: React.ReactNode;

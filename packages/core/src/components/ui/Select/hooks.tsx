@@ -10,8 +10,8 @@ import { isBaseOption, isFormattedGroupedOption, isGroupedOption, isStringOption
 
 import { Check } from 'lucide-react-native';
 import { Pressable, Text, View } from 'react-native';
-import { Separator } from '~/components/base/separator';
-import { cn } from '~/lib/utils';
+import { Separator } from '../../base/separator';
+import { cn } from '../../../lib/utils';
 import { Input } from '../Input';
 
 export const useOptions = ({

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import { Label } from '~/components/base/label';
-import { RadioGroup, RadioGroupItem } from '~/components/base/radio-group';
-import { cn } from '~/lib/utils';
+import { Label } from '../../base/label';
+import { RadioGroup, RadioGroupItem } from '../../base/radio-group';
+import { cn } from '../../../lib/utils';
 import { isStringOption } from '../Select/utils';
 
 type BaseRadioOptionType = {

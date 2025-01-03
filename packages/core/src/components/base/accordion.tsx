@@ -12,9 +12,9 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ChevronDown } from '~/lib/icons/ChevronDown';
-import { cn } from '~/lib/utils';
-import { TextClassContext } from '~/components/base/text';
+import { ChevronDown } from '../../lib/icons/ChevronDown';
+import { cn } from '../../lib/utils';
+import { TextClassContext } from './text';
 
 const Accordion = React.forwardRef<AccordionPrimitive.RootRef, AccordionPrimitive.RootProps>(
   ({ children, ...props }, ref) => {

@@ -1,14 +1,13 @@
+import { ChevronDown } from 'lucide-react-native';
 import { RefObject, useCallback, useRef, useState } from 'react';
 import { View } from 'react-native';
-import { Chip, Text } from '~/base';
-import { Select, SelectContent, SelectTrigger, SelectTriggerRef } from '~/components/base/select';
-import { cn } from '~/lib/utils';
+import { Chip, Text } from '../../../base';
+import { cn } from '../../../lib/utils';
+import { Select, SelectContent, SelectTrigger, SelectTriggerRef } from '../../base/select';
 import { InputContainer, InputContainerProps, useFocus } from '../misc/InputContainer';
-import { getInputBorderState } from '../misc/utils';
 import { useOptions, useRenderOptions, useRenderSearch } from '../Select/hooks';
 import { SelectItemOption, SelectOption, SelectProps } from '../Select/types';
 import { useSelectedOptions } from './hooks';
-import { ChevronDown } from 'lucide-react-native';
 export type MultiSelectProps<Option extends SelectOption> = {
   value?: string[];
   onChange?: (value: string[]) => void;

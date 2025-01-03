@@ -2,9 +2,9 @@ import { Calendar as CalendarIcon } from 'lucide-react-native';
 import { useCallback, useMemo } from 'react';
 import { Text, View } from 'react-native';
 import { DateData } from 'react-native-calendars';
-import { Popover, PopoverContent, PopoverTrigger } from '~/base';
-import { iconWithClassName } from '~/lib/iconWithClassName';
-import { useColor } from '~/lib/useColor';
+import { Popover, PopoverContent, PopoverTrigger } from '../../../base';
+import { iconWithClassName } from '../../../lib/iconWithClassName';
+import { useColor } from '../../../lib/useColor';
 import { InputContainer, InputContainerProps } from '../misc/InputContainer';
 import { Calendar, CalendarProps } from './Calendar';
 

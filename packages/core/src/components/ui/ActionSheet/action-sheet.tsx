@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import { Pressable, View } from 'react-native';
-import { Text } from '~/base';
-import { DialogContent, Dialog as NativeDialog } from '~/components/base/dialog';
-import { Separator } from '~/components/base/separator';
+import { Text } from '../../../base';
+import { DialogContent, Dialog as NativeDialog } from '../../../components/base/dialog';
+import { Separator } from '../../../components/base/separator';
 import { useDialog } from '../Dialog/hooks';
 
 type ActionType = {

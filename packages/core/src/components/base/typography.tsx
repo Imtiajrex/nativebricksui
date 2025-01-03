@@ -2,15 +2,15 @@ import * as Slot from '@rn-primitives/slot';
 import { SlottableTextProps, TextRef } from '@rn-primitives/types';
 import * as React from 'react';
 import { Platform, Text as RNText } from 'react-native';
-import { cn } from '~/lib/utils';
+import { cn } from '../../lib/utils';
 
 const H1 = React.forwardRef<TextRef, SlottableTextProps>(
   ({ className, asChild = false, ...props }, ref) => {
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        role='heading'
-        aria-level='1'
+        role="heading"
+        aria-level="1"
         className={cn(
           'web:scroll-m-20 text-4xl text-foreground font-extrabold tracking-tight lg:text-5xl web:select-text',
           className
@@ -29,8 +29,8 @@ const H2 = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        role='heading'
-        aria-level='2'
+        role="heading"
+        aria-level="2"
         className={cn(
           'web:scroll-m-20 border-b border-border pb-2 text-3xl text-foreground font-semibold tracking-tight first:mt-0 web:select-text',
           className
@@ -49,8 +49,8 @@ const H3 = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        role='heading'
-        aria-level='3'
+        role="heading"
+        aria-level="3"
         className={cn(
           'web:scroll-m-20 text-2xl text-foreground font-semibold tracking-tight web:select-text',
           className
@@ -69,8 +69,8 @@ const H4 = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        role='heading'
-        aria-level='4'
+        role="heading"
+        aria-level="4"
         className={cn(
           'web:scroll-m-20 text-xl text-foreground font-semibold tracking-tight web:select-text',
           className

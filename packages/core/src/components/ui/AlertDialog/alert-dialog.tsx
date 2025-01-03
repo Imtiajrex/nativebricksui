@@ -6,9 +6,9 @@ import {
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialog as BaseAlertDialog,
-} from '~/components/base/alert-dialog';
-import { Text } from '~/components/base/text';
-import { cn } from '~/lib/utils';
+} from '../../../components/base/alert-dialog';
+import { Text } from '../../../components/base/text';
+import { cn } from '../../../lib/utils';
 import { useDialog } from '../Dialog/hooks';
 
 type ButtonType = {

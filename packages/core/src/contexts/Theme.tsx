@@ -1,9 +1,7 @@
-import React, { createContext, useEffect, useMemo } from 'react';
-import { View } from 'react-native';
-import { create, TailwindFn, TwConfig, useDeviceContext } from 'twrnc';
-import { useColorScheme } from '~/lib/useColorScheme';
-import { cn } from '~/lib/utils';
 import { colorScheme as nativeColorScheme } from 'nativewind';
+import React, { createContext, useEffect, useMemo } from 'react';
+import { create, TailwindFn, TwConfig, useDeviceContext } from 'twrnc';
+import { useColorScheme } from '../lib/useColorScheme';
 
 const ThemeContext = createContext<{
   tailwind: TailwindFn | null;
