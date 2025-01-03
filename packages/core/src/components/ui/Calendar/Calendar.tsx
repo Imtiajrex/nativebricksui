@@ -3,8 +3,8 @@ import {
   Calendar as BaseCalendar,
   CalendarProps as BaseCalendarProps,
 } from 'react-native-calendars';
-import { useTw } from '~/contexts/Theme';
-import { useColor } from '~/lib/useColor';
+import { useTw } from '../../../contexts/Theme';
+import { useColor } from '../../../lib/useColor';
 
 export type CalendarProps = BaseCalendarProps & {
   className?: string;

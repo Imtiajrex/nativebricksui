@@ -5,8 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
   Accordion as BaseAccordion,
-} from '~/base';
-import { cn } from '~/lib/utils';
+} from '../../../base';
+import { cn } from '../../../lib/utils';
 type ClassNames = {
   contentClassName?: string;
   contentTextClassName?: string;

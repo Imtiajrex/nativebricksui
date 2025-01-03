@@ -1,4 +1,4 @@
-import { useTw } from '~/contexts/Theme';
+import { useTw } from '../contexts/Theme';
 
 export const useColor = (color: string) => {
   const tw = useTw();

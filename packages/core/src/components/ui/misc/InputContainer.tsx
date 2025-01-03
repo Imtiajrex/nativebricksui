@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useState } from 'react';
-import { Pressable, View } from 'react-native';
-import { cn } from '~/lib/utils';
+import { Pressable } from 'react-native';
+import { cn } from '../../../lib/utils';
 export type InputContainerProps = {
   leading?: React.ReactNode;
   trailing?: React.ReactNode;

@@ -1,6 +1,6 @@
 import { View } from 'react-native';
-import { Label, Text } from '~/base';
-import { cn } from '~/lib/utils';
+import { Label, Text } from '../../../base';
+import { cn } from '../../../lib/utils';
 export type InputDetailsProps = {
   label?: string;
   helperText?: string;

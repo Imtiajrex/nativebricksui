@@ -2,8 +2,8 @@ import { remapProps } from 'nativewind';
 import { forwardRef, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ActionSheet, { ActionSheetProps, ActionSheetRef } from 'react-native-actions-sheet';
-import { Text } from '~/base';
-import { cn } from '~/lib/utils';
+import { Text } from '../../../base';
+import { cn } from '../../../lib/utils';
 
 remapProps(ActionSheet, {
   containerClassName: 'containerStyle',

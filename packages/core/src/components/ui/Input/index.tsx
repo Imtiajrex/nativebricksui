@@ -1,7 +1,7 @@
 import { useId, useRef } from 'react';
 import { TextInputProps } from 'react-native';
-import { Input as BaseInput } from '~/base';
-import { cn } from '~/lib/utils';
+import { Input as BaseInput } from '../../../base';
+import { cn } from '../../../lib/utils';
 import { InputContainer, InputContainerProps, useFocus } from '../misc/InputContainer';
 
 export type InputProps = TextInputProps & InputContainerProps;

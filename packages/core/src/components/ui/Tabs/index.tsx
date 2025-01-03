@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Tabs as BaseTabs, TabsContent, TabsList, TabsTrigger } from '~/components/base/tabs';
-import { Text } from '~/components/base/text';
-import { cn } from '~/lib/utils';
+import { Tabs as BaseTabs, TabsContent, TabsList, TabsTrigger } from '../../base/tabs';
+import { Text } from '../../base/text';
+import { cn } from '../../../lib/utils';
 
 export type TabsProps = {
   tabs: {

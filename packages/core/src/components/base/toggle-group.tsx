@@ -1,10 +1,10 @@
 import { VariantProps } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react-native';
 import * as React from 'react';
-import { toggleTextVariants, toggleVariants } from '~/components/base/toggle';
-import { TextClassContext } from '~/components/base/text';
+import { toggleTextVariants, toggleVariants } from '../../components/base/toggle';
+import { TextClassContext } from '../../components/base/text';
 import * as ToggleGroupPrimitive from '@rn-primitives/toggle-group';
-import { cn } from '~/lib/utils';
+import { cn } from '../../lib/utils';
 
 const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants> | null>(null);
 

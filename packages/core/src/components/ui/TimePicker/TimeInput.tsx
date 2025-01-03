@@ -1,8 +1,8 @@
 import { Clock } from 'lucide-react-native';
 import { useMemo } from 'react';
 import { Text, View } from 'react-native';
-import { Popover, PopoverContent, PopoverTrigger } from '~/base';
-import { iconWithClassName } from '~/lib/iconWithClassName';
+import { Popover, PopoverContent, PopoverTrigger } from '../../base/popover';
+import { iconWithClassName } from '../../../lib/iconWithClassName';
 import { InputContainer, InputContainerProps } from '../misc/InputContainer';
 import { TimePicker, TimePickerProps } from './TimePicker';
 

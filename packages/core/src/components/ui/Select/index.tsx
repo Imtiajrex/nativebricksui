@@ -7,9 +7,9 @@ import {
   SelectTrigger,
   SelectTriggerRef,
   Text,
-} from '~/base';
-import { iconWithClassName } from '~/lib/iconWithClassName';
-import { cn } from '~/lib/utils';
+} from '../../../base';
+import { iconWithClassName } from '../../../lib/iconWithClassName';
+import { cn } from '../../../lib/utils';
 import { InputContainer, useFocus } from '../misc/InputContainer';
 import { useOptions, useRenderOptions, useRenderSearch, useSelectedOption } from './hooks';
 import { SelectOption, SelectProps } from './types';

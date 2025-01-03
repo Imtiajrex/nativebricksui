@@ -1,6 +1,6 @@
 import { ImageProps, ImageSourcePropType } from 'react-native';
-import { AvatarFallback, AvatarImage, Avatar as BaseAvatar, Text } from '~/base';
-import { cn } from '~/lib/utils';
+import { AvatarFallback, AvatarImage, Avatar as BaseAvatar, Text } from '../../../base';
+import { cn } from '../../../lib/utils';
 export type AvatarProps = {
   fallbackText?: string;
   fallbackClassName?: string;

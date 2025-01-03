@@ -2,7 +2,7 @@ import * as CheckboxPrimitive from '@rn-primitives/checkbox';
 import { useCallback, useId } from 'react';
 
 import { View } from 'react-native';
-import { Checkbox as BaseCheckbox, Label } from '~/base';
+import { Checkbox as BaseCheckbox, Label } from '../../../base';
 
 export type CheckboxProps = CheckboxPrimitive.RootProps & {
   label?: string | React.ReactNode;

@@ -6,8 +6,8 @@ import {
   DialogHeader,
   DialogTitle,
   Dialog as NativeDialog,
-} from '~/components/base/dialog';
-import { cn } from '~/lib/utils';
+} from '../../base/dialog';
+import { cn } from '../../../lib/utils';
 import { useDialog } from './hooks';
 
 export type DialogProps = {

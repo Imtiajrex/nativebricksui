@@ -11,8 +11,8 @@ import {
   TableHeader,
   TableRow,
   Text,
-} from '~/base';
-import { cn } from '~/lib/utils';
+} from '../../../base';
+import { cn } from '../../../lib/utils';
 
 export type ColumnType<TData extends Record<string, any>> = {
   label: string;
