@@ -37,8 +37,8 @@ export function Tabs(props: TabsProps) {
   }, [props.tabs, props.contentClassName]);
   return (
     <BaseTabs
-      value={props.value}
-      onValueChange={props.onValueChange}
+      value={props.value!}
+      onValueChange={props.onValueChange!}
       className={cn('flex-col gap-4', props.containerClassName)}
     >
       <TabsList className={cn(props.listClassName, 'flex-row w-full')}>

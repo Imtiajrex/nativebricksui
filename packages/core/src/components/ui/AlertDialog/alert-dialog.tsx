@@ -51,7 +51,7 @@ export const AlertDialog = forwardRef<AlertDialog, AlertDialogProps>((props, ref
           className={cn(
             'flex flex-row items-center justify-between gap-2 border-t border-border mt-2',
             props.buttons?.length === 1 && 'justify-center',
-            props.buttons?.length > 2 && 'flex-col justify-center'
+            props.buttons && props.buttons?.length > 2 && 'flex-col justify-center'
           )}
         >
           {props.buttons?.map((button, index) => (

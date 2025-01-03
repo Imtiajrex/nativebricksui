@@ -28,7 +28,7 @@ const BaseMultiSelect = <Option extends SelectOption>(
     setSearchText,
     onChange: (value) => props.onChange?.([value]),
   });
-  const selectedOptions = useSelectedOptions(normalizedOptions, props.value);
+  const selectedOptions = useSelectedOptions(normalizedOptions, props.value!);
 
   const onChange = useCallback(
     (value: string) => {
@@ -45,12 +45,12 @@ const BaseMultiSelect = <Option extends SelectOption>(
     onChange: onChange,
     searchText,
     setSearchText,
-    value: props.value,
+    value: props.value!,
     renderOption: props.renderOption,
     searchEnabled: props.searchEnabled,
   });
   const renderSearch = useRenderSearch({
-    searchEnabled: props.searchEnabled,
+    searchEnabled: props.searchEnabled!,
     searchText,
     setSearchText,
   });

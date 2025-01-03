@@ -50,7 +50,7 @@ export function Radio(props: RadioProps) {
   return (
     <RadioGroup
       value={props.value}
-      onValueChange={props.onValueChange}
+      onValueChange={props.onValueChange!}
       className={cn('gap-3', props.containerClassName)}
     >
       {renderOptions}

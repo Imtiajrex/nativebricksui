@@ -17,7 +17,7 @@ const useAlertStore = create<AlertStoreType>((set) => ({
 export const GlobalActionSheetProvider = () => {
   const actionSheetDetails = useAlertStore((state) => state.actionSheetDetails);
   const onOpenChange = useCallback(
-    (open) => {
+    (open: boolean) => {
       if (!open) {
         useAlertStore.setState({ actionSheetDetails: null });
       }

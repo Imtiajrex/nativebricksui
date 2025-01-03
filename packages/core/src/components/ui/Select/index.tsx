@@ -26,7 +26,7 @@ const BaseSelect = <Option extends SelectOption>(
     options: props.options,
     searchText,
     setSearchText,
-    onChange: props.onChange,
+    onChange: props.onChange!,
     defaultValue: props.defaultValue,
     renderOption: props.renderOption,
     searchEnabled: props.searchEnabled,
@@ -34,7 +34,7 @@ const BaseSelect = <Option extends SelectOption>(
   const renderSearch = useRenderSearch({
     searchText,
     setSearchText,
-    searchEnabled: props.searchEnabled,
+    searchEnabled: props.searchEnabled!,
   });
   const onChange = useCallback(
     (value: string) => {
@@ -47,10 +47,10 @@ const BaseSelect = <Option extends SelectOption>(
     searchText,
     setSearchText,
     onChange,
-    value: props.value,
+    value: props.value!,
     renderOption: props.renderOption,
   });
-  const selectedOption = useSelectedOption(normalizedOptions, props.value);
+  const selectedOption = useSelectedOption(normalizedOptions, props.value!);
   const selectValue = useMemo(() => {
     return selectedOption ? (
       props.renderSelectedOption ? (
@@ -67,9 +67,9 @@ const BaseSelect = <Option extends SelectOption>(
   return (
     <NativeSelect
       className="flex-1"
-      value={selectedOption}
+      value={selectedOption!}
       defaultValue={defaultOption}
-      onValueChange={onValueChange}
+      onValueChange={onValueChange!}
     >
       <SelectTrigger
         ref={props.selectRef}
