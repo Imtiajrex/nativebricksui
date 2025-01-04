@@ -13,7 +13,7 @@ export type AvatarProps = {
 export function Avatar(props: AvatarProps) {
   return (
     <BaseAvatar {...props}>
-      <AvatarImage source={props.source} {...props.imageProps} />
+      <AvatarImage source={props.source!} {...props.imageProps} />
       <AvatarFallback className={cn('flex items-center justify-center', props.fallbackClassName)}>
         <Text className={cn(props.fallbackTextClassName)}>{props.fallbackText}</Text>
       </AvatarFallback>
