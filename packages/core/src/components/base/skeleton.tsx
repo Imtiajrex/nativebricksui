@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -16,7 +16,7 @@ function Skeleton({
 }: Omit<React.ComponentPropsWithoutRef<typeof Animated.View>, 'style'>) {
   const sv = useSharedValue(1);
 
-  React.useEffect(() => {
+  useEffect(() => {
     sv.value = withRepeat(
       withSequence(withTiming(0.5, { duration }), withTiming(1, { duration })),
       -1

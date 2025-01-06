@@ -1,8 +1,8 @@
 import * as AvatarPrimitive from '@rn-primitives/avatar';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
-const Avatar = React.forwardRef<AvatarPrimitive.RootRef, AvatarPrimitive.RootProps>(
+const Avatar = forwardRef<AvatarPrimitive.RootRef, AvatarPrimitive.RootProps>(
   ({ className, ...props }, ref) => (
     <AvatarPrimitive.Root
       ref={ref}
@@ -16,7 +16,7 @@ const Avatar = React.forwardRef<AvatarPrimitive.RootRef, AvatarPrimitive.RootPro
 );
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
-const AvatarImage = React.forwardRef<AvatarPrimitive.ImageRef, AvatarPrimitive.ImageProps>(
+const AvatarImage = forwardRef<AvatarPrimitive.ImageRef, AvatarPrimitive.ImageProps>(
   ({ className, ...props }, ref) => (
     <AvatarPrimitive.Image
       ref={ref}
@@ -27,7 +27,7 @@ const AvatarImage = React.forwardRef<AvatarPrimitive.ImageRef, AvatarPrimitive.I
 );
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-const AvatarFallback = React.forwardRef<AvatarPrimitive.FallbackRef, AvatarPrimitive.FallbackProps>(
+const AvatarFallback = forwardRef<AvatarPrimitive.FallbackRef, AvatarPrimitive.FallbackProps>(
   ({ className, ...props }, ref) => (
     <AvatarPrimitive.Fallback
       ref={ref}

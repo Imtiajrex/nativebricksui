@@ -46,7 +46,7 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
   );
 }
 export const useTw = () => {
-  const context = React.useContext(ThemeContext);
+  const context = useContext(ThemeContext);
   if (!context) {
     throw new Error('useTw must be used within a ThemeProvider');
   }

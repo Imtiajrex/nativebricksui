@@ -3,7 +3,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 export default function DialogPage() {
-  const dialogRef = React.useRef<Dialog>(null);
+  const dialogRef = useRef<Dialog>(null);
   return (
     <View className="container">
       <Dialog

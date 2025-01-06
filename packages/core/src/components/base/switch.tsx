@@ -1,5 +1,5 @@
 import * as SwitchPrimitives from '@rn-primitives/switch';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform } from 'react-native';
 import Animated, {
   interpolateColor,
@@ -10,7 +10,7 @@ import Animated, {
 import { useColorScheme } from '../../lib/useColorScheme';
 import { cn } from '../../lib/utils';
 
-const SwitchWeb = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
+const SwitchWeb = forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
   ({ className, ...props }, ref) => (
     <SwitchPrimitives.Root
       className={cn(
@@ -45,7 +45,7 @@ const RGB_COLORS = {
   },
 } as const;
 
-const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
+const SwitchNative = forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
   ({ className, ...props }, ref) => {
     const { colorScheme } = useColorScheme();
     const translateX = useDerivedValue(() => (props.checked ? 18 : 0));

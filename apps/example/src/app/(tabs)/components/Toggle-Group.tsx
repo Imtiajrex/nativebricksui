@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { CheckCircle } from 'lucide-react-native';
 
 export default function ToggleGroupPage() {
-  const [selected, setSelected] = React.useState(false);
+  const [selected, setSelected] = useState(false);
   return (
     <View className="container">
       <Toggle pressed={selected} onPressedChange={setSelected}>

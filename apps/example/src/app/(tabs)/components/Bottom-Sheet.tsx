@@ -3,7 +3,7 @@ import React from 'react';
 import { Modal, Text, View } from 'react-native';
 
 export default function BottomSheetPage() {
-  const dialogRef = React.useRef<BottomSheet>(null);
+  const dialogRef = useRef<BottomSheet>(null);
   return (
     <>
       <BottomSheet

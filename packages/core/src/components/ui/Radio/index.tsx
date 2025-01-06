@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { View } from 'react-native';
 import { Label } from '../../base/label';
 import { RadioGroup, RadioGroupItem } from '../../base/radio-group';
@@ -24,7 +24,7 @@ export type RadioProps = {
   containerClassName?: string;
 };
 export function Radio(props: RadioProps) {
-  const onLabelPress = React.useCallback(
+  const onLabelPress = useCallback(
     (value: string) => () => {
       if (props.onValueChange) {
         props.onValueChange(value);
@@ -32,7 +32,7 @@ export function Radio(props: RadioProps) {
     },
     [props.onValueChange]
   );
-  const renderOptions = React.useMemo(() => {
+  const renderOptions = useMemo(() => {
     return props.options.map((option) => {
       const value = isStringOption(option) ? option : option.value;
       if (props.renderOption) {

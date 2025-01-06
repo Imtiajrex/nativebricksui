@@ -1,5 +1,5 @@
 import { FlashList } from '@shopify/flash-list';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { ScrollView, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -57,7 +57,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
-  const columnWidths = React.useMemo(() => {
+  const columnWidths = useMemo(() => {
     if (!props.minColumnWidths) {
       return [];
     }
@@ -69,7 +69,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
   }, [width]);
   const oddClassName = useNthClassNames('odd', props.bodyRowClassName);
   const evenClassName = useNthClassNames('even', props.bodyRowClassName);
-  const oddEvenRemovedClassName = React.useMemo(() => {
+  const oddEvenRemovedClassName = useMemo(() => {
     if (!props.bodyRowClassName) return '';
 
     return props.bodyRowClassName
@@ -191,7 +191,7 @@ export function DataTable<TData extends Record<string, any>>(props: DataTablePro
 }
 
 const useNthClassNames = (type: 'odd' | 'even', className?: string) => {
-  return React.useMemo(() => {
+  return useMemo(() => {
     if (!className) return '';
     return type === 'odd'
       ? className

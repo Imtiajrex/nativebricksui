@@ -3,7 +3,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 export default function ActionSheetPage() {
-  const dialogRef = React.useRef<AlertDialog>(null);
+  const dialogRef = useRef<AlertDialog>(null);
   return (
     <View className="container">
       <AlertDialog

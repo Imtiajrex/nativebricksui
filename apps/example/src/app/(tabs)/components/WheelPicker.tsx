@@ -13,7 +13,7 @@ import { ScrollView, View } from 'react-native';
 
 export default function WheelPickerScreen() {
   const { colorScheme, setColorScheme } = useColorScheme();
-  const [selectedValue, setSelectedValue] = React.useState('1');
+  const [selectedValue, setSelectedValue] = useState('1');
   const options = Array.from({ length: 24 }, (_, i) => `${i + 1}`);
   return (
     <ScrollView className="flex-1" contentContainerClassName="max-w-2xl w-full mx-auto p-4">
@@ -39,7 +39,7 @@ export default function WheelPickerScreen() {
 }
 
 const Time = () => {
-  const [selectedTime, setSelectedTime] = React.useState('00:00');
+  const [selectedTime, setSelectedTime] = useState('00:00');
   const updateTime = useCallback((time) => {
     setSelectedTime(`${time.hour}:${time.minute} ${time.meridiam}`);
   }, []);
@@ -64,7 +64,7 @@ const Time = () => {
 };
 
 const DateComponent = () => {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const updateDate = useCallback((date: Date) => {
     setSelectedDate(date);
   }, []);

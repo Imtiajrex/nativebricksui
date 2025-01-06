@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 export default function SwitchPage() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
   return (
     <View className="container">
       <Switch checked={checked} onCheckedChange={setChecked} />

@@ -1,5 +1,5 @@
 import * as DialogPrimitive from '@rn-primitives/dialog';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Modal, Platform, StyleSheet, View, type ViewProps } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { X } from '../../lib/icons/X';
@@ -13,7 +13,7 @@ const DialogPortal = DialogPrimitive.Portal;
 
 const DialogClose = DialogPrimitive.Close;
 
-const DialogOverlayWeb = React.forwardRef<DialogPrimitive.OverlayRef, DialogPrimitive.OverlayProps>(
+const DialogOverlayWeb = forwardRef<DialogPrimitive.OverlayRef, DialogPrimitive.OverlayProps>(
   ({ className, ...props }, ref) => {
     const { open } = DialogPrimitive.useRootContext();
     return (
@@ -32,23 +32,22 @@ const DialogOverlayWeb = React.forwardRef<DialogPrimitive.OverlayRef, DialogPrim
 
 DialogOverlayWeb.displayName = 'DialogOverlayWeb';
 
-const DialogOverlayNative = React.forwardRef<
-  DialogPrimitive.OverlayRef,
-  DialogPrimitive.OverlayProps
->(({ className, children, ...props }, ref) => {
-  return (
-    <DialogPrimitive.Overlay
-      style={StyleSheet.absoluteFill}
-      className={cn('flex bg-black/80 justify-center items-center p-2', className)}
-      {...props}
-      ref={ref}
-    >
-      <Animated.View entering={FadeIn.duration(150)} exiting={FadeOut.duration(150)}>
-        <>{children as any}</>
-      </Animated.View>
-    </DialogPrimitive.Overlay>
-  );
-});
+const DialogOverlayNative = forwardRef<DialogPrimitive.OverlayRef, DialogPrimitive.OverlayProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <DialogPrimitive.Overlay
+        style={StyleSheet.absoluteFill}
+        className={cn('flex bg-black/80 justify-center items-center p-2', className)}
+        {...props}
+        ref={ref}
+      >
+        <Animated.View entering={FadeIn.duration(150)} exiting={FadeOut.duration(150)}>
+          <>{children as any}</>
+        </Animated.View>
+      </DialogPrimitive.Overlay>
+    );
+  }
+);
 
 DialogOverlayNative.displayName = 'DialogOverlayNative';
 
@@ -57,7 +56,7 @@ const DialogOverlay = Platform.select({
   default: DialogOverlayNative,
 });
 
-const DialogContent = React.forwardRef<
+const DialogContent = forwardRef<
   DialogPrimitive.ContentRef,
   DialogPrimitive.ContentProps & {
     portalHost?: string;
@@ -66,7 +65,7 @@ const DialogContent = React.forwardRef<
   }
 >(({ className, children, portalHost, showCloseButton = true, ...props }, ref) => {
   const { open, onOpenChange } = DialogPrimitive.useRootContext();
-  const close = React.useCallback(() => {
+  const close = useCallback(() => {
     onOpenChange(false);
   }, [onOpenChange]);
   return (
@@ -118,7 +117,7 @@ const DialogFooter = ({ className, ...props }: ViewProps) => (
 );
 DialogFooter.displayName = 'DialogFooter';
 
-const DialogTitle = React.forwardRef<DialogPrimitive.TitleRef, DialogPrimitive.TitleProps>(
+const DialogTitle = forwardRef<DialogPrimitive.TitleRef, DialogPrimitive.TitleProps>(
   ({ className, ...props }, ref) => (
     <DialogPrimitive.Title
       ref={ref}
@@ -132,7 +131,7 @@ const DialogTitle = React.forwardRef<DialogPrimitive.TitleRef, DialogPrimitive.T
 );
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
-const DialogDescription = React.forwardRef<
+const DialogDescription = forwardRef<
   DialogPrimitive.DescriptionRef,
   DialogPrimitive.DescriptionProps
 >(({ className, ...props }, ref) => (

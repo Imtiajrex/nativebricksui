@@ -4,12 +4,12 @@ import { ChevronRightIcon } from 'lucide-react-native';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 export default function index() {
-  const [search, setSearch] = React.useState('');
+  const [search, setSearch] = useState('');
   const filteredComponents = components.filter((component) =>
     component.name.toLowerCase().includes(search.toLowerCase())
   );
-  const dialogRef = React.useRef(null);
-  const [value, setValue] = React.useState('');
+  const dialogRef = useRef(null);
+  const [value, setValue] = useState('');
   return (
     <ScrollView
       className="flex-1"

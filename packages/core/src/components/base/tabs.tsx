@@ -1,11 +1,11 @@
 import * as TabsPrimitive from '@rn-primitives/tabs';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 import { TextClassContext } from '../../components/base/text';
 
 const Tabs = TabsPrimitive.Root;
 
-const TabsList = React.forwardRef<TabsPrimitive.ListRef, TabsPrimitive.ListProps>(
+const TabsList = forwardRef<TabsPrimitive.ListRef, TabsPrimitive.ListProps>(
   ({ className, ...props }, ref) => (
     <TabsPrimitive.List
       ref={ref}
@@ -19,7 +19,7 @@ const TabsList = React.forwardRef<TabsPrimitive.ListRef, TabsPrimitive.ListProps
 );
 TabsList.displayName = TabsPrimitive.List.displayName;
 
-const TabsTrigger = React.forwardRef<TabsPrimitive.TriggerRef, TabsPrimitive.TriggerProps>(
+const TabsTrigger = forwardRef<TabsPrimitive.TriggerRef, TabsPrimitive.TriggerProps>(
   ({ className, ...props }, ref) => {
     const { value } = TabsPrimitive.useRootContext();
     return (
@@ -45,7 +45,7 @@ const TabsTrigger = React.forwardRef<TabsPrimitive.TriggerRef, TabsPrimitive.Tri
 );
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
-const TabsContent = React.forwardRef<TabsPrimitive.ContentRef, TabsPrimitive.ContentProps>(
+const TabsContent = forwardRef<TabsPrimitive.ContentRef, TabsPrimitive.ContentProps>(
   ({ className, ...props }, ref) => (
     <TabsPrimitive.Content
       ref={ref}

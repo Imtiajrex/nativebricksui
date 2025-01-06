@@ -6,7 +6,7 @@ import {
 } from '@rn-primitives/hooks';
 import { Portal as RNPPortal } from '@rn-primitives/portal';
 import * as Slot from '@rn-primitives/slot';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import {
   BackHandler,
   Pressable,
@@ -58,7 +58,7 @@ interface IRootContext extends SharedRootContext {
 
 const RootContext = React.createContext<IRootContext | null>(null);
 
-const Root = React.forwardRef<RootRef, RootProps>(
+const Root = forwardRef<RootRef, RootProps>(
   (
     {
       asChild,
@@ -71,15 +71,15 @@ const Root = React.forwardRef<RootRef, RootProps>(
     },
     ref
   ) => {
-    const nativeID = React.useId();
+    const nativeID = useId();
     const [value, onValueChange] = useControllableState({
       prop: valueProp,
       defaultProp: defaultValue,
       onChange: onValueChangeProp,
     });
-    const [triggerPosition, setTriggerPosition] = React.useState<LayoutPosition | null>(null);
-    const [contentLayout, setContentLayout] = React.useState<LayoutRectangle | null>(null);
-    const [open, setOpen] = React.useState(false);
+    const [triggerPosition, setTriggerPosition] = useState<LayoutPosition | null>(null);
+    const [contentLayout, setContentLayout] = useState<LayoutRectangle | null>(null);
+    const [open, setOpen] = useState(false);
 
     function onOpenChange(value: boolean) {
       setOpen(value);
@@ -111,14 +111,14 @@ const Root = React.forwardRef<RootRef, RootProps>(
 Root.displayName = 'RootNativeSelect';
 
 function useRootContext() {
-  const context = React.useContext(RootContext);
+  const context = useContext(RootContext);
   if (!context) {
     throw new Error('Select compound components cannot be rendered outside the Select component');
   }
   return context;
 }
 
-const Trigger = React.forwardRef<TriggerRef, TriggerProps>(
+const Trigger = forwardRef<TriggerRef, TriggerProps>(
   ({ asChild, onPress: onPressProp, disabled = false, ...props }, ref) => {
     const { open, onOpenChange, disabled: disabledRoot, setTriggerPosition } = useRootContext();
 
@@ -164,7 +164,7 @@ const Trigger = React.forwardRef<TriggerRef, TriggerProps>(
 
 Trigger.displayName = 'TriggerNativeSelect';
 
-const Value = React.forwardRef<ValueRef, ValueProps>(({ asChild, placeholder, ...props }, ref) => {
+const Value = forwardRef<ValueRef, ValueProps>(({ asChild, placeholder, ...props }, ref) => {
   const { value } = useRootContext();
   const Component = asChild ? Slot.Text : Text;
   return (
@@ -199,7 +199,7 @@ function Portal({ forceMount, hostName, children }: PortalProps) {
   );
 }
 
-const Overlay = React.forwardRef<OverlayRef, OverlayProps>(
+const Overlay = forwardRef<OverlayRef, OverlayProps>(
   ({ asChild, forceMount, onPress: OnPressProp, closeOnPress = true, ...props }, ref) => {
     const { open, onOpenChange, setTriggerPosition, setContentLayout } = useRootContext();
 
@@ -228,7 +228,7 @@ Overlay.displayName = 'OverlayNativeSelect';
 /**
  * @info `position`, `top`, `left`, and `maxWidth` style properties are controlled internally. Opt out of this behavior by setting `disablePositioningStyle` to `true`.
  */
-const Content = React.forwardRef<ContentRef, ContentProps>(
+const Content = forwardRef<ContentRef, ContentProps>(
   (
     {
       asChild = false,
@@ -257,7 +257,7 @@ const Content = React.forwardRef<ContentRef, ContentProps>(
       setTriggerPosition,
     } = useRootContext();
 
-    React.useEffect(() => {
+    useEffect(() => {
       const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
         setTriggerPosition(null);
         setContentLayout(null);
@@ -317,7 +317,7 @@ const ItemContext = React.createContext<{
   label: string;
 } | null>(null);
 
-const Item = React.forwardRef<ItemRef, ItemProps>(
+const Item = forwardRef<ItemRef, ItemProps>(
   (
     {
       asChild,
@@ -368,14 +368,14 @@ const Item = React.forwardRef<ItemRef, ItemProps>(
 Item.displayName = 'ItemNativeSelect';
 
 function useItemContext() {
-  const context = React.useContext(ItemContext);
+  const context = useContext(ItemContext);
   if (!context) {
     throw new Error('Item compound components cannot be rendered outside of an Item component');
   }
   return context;
 }
 
-const ItemText = React.forwardRef<ItemTextRef, ItemTextProps>(({ asChild, ...props }, ref) => {
+const ItemText = forwardRef<ItemTextRef, ItemTextProps>(({ asChild, ...props }, ref) => {
   const { label } = useItemContext();
 
   const Component = asChild ? Slot.Text : Text;
@@ -388,7 +388,7 @@ const ItemText = React.forwardRef<ItemTextRef, ItemTextProps>(({ asChild, ...pro
 
 ItemText.displayName = 'ItemTextNativeSelect';
 
-const ItemIndicator = React.forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
+const ItemIndicator = forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
   ({ asChild, forceMount, ...props }, ref) => {
     const { itemValue } = useItemContext();
     const { value } = useRootContext();
@@ -405,21 +405,21 @@ const ItemIndicator = React.forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
 
 ItemIndicator.displayName = 'ItemIndicatorNativeSelect';
 
-const Group = React.forwardRef<GroupRef, GroupProps>(({ asChild, ...props }, ref) => {
+const Group = forwardRef<GroupRef, GroupProps>(({ asChild, ...props }, ref) => {
   const Component = asChild ? Slot.View : View;
   return <Component ref={ref} role="group" {...props} />;
 });
 
 Group.displayName = 'GroupNativeSelect';
 
-const Label = React.forwardRef<LabelRef, LabelProps>(({ asChild, ...props }, ref) => {
+const Label = forwardRef<LabelRef, LabelProps>(({ asChild, ...props }, ref) => {
   const Component = asChild ? Slot.Text : Text;
   return <Component ref={ref} {...props} />;
 });
 
 Label.displayName = 'LabelNativeSelect';
 
-const Separator = React.forwardRef<SeparatorRef, SeparatorProps>(
+const Separator = forwardRef<SeparatorRef, SeparatorProps>(
   ({ asChild, decorative, ...props }, ref) => {
     const Component = asChild ? Slot.View : View;
     return <Component role={decorative ? 'presentation' : 'separator'} ref={ref} {...props} />;

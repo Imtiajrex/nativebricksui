@@ -1,6 +1,6 @@
 import * as NavigationMenuPrimitive from '@rn-primitives/navigation-menu';
 import { cva } from 'class-variance-authority';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -14,7 +14,7 @@ import Animated, {
 import { ChevronDown } from '../../lib/icons/ChevronDown';
 import { cn } from '../../lib/utils';
 
-const NavigationMenu = React.forwardRef<
+const NavigationMenu = forwardRef<
   NavigationMenuPrimitive.RootRef,
   NavigationMenuPrimitive.RootProps
 >(({ className, children, ...props }, ref) => (
@@ -29,7 +29,7 @@ const NavigationMenu = React.forwardRef<
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 
-const NavigationMenuList = React.forwardRef<
+const NavigationMenuList = forwardRef<
   NavigationMenuPrimitive.ListRef,
   NavigationMenuPrimitive.ListProps
 >(({ className, ...props }, ref) => (
@@ -50,7 +50,7 @@ const navigationMenuTriggerStyle = cva(
   'web:group web:inline-flex flex-row h-10 native:h-12 native:px-3 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium web:transition-colors web:hover:bg-accent active:bg-accent web:hover:text-accent-foreground web:focus:bg-accent web:focus:text-accent-foreground web:focus:outline-none web:disabled:pointer-events-none disabled:opacity-50 web:data-[active]:bg-accent/50 web:data-[state=open]:bg-accent/50'
 );
 
-const NavigationMenuTrigger = React.forwardRef<
+const NavigationMenuTrigger = forwardRef<
   NavigationMenuPrimitive.TriggerRef,
   NavigationMenuPrimitive.TriggerProps
 >(({ className, children, ...props }, ref) => {
@@ -88,7 +88,7 @@ const NavigationMenuTrigger = React.forwardRef<
 });
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
 
-const NavigationMenuContent = React.forwardRef<
+const NavigationMenuContent = forwardRef<
   NavigationMenuPrimitive.ContentRef,
   NavigationMenuPrimitive.ContentProps & {
     portalHost?: string;
@@ -123,7 +123,7 @@ NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 
 const NavigationMenuLink = NavigationMenuPrimitive.Link;
 
-const NavigationMenuViewport = React.forwardRef<
+const NavigationMenuViewport = forwardRef<
   NavigationMenuPrimitive.ViewportRef,
   NavigationMenuPrimitive.ViewportProps
 >(({ className, ...props }, ref) => {
@@ -144,7 +144,7 @@ const NavigationMenuViewport = React.forwardRef<
 });
 NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
 
-const NavigationMenuIndicator = React.forwardRef<
+const NavigationMenuIndicator = forwardRef<
   NavigationMenuPrimitive.IndicatorRef,
   NavigationMenuPrimitive.IndicatorProps
 >(({ className, ...props }, ref) => {

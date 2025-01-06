@@ -23,9 +23,9 @@ export function DatePicker({
   showLabel = true,
   ...props
 }: DatePickerProps) {
-  const [selectedYear, setSelectedYear] = React.useState(0);
-  const [selectedMonth, setSelectedMonth] = React.useState(0);
-  const [selectedDay, setSelectedDay] = React.useState(0);
+  const [selectedYear, setSelectedYear] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedDay, setSelectedDay] = useState(0);
   const updateTime = useCallback((pick: 'year' | 'month' | 'day') => {
     return (value: string, index: number) => {
       if (pick === 'year') {

@@ -3,7 +3,7 @@ import { Check } from 'lucide-react-native';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 export default function AvatarPage() {
-  const [option, setOption] = React.useState('option1');
+  const [option, setOption] = useState('option1');
   return (
     <View className="container">
       <Radio

@@ -3,7 +3,7 @@ import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 
 export default function CalendarPage() {
-  const [selected, setSelected] = React.useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const primaryColor = useColor('primary');
   const markedDates = useMemo(() => {
     const dates: CalendarProps['markedDates'] = {};
@@ -37,8 +37,8 @@ export default function CalendarPage() {
     }
     return dates;
   }, [selected]);
-  const [value, setValue] = React.useState<Date>(new Date());
-  const [range, setRange] = React.useState<{ start: Date; end: Date }>();
+  const [value, setValue] = useState<Date>(new Date());
+  const [range, setRange] = useState<{ start: Date; end: Date }>();
 
   return (
     <View className="flex-1 max-w-2xl mx-auto p-4 w-full gap-4">
