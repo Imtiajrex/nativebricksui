@@ -12,7 +12,7 @@ import {
   cn,
 } from '@nativebricks/core';
 import { FlashList } from '@shopify/flash-list';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Alert, ScrollView, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -31,7 +31,7 @@ export default function TablePage() {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
-  const columnWidths = React.useMemo(() => {
+  const columnWidths = useMemo(() => {
     return MIN_COLUMN_WIDTHS.map((minWidth, index) => {
       return minWidth;
     });

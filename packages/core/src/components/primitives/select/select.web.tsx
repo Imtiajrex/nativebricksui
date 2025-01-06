@@ -5,7 +5,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '@rn-primitives/hooks';
 import * as Slot from '@rn-primitives/slot';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { GestureResponderEvent, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import type {
   ContentProps,
@@ -49,7 +49,7 @@ const SelectContext = React.createContext<
  * @web Parameter of `onValueChange` has the value of `value` for the `value` and the `label` of the selected Option
  * @ex When an Option with a label of Green Apple, the parameter passed to `onValueChange` is { value: 'green-apple', label: 'green-apple' }
  */
-const Root = React.forwardRef<RootRef, RootProps>(
+const Root = forwardRef<RootRef, RootProps>(
   (
     {
       asChild,
@@ -66,7 +66,7 @@ const Root = React.forwardRef<RootRef, RootProps>(
       defaultProp: defaultValue,
       onChange: onValueChangeProp,
     });
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     function onOpenChange(value: boolean) {
       setOpen(value);
@@ -104,14 +104,14 @@ const Root = React.forwardRef<RootRef, RootProps>(
 Root.displayName = 'RootWebSelect';
 
 function useRootContext() {
-  const context = React.useContext(SelectContext);
+  const context = useContext(SelectContext);
   if (!context) {
     throw new Error('Select compound components cannot be rendered outside the Select component');
   }
   return context;
 }
 
-const Trigger = React.forwardRef<TriggerRef, TriggerProps>(
+const Trigger = forwardRef<TriggerRef, TriggerProps>(
   ({ asChild, role: _role, disabled, onPress: onPressProp, ...props }, ref) => {
     const { open, onOpenChange } = useRootContext();
     const augmentedRef = useAugmentedRef({
@@ -157,7 +157,7 @@ const Trigger = React.forwardRef<TriggerRef, TriggerProps>(
 
 Trigger.displayName = 'TriggerWebSelect';
 
-const Value = React.forwardRef<ValueRef, ValueProps>(
+const Value = forwardRef<ValueRef, ValueProps>(
   ({ asChild, placeholder, children, ...props }, ref) => {
     return (
       <Slot.Text ref={ref} {...props}>
@@ -173,7 +173,7 @@ function Portal({ container, children }: PortalProps) {
   return <Select.Portal children={children} container={container} />;
 }
 
-const Overlay = React.forwardRef<OverlayRef, OverlayProps>(
+const Overlay = forwardRef<OverlayRef, OverlayProps>(
   ({ asChild, forceMount, children, ...props }, ref) => {
     const { open } = useRootContext();
 
@@ -189,7 +189,7 @@ const Overlay = React.forwardRef<OverlayRef, OverlayProps>(
 
 Overlay.displayName = 'OverlayWebSelect';
 
-const Content = React.forwardRef<ContentRef, ContentProps>(
+const Content = forwardRef<ContentRef, ContentProps>(
   (
     {
       asChild = false,
@@ -238,7 +238,7 @@ const ItemContext = React.createContext<{
   label: string;
 } | null>(null);
 
-const Item = React.forwardRef<ItemRef, ItemProps>(
+const Item = forwardRef<ItemRef, ItemProps>(
   ({ asChild, closeOnPress = true, label, value, children, ...props }, ref) => {
     return (
       <ItemContext.Provider value={{ itemValue: value, label: label }}>
@@ -255,14 +255,14 @@ const Item = React.forwardRef<ItemRef, ItemProps>(
 Item.displayName = 'ItemWebSelect';
 
 function useItemContext() {
-  const context = React.useContext(ItemContext);
+  const context = useContext(ItemContext);
   if (!context) {
     throw new Error('Item compound components cannot be rendered outside of an Item component');
   }
   return context;
 }
 
-const ItemText = React.forwardRef<ItemTextRef, Omit<ItemTextProps, 'children'>>(
+const ItemText = forwardRef<ItemTextRef, Omit<ItemTextProps, 'children'>>(
   ({ asChild, ...props }, ref) => {
     const { label } = useItemContext();
 
@@ -279,7 +279,7 @@ const ItemText = React.forwardRef<ItemTextRef, Omit<ItemTextProps, 'children'>>(
 
 ItemText.displayName = 'ItemTextWebSelect';
 
-const ItemIndicator = React.forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
+const ItemIndicator = forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
   ({ asChild, forceMount: _forceMount, ...props }, ref) => {
     const Component = asChild ? Slot.View : View;
     return (
@@ -292,7 +292,7 @@ const ItemIndicator = React.forwardRef<ItemIndicatorRef, ItemIndicatorProps>(
 
 ItemIndicator.displayName = 'ItemIndicatorWebSelect';
 
-const Group = React.forwardRef<GroupRef, GroupProps>(({ asChild, ...props }, ref) => {
+const Group = forwardRef<GroupRef, GroupProps>(({ asChild, ...props }, ref) => {
   const Component = asChild ? Slot.View : View;
   return (
     <Select.Group asChild>
@@ -303,7 +303,7 @@ const Group = React.forwardRef<GroupRef, GroupProps>(({ asChild, ...props }, ref
 
 Group.displayName = 'GroupWebSelect';
 
-const Label = React.forwardRef<LabelRef, LabelProps>(({ asChild, ...props }, ref) => {
+const Label = forwardRef<LabelRef, LabelProps>(({ asChild, ...props }, ref) => {
   const Component = asChild ? Slot.Text : Text;
   return (
     <Select.Label asChild>
@@ -314,7 +314,7 @@ const Label = React.forwardRef<LabelRef, LabelProps>(({ asChild, ...props }, ref
 
 Label.displayName = 'LabelWebSelect';
 
-const Separator = React.forwardRef<SeparatorRef, SeparatorProps>(
+const Separator = forwardRef<SeparatorRef, SeparatorProps>(
   ({ asChild, decorative, ...props }, ref) => {
     const Component = asChild ? Slot.View : View;
     return (

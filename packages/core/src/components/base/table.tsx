@@ -1,10 +1,10 @@
 import * as TablePrimitive from '@rn-primitives/table';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
 
-const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps>(
+const Table = forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps>(
   ({ className, ...props }, ref) => (
     <TablePrimitive.Root
       ref={ref}
@@ -15,7 +15,7 @@ const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps>
 );
 Table.displayName = 'Table';
 
-const TableHeader = React.forwardRef<TablePrimitive.HeaderRef, TablePrimitive.HeaderProps>(
+const TableHeader = forwardRef<TablePrimitive.HeaderRef, TablePrimitive.HeaderProps>(
   ({ className, ...props }, ref) => (
     <TablePrimitive.Header
       ref={ref}
@@ -26,7 +26,7 @@ const TableHeader = React.forwardRef<TablePrimitive.HeaderRef, TablePrimitive.He
 );
 TableHeader.displayName = 'TableHeader';
 
-const TableBody = React.forwardRef<TablePrimitive.BodyRef, TablePrimitive.BodyProps>(
+const TableBody = forwardRef<TablePrimitive.BodyRef, TablePrimitive.BodyProps>(
   ({ className, style, ...props }, ref) => (
     <TablePrimitive.Body
       ref={ref}
@@ -38,7 +38,7 @@ const TableBody = React.forwardRef<TablePrimitive.BodyRef, TablePrimitive.BodyPr
 );
 TableBody.displayName = 'TableBody';
 
-const TableFooter = React.forwardRef<TablePrimitive.FooterRef, TablePrimitive.FooterProps>(
+const TableFooter = forwardRef<TablePrimitive.FooterRef, TablePrimitive.FooterProps>(
   ({ className, ...props }, ref) => (
     <TablePrimitive.Footer
       ref={ref}
@@ -49,7 +49,7 @@ const TableFooter = React.forwardRef<TablePrimitive.FooterRef, TablePrimitive.Fo
 );
 TableFooter.displayName = 'TableFooter';
 
-const TableRow = React.forwardRef<View, TablePrimitive.RowProps>(({ className, ...props }, ref) => {
+const TableRow = forwardRef<View, TablePrimitive.RowProps>(({ className, ...props }, ref) => {
   return (
     <Pressable
       ref={ref}
@@ -63,7 +63,7 @@ const TableRow = React.forwardRef<View, TablePrimitive.RowProps>(({ className, .
 });
 TableRow.displayName = 'TableRow';
 
-const TableHead = React.forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadProps>(
+const TableHead = forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadProps>(
   ({ className, ...props }, ref) => (
     <TextClassContext.Provider value="text-muted-foreground">
       <TablePrimitive.Head
@@ -79,7 +79,7 @@ const TableHead = React.forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadPr
 );
 TableHead.displayName = 'TableHead';
 
-const TableCell = React.forwardRef<TablePrimitive.CellRef, TablePrimitive.CellProps>(
+const TableCell = forwardRef<TablePrimitive.CellRef, TablePrimitive.CellProps>(
   ({ className, ...props }, ref) => (
     <TablePrimitive.Cell
       ref={ref}

@@ -1,9 +1,9 @@
 import * as RadioGroupPrimitive from '@rn-primitives/radio-group';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { View } from 'react-native';
 import { cn } from '../../lib/utils';
 
-const RadioGroup = React.forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimitive.RootProps>(
+const RadioGroup = forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimitive.RootProps>(
   ({ className, ...props }, ref) => {
     return (
       <RadioGroupPrimitive.Root className={cn('flex-col gap-2', className)} {...props} ref={ref} />
@@ -12,7 +12,7 @@ const RadioGroup = React.forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimi
 );
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupPrimitive.ItemProps>(
+const RadioGroupItem = forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupPrimitive.ItemProps>(
   ({ className, ...props }, ref) => {
     return (
       <RadioGroupPrimitive.Item

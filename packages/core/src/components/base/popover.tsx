@@ -1,5 +1,5 @@
 import * as PopoverPrimitive from '@rn-primitives/popover';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { TextClassContext } from '../../components/base/text';
@@ -10,7 +10,7 @@ const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 export type PopoverContentRef = PopoverPrimitive.ContentRef;
 
-const PopoverContent = React.forwardRef<
+const PopoverContent = forwardRef<
   PopoverPrimitive.ContentRef,
   PopoverPrimitive.ContentProps & { portalHost?: string }
 >(({ className, align = 'center', sideOffset = 4, portalHost, ...props }, ref) => {

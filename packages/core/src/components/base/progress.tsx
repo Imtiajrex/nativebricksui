@@ -1,5 +1,5 @@
 import * as ProgressPrimitive from '@rn-primitives/progress';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { cn } from '../../lib/utils';
 
-const Progress = React.forwardRef<
+const Progress = forwardRef<
   ProgressPrimitive.RootRef,
   ProgressPrimitive.RootProps & {
     indicatorClassName?: string;

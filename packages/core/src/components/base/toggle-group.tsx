@@ -1,6 +1,6 @@
 import { VariantProps } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react-native';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { toggleTextVariants, toggleVariants } from '../../components/base/toggle';
 import { TextClassContext } from '../../components/base/text';
 import * as ToggleGroupPrimitive from '@rn-primitives/toggle-group';
@@ -8,7 +8,7 @@ import { cn } from '../../lib/utils';
 
 const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants> | null>(null);
 
-const ToggleGroup = React.forwardRef<
+const ToggleGroup = forwardRef<
   ToggleGroupPrimitive.RootRef,
   ToggleGroupPrimitive.RootProps & VariantProps<typeof toggleVariants>
 >(({ className, variant, size, children, ...props }, ref) => (
@@ -24,7 +24,7 @@ const ToggleGroup = React.forwardRef<
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
 
 function useToggleGroupContext() {
-  const context = React.useContext(ToggleGroupContext);
+  const context = useContext(ToggleGroupContext);
   if (context === null) {
     throw new Error(
       'ToggleGroup compound components cannot be rendered outside the ToggleGroup component'
@@ -33,7 +33,7 @@ function useToggleGroupContext() {
   return context;
 }
 
-const ToggleGroupItem = React.forwardRef<
+const ToggleGroupItem = forwardRef<
   ToggleGroupPrimitive.ItemRef,
   ToggleGroupPrimitive.ItemProps & VariantProps<typeof toggleVariants>
 >(({ className, children, variant, size, ...props }, ref) => {
@@ -77,7 +77,7 @@ function ToggleGroupIcon({
 }: React.ComponentPropsWithoutRef<LucideIcon> & {
   icon: LucideIcon;
 }) {
-  const textClass = React.useContext(TextClassContext);
+  const textClass = useContext(TextClassContext);
   return <Icon className={cn(textClass, className)} {...props} />;
 }
 

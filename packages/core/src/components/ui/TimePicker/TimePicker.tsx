@@ -26,10 +26,10 @@ export function TimePicker({
   showLabel = true,
   ...props
 }: TimePickerProps) {
-  const [selectedHour, setSelectedHour] = React.useState(0);
-  const [selectedMinute, setSelectedMinute] = React.useState(0);
-  const [selectedSecond, setSelectedSecond] = React.useState(0);
-  const [selectedMeridiem, setSelectedMeridiem] = React.useState<(typeof meridiam)[number]>('AM');
+  const [selectedHour, setSelectedHour] = useState(0);
+  const [selectedMinute, setSelectedMinute] = useState(0);
+  const [selectedSecond, setSelectedSecond] = useState(0);
+  const [selectedMeridiem, setSelectedMeridiem] = useState<(typeof meridiam)[number]>('AM');
   const updateTime = useCallback((pick: 'hour' | 'minute' | 'second' | 'meridiam') => {
     return (value: string, index: number) => {
       if (pick === 'hour') {

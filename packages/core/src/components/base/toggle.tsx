@@ -1,7 +1,7 @@
 import * as TogglePrimitive from '@rn-primitives/toggle';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react-native';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 import { TextClassContext } from '../../components/base/text';
 
@@ -45,7 +45,7 @@ const toggleTextVariants = cva('text-sm native:text-base text-foreground font-me
   },
 });
 
-const Toggle = React.forwardRef<
+const Toggle = forwardRef<
   TogglePrimitive.RootRef,
   TogglePrimitive.RootProps & VariantProps<typeof toggleVariants>
 >(({ className, variant, size, ...props }, ref) => (
@@ -78,7 +78,7 @@ function ToggleIcon({
 }: React.ComponentPropsWithoutRef<LucideIcon> & {
   icon: LucideIcon;
 }) {
-  const textClass = React.useContext(TextClassContext);
+  const textClass = useContext(TextClassContext);
   return <Icon className={cn(textClass, className)} {...props} />;
 }
 

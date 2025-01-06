@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform, type View, type ViewStyle } from 'react-native';
 import { create } from 'zustand';
 
@@ -45,11 +45,11 @@ export function Portal({
   hostName?: string;
   children: React.ReactNode;
 }) {
-  React.useEffect(() => {
+  useEffect(() => {
     updatePortal(hostName, name, children);
   }, [hostName, name, children]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       removePortal(hostName, name);
     };
@@ -71,10 +71,10 @@ const WindowOverlay = Platform.OS === "ios" ? FullWindowOverlay : Fragment
 <WindowOverlay><PortalHost/></WindowOverlay>
  */
 export function useModalPortalRoot() {
-  const ref = React.useRef<View>(null);
-  const [sideOffset, setSideOffSet] = React.useState(0);
+  const ref = useRef<View>(null);
+  const [sideOffset, setSideOffSet] = useState(0);
 
-  const onLayout = React.useCallback(() => {
+  const onLayout = useCallback(() => {
     if (Platform.OS === 'web') return;
     ref.current?.measure((_x, _y, _width, _height, _pageX, pageY) => {
       setSideOffSet(-pageY);

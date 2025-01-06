@@ -1,5 +1,5 @@
 import * as TooltipPrimitive from '@rn-primitives/tooltip';
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { cn } from '../../lib/utils';
@@ -8,7 +8,7 @@ import { TextClassContext } from '../../components/base/text';
 const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
-const TooltipContent = React.forwardRef<
+const TooltipContent = forwardRef<
   TooltipPrimitive.ContentRef,
   TooltipPrimitive.ContentProps & { portalHost?: string }
 >(({ className, sideOffset = 4, portalHost, ...props }, ref) => (

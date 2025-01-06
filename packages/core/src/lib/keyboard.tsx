@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
 import { Keyboard, type KeyboardEvent } from 'react-native';
 
 const EVENT_TYPE = {
@@ -10,10 +10,10 @@ const EVENT_TYPE = {
 export function useKeyboard(
   { eventType = 'didShow' }: { eventType?: keyof typeof EVENT_TYPE } = { eventType: 'didShow' }
 ) {
-  const [isKeyboardVisible, setKeyboardVisible] = React.useState(false);
-  const [keyboardHeight, setKeyboardHeight] = React.useState(0);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const showListener = Keyboard.addListener(EVENT_TYPE[eventType].show, (e: KeyboardEvent) => {
       setKeyboardVisible(true);
       setKeyboardHeight(e.endCoordinates.height);
