@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Pressable } from 'react-native';
 import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';

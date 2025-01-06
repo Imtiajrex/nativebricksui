@@ -1,5 +1,5 @@
 import * as SwitchPrimitives from '@rn-primitives/switch';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import Animated, {
   interpolateColor,

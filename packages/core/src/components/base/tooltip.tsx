@@ -1,9 +1,9 @@
 import * as TooltipPrimitive from '@rn-primitives/tooltip';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { cn } from '../../lib/utils';
 import { TextClassContext } from '../../components/base/text';
+import { cn } from '../../lib/utils';
 
 const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;

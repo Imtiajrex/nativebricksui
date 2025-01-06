@@ -15,7 +15,7 @@ type ThemeProviderProps = {
     light?: Record<string, string>;
     dark?: Record<string, string>;
   };
-  children: React.ReactNode;
+  children: ReactNode;
 };
 export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProviderProps) {
   const { colorScheme } = useColorScheme();

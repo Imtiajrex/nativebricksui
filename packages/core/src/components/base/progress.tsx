@@ -1,5 +1,5 @@
 import * as ProgressPrimitive from '@rn-primitives/progress';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform, View } from 'react-native';
 import Animated, {
   Extrapolation,

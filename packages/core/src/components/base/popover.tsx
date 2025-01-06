@@ -1,5 +1,5 @@
 import * as PopoverPrimitive from '@rn-primitives/popover';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { TextClassContext } from '../../components/base/text';

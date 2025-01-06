@@ -7,7 +7,7 @@ import { useDialog } from '../Dialog/hooks';
 
 type ActionType = {
   label: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   className?: string;
   onPress: () => void;
 };

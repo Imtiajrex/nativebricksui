@@ -14,9 +14,9 @@ export type DialogProps = {
   title?: string;
   description?: string;
   open?: boolean;
-  Header?: React.ReactNode;
-  Footer?: React.ReactNode;
-  children?: React.ReactNode;
+  Header?: ReactNode;
+  Footer?: ReactNode;
+  children?: ReactNode;
   onOpenChange?: (open: boolean) => void;
   className?: string;
   headerClassName?: string;

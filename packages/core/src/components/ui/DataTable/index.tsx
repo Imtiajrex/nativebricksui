@@ -1,5 +1,5 @@
 import { FlashList } from '@shopify/flash-list';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { useMemo } from 'react';
 import { ScrollView, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {

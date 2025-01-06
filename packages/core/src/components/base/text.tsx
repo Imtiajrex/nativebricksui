@@ -1,10 +1,10 @@
 import * as Slot from '@rn-primitives/slot';
 import { SlottableTextProps, TextRef } from '@rn-primitives/types';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { createContext, forwardRef, useContext } from 'react';
 import { Text as RNText } from 'react-native';
 import { cn } from '../../lib/utils';
 
-const TextClassContext = React.createContext<string | undefined>(undefined);
+const TextClassContext = createContext<string | undefined>(undefined);
 
 const Text = forwardRef<TextRef, SlottableTextProps>(
   ({ className, asChild = false, ...props }, ref) => {

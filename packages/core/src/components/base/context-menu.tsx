@@ -1,5 +1,5 @@
 import * as ContextMenuPrimitive from '@rn-primitives/context-menu';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import {
   Platform,
   type StyleProp,
@@ -9,12 +9,12 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
+import { TextClassContext } from '../../components/base/text';
 import { Check } from '../../lib/icons/Check';
 import { ChevronDown } from '../../lib/icons/ChevronDown';
 import { ChevronRight } from '../../lib/icons/ChevronRight';
 import { ChevronUp } from '../../lib/icons/ChevronUp';
 import { cn } from '../../lib/utils';
-import { TextClassContext } from '../../components/base/text';
 
 const ContextMenu = ContextMenuPrimitive.Root;
 const ContextMenuTrigger = ContextMenuPrimitive.Trigger;

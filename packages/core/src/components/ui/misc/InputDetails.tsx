@@ -31,7 +31,7 @@ export function InputDetails({
   helperTextClassName,
   messageClassName,
 }: InputDetailsProps & {
-  children?: React.ReactNode;
+  children?: ReactNode;
   id?: string;
 }) {
   return (

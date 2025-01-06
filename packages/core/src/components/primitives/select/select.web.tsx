@@ -5,8 +5,8 @@ import {
   useIsomorphicLayoutEffect,
 } from '@rn-primitives/hooks';
 import * as Slot from '@rn-primitives/slot';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
-import { GestureResponderEvent, Pressable, Text, useWindowDimensions, View } from 'react-native';
+import { createContext, forwardRef, ReactNode, useContext, useState } from 'react';
+import { GestureResponderEvent, Pressable, Text, View } from 'react-native';
 import type {
   ContentProps,
   ContentRef,
@@ -37,7 +37,7 @@ import type {
   ViewportProps,
 } from './types';
 
-const SelectContext = React.createContext<
+const SelectContext = createContext<
   | (SharedRootContext & {
       open: boolean;
       onOpenChange: (open: boolean) => void;
@@ -136,7 +136,7 @@ const Trigger = forwardRef<TriggerRef, TriggerProps>(
 
     function onPress(ev: GestureResponderEvent) {
       if (disabled) return;
-      if (ev.nativeEvent?.pointerType === 'touch') onOpenChange(!open);
+      if ((ev.nativeEvent as any)?.pointerType === 'touch') onOpenChange(!open);
       onPressProp?.(ev);
     }
 
@@ -181,7 +181,7 @@ const Overlay = forwardRef<OverlayRef, OverlayProps>(
     return (
       <>
         {open && <Component ref={ref} {...props} />}
-        {children as React.ReactNode}
+        {children as ReactNode}
       </>
     );
   }
@@ -233,7 +233,7 @@ const Content = forwardRef<ContentRef, ContentProps>(
 
 Content.displayName = 'ContentWebSelect';
 
-const ItemContext = React.createContext<{
+const ItemContext = createContext<{
   itemValue: string;
   label: string;
 } | null>(null);
@@ -244,7 +244,7 @@ const Item = forwardRef<ItemRef, ItemProps>(
       <ItemContext.Provider value={{ itemValue: value, label: label }}>
         <Slot.Pressable ref={ref} {...props}>
           <Select.Item textValue={label} value={value} disabled={props.disabled ?? undefined}>
-            <>{children as React.ReactNode}</>
+            <>{children as ReactNode}</>
           </Select.Item>
         </Slot.Pressable>
       </ItemContext.Provider>

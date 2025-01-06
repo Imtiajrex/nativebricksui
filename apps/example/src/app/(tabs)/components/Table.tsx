@@ -12,7 +12,7 @@ import {
   cn,
 } from '@nativebricks/core';
 import { FlashList } from '@shopify/flash-list';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { useMemo } from 'react';
 import { Alert, ScrollView, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

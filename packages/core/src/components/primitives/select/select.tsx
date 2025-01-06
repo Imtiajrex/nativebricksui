@@ -6,7 +6,7 @@ import {
 } from '@rn-primitives/hooks';
 import { Portal as RNPPortal } from '@rn-primitives/portal';
 import * as Slot from '@rn-primitives/slot';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { createContext, forwardRef, useContext, useEffect, useId, useState } from 'react';
 import {
   BackHandler,
   Pressable,
@@ -56,7 +56,7 @@ interface IRootContext extends SharedRootContext {
   nativeID: string;
 }
 
-const RootContext = React.createContext<IRootContext | null>(null);
+const RootContext = createContext<IRootContext | null>(null);
 
 const Root = forwardRef<RootRef, RootProps>(
   (
@@ -312,7 +312,7 @@ const Content = forwardRef<ContentRef, ContentProps>(
 
 Content.displayName = 'ContentNativeSelect';
 
-const ItemContext = React.createContext<{
+const ItemContext = createContext<{
   itemValue: string;
   label: string;
 } | null>(null);

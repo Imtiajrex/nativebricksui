@@ -1,5 +1,5 @@
 import * as TablePrimitive from '@rn-primitives/table';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';

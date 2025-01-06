@@ -1,6 +1,6 @@
 import * as NavigationMenuPrimitive from '@rn-primitives/navigation-menu';
 import { cva } from 'class-variance-authority';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform, View } from 'react-native';
 import Animated, {
   Extrapolation,

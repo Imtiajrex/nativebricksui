@@ -1,8 +1,8 @@
 import { TextRef, ViewRef } from '@rn-primitives/types';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Text, type TextProps, View, type ViewProps } from 'react-native';
-import { cn } from '../../lib/utils';
 import { TextClassContext } from '../../components/base/text';
+import { cn } from '../../lib/utils';
 
 const Card = forwardRef<ViewRef, ViewProps>(({ className, ...props }, ref) => (
   <View

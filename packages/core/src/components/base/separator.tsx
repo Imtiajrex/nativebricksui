@@ -1,5 +1,5 @@
 import * as SeparatorPrimitive from '@rn-primitives/separator';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
 const Separator = forwardRef<SeparatorPrimitive.RootRef, SeparatorPrimitive.RootProps>(

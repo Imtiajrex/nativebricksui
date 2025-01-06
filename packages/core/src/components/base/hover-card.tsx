@@ -1,4 +1,12 @@
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import {
+  useMemo,
+  useState,
+  useCallback,
+  useRef,
+  forwardRef,
+  createContext,
+  useContext,
+} from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { TextClassContext } from '../../components/base/text';
