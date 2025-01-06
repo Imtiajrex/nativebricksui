@@ -1,12 +1,4 @@
-import {
-  useMemo,
-  useState,
-  useCallback,
-  useRef,
-  forwardRef,
-  createContext,
-  useContext,
-} from 'react';
+import { useEffect } from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,

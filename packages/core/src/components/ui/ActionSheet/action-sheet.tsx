@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
 import { Text } from '../../../base';
 import { DialogContent, Dialog as NativeDialog } from '../../../components/base/dialog';

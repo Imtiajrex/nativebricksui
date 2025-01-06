@@ -1,5 +1,5 @@
 import { remapProps } from 'nativewind';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, ReactNode, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ActionSheet, { ActionSheetProps, ActionSheetRef } from 'react-native-actions-sheet';
 import { Text } from '../../../base';
