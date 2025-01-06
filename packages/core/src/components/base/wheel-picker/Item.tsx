@@ -1,8 +1,8 @@
-import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import Animated, { interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { Text } from '../text';
 import styles from './style';
+import { memo } from 'react';
 
 interface ItemProps {
   textStyle: StyleProp<TextStyle>;
@@ -96,7 +96,7 @@ const WheelPickerItem: React.FC<ItemProps> = ({
   );
 };
 
-export default React.memo(
+export default memo(
   WheelPickerItem,
   /**
    * We enforce that this component will not rerender after the initial render.

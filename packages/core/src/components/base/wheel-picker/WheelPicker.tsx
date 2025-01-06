@@ -1,7 +1,6 @@
-import { AnimatedFlashList, FlashListProps, FlashList } from '@shopify/flash-list';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { AnimatedFlashList, FlashList, FlashListProps } from '@shopify/flash-list';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
-  FlatListProps,
   NativeScrollEvent,
   NativeSyntheticEvent,
   StyleProp,

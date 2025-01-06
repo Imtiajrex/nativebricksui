@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { Tabs as BaseTabs, TabsContent, TabsList, TabsTrigger } from '../../base/tabs';
 import { Text } from '../../base/text';
 import { cn } from '../../../lib/utils';

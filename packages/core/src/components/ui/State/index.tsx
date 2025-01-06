@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 import { cn } from '../../../lib/utils';
 

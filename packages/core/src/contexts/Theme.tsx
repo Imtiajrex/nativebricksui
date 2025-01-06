@@ -1,5 +1,5 @@
 import { colorScheme as nativeColorScheme } from 'nativewind';
-import React, { createContext, useEffect, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
 import { create, TailwindFn, TwConfig, useDeviceContext } from 'twrnc';
 import { useColorScheme } from '../lib/useColorScheme';
 

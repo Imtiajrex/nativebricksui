@@ -1,16 +1,8 @@
-import {
-  useMemo,
-  useState,
-  useCallback,
-  useRef,
-  forwardRef,
-  createContext,
-  useContext,
-} from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
+import { cn } from '../../../lib/utils';
 import { Label } from '../../base/label';
 import { RadioGroup, RadioGroupItem } from '../../base/radio-group';
-import { cn } from '../../../lib/utils';
 import { isStringOption } from '../Select/utils';
 
 type BaseRadioOptionType = {

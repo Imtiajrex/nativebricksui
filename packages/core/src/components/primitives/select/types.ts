@@ -8,6 +8,7 @@ import type {
   TextRef,
   ViewRef,
 } from '@rn-primitives/types';
+import { ReactNode } from 'react';
 
 type Option =
   | {
