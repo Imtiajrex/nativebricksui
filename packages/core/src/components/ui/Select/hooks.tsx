@@ -13,7 +13,7 @@ import { Pressable, Text, View } from 'react-native';
 import { Separator } from '../../base/separator';
 import { cn } from '../../../lib/utils';
 import { Input } from '../Input';
-import { Option } from '../../../base';
+import { type Option } from '../../../base';
 
 export const useOptions = ({
   options,
