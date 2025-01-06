@@ -1,20 +1,28 @@
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import {
+  useMemo,
+  useState,
+  useCallback,
+  useRef,
+  forwardRef,
+  createContext,
+  useContext,
+} from 'react';
 import { Platform, type View, type ViewStyle } from 'react-native';
 import { create } from 'zustand';
 
 const DEFAULT_PORTAL_HOST = 'INTERNAL_PRIMITIVE_DEFAULT_HOST_NAME';
 
-type PortalMap = Map<string, React.ReactNode>;
+type PortalMap = Map<string, ReactNode>;
 type PortalHostMap = Map<string, PortalMap>;
 
 const usePortal = create<{ map: PortalHostMap }>(() => ({
-  map: new Map<string, PortalMap>().set(DEFAULT_PORTAL_HOST, new Map<string, React.ReactNode>()),
+  map: new Map<string, PortalMap>().set(DEFAULT_PORTAL_HOST, new Map<string, ReactNode>()),
 }));
 
-const updatePortal = (hostName: string, name: string, children: React.ReactNode) => {
+const updatePortal = (hostName: string, name: string, children: ReactNode) => {
   usePortal.setState((prev) => {
     const next = new Map(prev.map);
-    const portal = next.get(hostName) ?? new Map<string, React.ReactNode>();
+    const portal = next.get(hostName) ?? new Map<string, ReactNode>();
     portal.set(name, children);
     next.set(hostName, portal);
     return { map: next };
@@ -23,7 +31,7 @@ const updatePortal = (hostName: string, name: string, children: React.ReactNode)
 const removePortal = (hostName: string, name: string) => {
   usePortal.setState((prev) => {
     const next = new Map(prev.map);
-    const portal = next.get(hostName) ?? new Map<string, React.ReactNode>();
+    const portal = next.get(hostName) ?? new Map<string, ReactNode>();
     portal.delete(name);
     next.set(hostName, portal);
     return { map: next };
@@ -31,7 +39,7 @@ const removePortal = (hostName: string, name: string) => {
 };
 
 export function PortalHost({ name = DEFAULT_PORTAL_HOST }: { name?: string }) {
-  const portalMap = usePortal((state) => state.map).get(name) ?? new Map<string, React.ReactNode>();
+  const portalMap = usePortal((state) => state.map).get(name) ?? new Map<string, ReactNode>();
   if (portalMap.size === 0) return null;
   return <>{Array.from(portalMap.values())}</>;
 }
@@ -43,7 +51,7 @@ export function Portal({
 }: {
   name: string;
   hostName?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   useEffect(() => {
     updatePortal(hostName, name, children);

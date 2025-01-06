@@ -2,15 +2,15 @@ import { RefObject, useCallback, useState } from 'react';
 import { Pressable } from 'react-native';
 import { cn } from '../../../lib/utils';
 export type InputContainerProps = {
-  leading?: React.ReactNode;
-  trailing?: React.ReactNode;
+  leading?: ReactNode;
+  trailing?: ReactNode;
   containerClassName?: string;
   state?: 'default' | 'focused' | 'invalid' | 'valid';
 };
 
 export function InputContainer(
   props: InputContainerProps & {
-    children: React.ReactNode;
+    children: ReactNode;
     focus?: () => void;
     blur?: () => void;
     disabled?: boolean;

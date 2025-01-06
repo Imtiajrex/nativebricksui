@@ -47,7 +47,7 @@ type ValueProps = SlottableTextProps & {
 };
 
 interface PortalProps extends ForceMountable {
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Platform: NATIVE ONLY
    */

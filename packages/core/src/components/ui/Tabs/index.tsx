@@ -7,7 +7,7 @@ export type TabsProps = {
   tabs: {
     value: string;
     label: string;
-    content?: React.ReactNode;
+    content?: ReactNode;
   }[];
   containerClassName?: string;
   triggerClassName?: string;

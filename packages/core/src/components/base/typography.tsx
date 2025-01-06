@@ -1,6 +1,6 @@
 import * as Slot from '@rn-primitives/slot';
 import { SlottableTextProps, TextRef } from '@rn-primitives/types';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Platform, Text as RNText } from 'react-native';
 import { cn } from '../../lib/utils';
 

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { cn } from '../../../lib/utils';
 
 export type StateProps = {
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   title?: string;
   description?: string;
   containerClassName?: string;

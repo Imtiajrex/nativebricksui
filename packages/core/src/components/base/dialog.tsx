@@ -1,5 +1,5 @@
 import * as DialogPrimitive from '@rn-primitives/dialog';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { Modal, Platform, StyleSheet, View, type ViewProps } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { X } from '../../lib/icons/X';

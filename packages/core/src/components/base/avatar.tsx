@@ -1,5 +1,5 @@
 import * as AvatarPrimitive from '@rn-primitives/avatar';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
 const Avatar = forwardRef<AvatarPrimitive.RootRef, AvatarPrimitive.RootProps>(

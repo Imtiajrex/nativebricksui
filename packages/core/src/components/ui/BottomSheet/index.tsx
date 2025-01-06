@@ -12,7 +12,7 @@ export type BottomSheetProps = ActionSheetProps & {
   title?: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   contentClassName?: string;
   containerClassName?: string;
   titleClassName?: string;

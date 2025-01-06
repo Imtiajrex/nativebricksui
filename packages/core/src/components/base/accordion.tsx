@@ -1,5 +1,5 @@
 import * as AccordionPrimitive from '@rn-primitives/accordion';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -103,7 +103,7 @@ const AccordionContent = forwardRef<AccordionPrimitive.ContentRef, AccordionPrim
   }
 );
 
-function InnerContent({ children, className }: { children: React.ReactNode; className?: string }) {
+function InnerContent({ children, className }: { children: ReactNode; className?: string }) {
   if (Platform.OS === 'web') {
     return <View className={cn('pb-4', className)}>{children}</View>;
   }

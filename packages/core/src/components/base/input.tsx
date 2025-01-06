@@ -1,4 +1,12 @@
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
+import {
+  useMemo,
+  useState,
+  useCallback,
+  useRef,
+  forwardRef,
+  createContext,
+  useContext,
+} from 'react';
 import { TextInput, type TextInputProps } from 'react-native';
 import { cn } from '../../lib/utils';
 export type Input = React.ElementRef<typeof TextInput>;

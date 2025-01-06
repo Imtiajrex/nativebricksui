@@ -1,12 +1,12 @@
+import * as ToggleGroupPrimitive from '@rn-primitives/toggle-group';
 import { VariantProps } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react-native';
-import { useMemo, useState, useCallback, useRef, forwardRef } from 'react';
-import { toggleTextVariants, toggleVariants } from '../../components/base/toggle';
+import { createContext, forwardRef, useContext } from 'react';
 import { TextClassContext } from '../../components/base/text';
-import * as ToggleGroupPrimitive from '@rn-primitives/toggle-group';
+import { toggleTextVariants, toggleVariants } from '../../components/base/toggle';
 import { cn } from '../../lib/utils';
 
-const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants> | null>(null);
+const ToggleGroupContext = createContext<VariantProps<typeof toggleVariants> | null>(null);
 
 const ToggleGroup = forwardRef<
   ToggleGroupPrimitive.RootRef,
