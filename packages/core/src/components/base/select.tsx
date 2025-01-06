@@ -19,7 +19,7 @@ export type SelectTriggerRef = SelectPrimitive.TriggerRef;
 const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimitive.TriggerProps>(
   ({ className, children, ...props }, ref) => (
     <SelectPrimitive.Trigger ref={ref} className={cn('flex-1', className)} {...props}>
-      <>{children}</>
+      <>{children as any}</>
     </SelectPrimitive.Trigger>
   )
 );
