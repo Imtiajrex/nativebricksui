@@ -1,5 +1,5 @@
 import { Skeleton } from '@nativebricks/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 export default function SkeletonPage() {

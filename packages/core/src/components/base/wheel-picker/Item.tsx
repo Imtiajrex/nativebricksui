@@ -12,9 +12,6 @@ interface ItemProps {
   index: number;
   currentScrollIndex: SharedValue<number>;
   visibleRest: number;
-  rotationFunction: (x: number) => number;
-  opacityFunction: (x: number) => number;
-  scaleFunction: (x: number) => number;
 }
 
 const WheelPickerItem: React.FC<ItemProps> = ({
@@ -25,11 +22,11 @@ const WheelPickerItem: React.FC<ItemProps> = ({
   index,
   visibleRest,
   currentScrollIndex,
-  opacityFunction,
-  rotationFunction,
-  scaleFunction,
 }) => {
   const animatedStyle = useAnimatedStyle(() => {
+    const scaleFunction = (x: number) => 1.0 ** x;
+    const rotationFunction = (x: number) => 1 - Math.pow(1 / 2, x);
+    const opacityFunction = (x: number) => Math.pow(1 / 3, x);
     const relativeScrollIndex = currentScrollIndex.value - index + 2;
     const inputRange = (() => {
       const range = [0];
@@ -85,7 +82,7 @@ const WheelPickerItem: React.FC<ItemProps> = ({
       ],
       opacity,
     };
-  }, [height, scaleFunction, opacityFunction, visibleRest]);
+  }, [height, visibleRest]);
 
   return (
     <Animated.View style={[styles.option, style, { height }, animatedStyle]}>

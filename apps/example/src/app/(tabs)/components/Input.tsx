@@ -1,5 +1,5 @@
 import { Input, useColor } from '@nativebricks/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { User } from 'lucide-react-native';
 

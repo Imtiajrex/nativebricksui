@@ -1,7 +1,7 @@
 import { Button, Dialog, Input, Select, Text, useColor } from '@nativebricks/core';
 import { router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 export default function index() {
   const [search, setSearch] = useState('');
@@ -41,7 +41,7 @@ export default function index() {
   );
 }
 
-const components = [
+export const components = [
   {
     name: 'Input',
     description: 'A text input field.',
@@ -85,6 +85,10 @@ const components = [
   {
     name: 'Progress',
     description: 'Progress component',
+  },
+  {
+    name: 'Slider',
+    description: 'Radio component',
   },
   {
     name: 'Radio',

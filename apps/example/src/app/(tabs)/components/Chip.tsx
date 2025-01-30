@@ -1,5 +1,5 @@
 import { Accordion, alert, Chip, Text } from '@nativebricks/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { X as Close } from 'lucide-react-native';
 
@@ -18,7 +18,7 @@ export default function ChipPage() {
       <Chip variant="destructive" className="flex-row items-center gap-1">
         <Text className="">Angular</Text>
         <Pressable
-          className="h-full items-center justify-center"
+          className=" items-center justify-center"
           onPress={() => {
             alert({
               title: 'Chip',
@@ -26,7 +26,7 @@ export default function ChipPage() {
             });
           }}
         >
-          <Close size={12} />
+          <Close color={'black'} size={12} />
         </Pressable>
       </Chip>
     </View>

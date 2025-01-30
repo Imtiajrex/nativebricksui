@@ -8,7 +8,7 @@ import {
   useColorScheme,
   WheelPicker,
 } from '@nativebricks/core';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
 export default function WheelPickerScreen() {
@@ -16,7 +16,11 @@ export default function WheelPickerScreen() {
   const [selectedValue, setSelectedValue] = useState('1');
   const options = Array.from({ length: 24 }, (_, i) => `${i + 1}`);
   return (
-    <ScrollView className="flex-1" contentContainerClassName="max-w-2xl w-full mx-auto p-4">
+    <ScrollView
+      className="flex-1"
+      contentContainerClassName="max-w-2xl w-full mx-auto p-4"
+      nestedScrollEnabled
+    >
       <Button
         onPress={() => {
           setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');

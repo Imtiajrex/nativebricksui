@@ -1,6 +1,6 @@
 import { Button, Radio } from '@nativebricks/core';
 import { Check } from 'lucide-react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 export default function AvatarPage() {
   const [option, setOption] = useState('option1');

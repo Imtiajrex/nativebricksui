@@ -1,5 +1,5 @@
 import { alert, AlertDialog, Button, toast } from '@nativebricks/core';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 
 export default function ActionSheetPage() {

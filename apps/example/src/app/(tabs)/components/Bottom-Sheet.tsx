@@ -1,5 +1,5 @@
 import { BottomSheet, Button, Input, toast } from '@nativebricks/core';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Modal, Text, View } from 'react-native';
 
 export default function BottomSheetPage() {
@@ -12,8 +12,8 @@ export default function BottomSheetPage() {
         contentClassName="bg-background"
         isModal={false}
       >
-        <Input label="Name" placeholder="John Doe" className="w-full" />
-        <Input label="Email" />
+        <Input placeholder="John Doe" className="w-full" />
+        <Input />
         <Button
           onPress={() => {
             dialogRef.current?.hide();

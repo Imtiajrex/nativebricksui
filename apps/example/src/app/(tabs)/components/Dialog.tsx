@@ -1,5 +1,5 @@
 import { Button, Dialog, Input, toast } from '@nativebricks/core';
-import React from 'react';
+import { useRef } from 'react';
 import { Text, View } from 'react-native';
 
 export default function DialogPage() {
@@ -20,8 +20,8 @@ export default function DialogPage() {
           </Button>
         }
       >
-        <Input label="Name" placeholder="John Doe" />
-        <Input label="Email" placeholder="johdoe@example.com" />
+        <Input placeholder="John Doe" />
+        <Input placeholder="johdoe@example.com" />
       </Dialog>
       <Button
         onPress={() => {
