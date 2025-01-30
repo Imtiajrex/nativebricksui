@@ -10,13 +10,18 @@ const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 export type PopoverContentRef = PopoverPrimitive.ContentRef;
 
+const PopoverPortal = Platform.select({
+  web: (props: any) => <PopoverPrimitive.Portal {...props} />,
+  native: (props: any) => <Modal {...props} />,
+})!;
 const PopoverContent = forwardRef<
   PopoverPrimitive.ContentRef,
   PopoverPrimitive.ContentProps & { portalHost?: string }
 >(({ className, align = 'center', sideOffset = 4, portalHost, ...props }, ref) => {
   const { open } = PopoverPrimitive.useRootContext();
+
   return (
-    <Modal visible={open} transparent>
+    <PopoverPortal visible={open} transparent hostName={portalHost}>
       <PopoverPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
         <Animated.View entering={FadeIn.duration(200)} exiting={FadeOut}>
           <TextClassContext.Provider value="text-popover-foreground">
@@ -33,7 +38,7 @@ const PopoverContent = forwardRef<
           </TextClassContext.Provider>
         </Animated.View>
       </PopoverPrimitive.Overlay>
-    </Modal>
+    </PopoverPortal>
   );
 });
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
