@@ -31,6 +31,7 @@ export * from './components/ui/Select';
 export * from './components/ui/State';
 export * from './components/ui/TimePicker';
 export * from './components/ui/Tabs';
+export * from './components/ui/Slider';
 export * from './contexts/Theme';
 export * from './lib/ChevronDown';
 export * from './lib/constants';

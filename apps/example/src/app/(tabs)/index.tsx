@@ -88,7 +88,7 @@ export const components = [
   },
   {
     name: 'Slider',
-    description: 'Radio component',
+    description: 'Slider component',
   },
   {
     name: 'Radio',
