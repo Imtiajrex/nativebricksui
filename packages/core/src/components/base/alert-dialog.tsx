@@ -65,23 +65,21 @@ const AlertDialogContent = forwardRef<
   const { open } = AlertDialogPrimitive.useRootContext();
 
   return (
-    <AlertDialogPortal hostName={portalHost}>
-      <Modal visible={open} transparent>
-        <AlertDialogOverlay>
-          <AlertDialogPrimitive.Content
-            ref={ref}
-            className={cn(
-              'z-50 max-w-lg gap-4 border border-border bg-background p-6 shadow-lg shadow-foreground/10 web:duration-200 rounded-lg',
-              open
-                ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-                : 'web:animate-out web:fade-out-0 web:zoom-out-95',
-              className
-            )}
-            {...props}
-          />
-        </AlertDialogOverlay>
-      </Modal>
-    </AlertDialogPortal>
+    <Modal visible={open} transparent>
+      <AlertDialogOverlay>
+        <AlertDialogPrimitive.Content
+          ref={ref}
+          className={cn(
+            'z-50 max-w-lg gap-4 border border-border bg-background p-6 shadow-lg shadow-foreground/10 web:duration-200 rounded-lg',
+            open
+              ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
+              : 'web:animate-out web:fade-out-0 web:zoom-out-95',
+            className
+          )}
+          {...props}
+        />
+      </AlertDialogOverlay>
+    </Modal>
   );
 });
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;

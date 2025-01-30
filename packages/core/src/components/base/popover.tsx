@@ -1,6 +1,6 @@
 import * as PopoverPrimitive from '@rn-primitives/popover';
 import { forwardRef } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Modal, Platform, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
@@ -14,8 +14,9 @@ const PopoverContent = forwardRef<
   PopoverPrimitive.ContentRef,
   PopoverPrimitive.ContentProps & { portalHost?: string }
 >(({ className, align = 'center', sideOffset = 4, portalHost, ...props }, ref) => {
+  const { open } = PopoverPrimitive.useRootContext();
   return (
-    <PopoverPrimitive.Portal hostName={portalHost}>
+    <Modal visible={open} transparent>
       <PopoverPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
         <Animated.View entering={FadeIn.duration(200)} exiting={FadeOut}>
           <TextClassContext.Provider value="text-popover-foreground">
@@ -32,7 +33,7 @@ const PopoverContent = forwardRef<
           </TextClassContext.Provider>
         </Animated.View>
       </PopoverPrimitive.Overlay>
-    </PopoverPrimitive.Portal>
+    </Modal>
   );
 });
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;

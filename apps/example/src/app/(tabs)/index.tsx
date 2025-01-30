@@ -1,94 +1,155 @@
-import {
-  Badge,
-  Button,
-  Center,
-  Checkbox,
-  Chip,
-  CloseButton,
-  Container,
-  Divider,
-  FlatList,
-  HStack,
-  Input,
-  Paper,
-  Pill,
-  Switch,
-  Tooltip,
-} from '@nativebricks/core';
-import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
-
+import { Button, Dialog, Input, Select, Text, useColor } from '@nativebricks/core';
+import { router, Stack } from 'expo-router';
+import { ChevronRightIcon } from 'lucide-react-native';
+import React, { useState, useRef } from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 export default function index() {
-  const [checked, setChecked] = React.useState(false);
+  const [search, setSearch] = useState('');
+  const filteredComponents = components.filter((component) =>
+    component.name.toLowerCase().includes(search.toLowerCase())
+  );
+  const dialogRef = useRef(null);
+  const [value, setValue] = useState('');
   return (
-    <ScrollView className="flex-1" contentContainerClassName=" pb-24">
-      <Container className="px-4 gap-4 pt-12">
-        <Center className="h-44 bg-green-400 rounded-2xl p-3">
-          <Text>Center Text</Text>
-        </Center>
-        <Paper shadow border rounded className="gap-1 p-4 ">
-          <CloseButton className="absolute right-2 top-2 z-10" size="sm" />
-          <Text>Paper Text</Text>
-          <Text>2nd Paper Text</Text>
-          <Divider />
-          <Text>3rd Paper Text</Text>
-          <Button variant="default">Get Started</Button>
-        </Paper>
-        <HStack className="gap-2">
-          <Badge>React</Badge>
-          <Badge variant="light" size="sm">
-            Native
-          </Badge>
-          <Badge variant="destructive" size="xs">
-            Svelte
-          </Badge>
-          <Badge variant="outline" size="lg">
-            Remix
-          </Badge>
-          <Badge variant="secondary" size="xl">
-            Remix
-          </Badge>
-          <Badge>1</Badge>
-        </HStack>
-        <Checkbox label="Checkbox" checked={checked} onChange={(checked) => setChecked(checked)} />
-        <Tooltip label="A test tooltip">
-          <Badge>Tool Tip Test</Badge>
-        </Tooltip>
-        <Chip
-          label="Chip"
-          checked={checked}
-          onChange={(checked) => setChecked(checked)}
-          variant="destructive"
+    <ScrollView
+      className="flex-1"
+      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/10"
+    >
+      <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
+      <Button onPress={() => dialogRef.current?.show()}>
+        <Text className="">Open Dialog</Text>
+      </Button>
+      <Dialog ref={dialogRef}>
+        <Text className="">Dialog</Text>
+        <Select
+          options={['Option 1', 'Option 2', 'Option 3']}
+          placeholder="Select an option"
+          value={value}
+          onChange={setValue}
         />
-        <Input
-          label="Name"
-          description="Enter your full name"
-          valid
-          validMessage="Looks good!"
-          withAsterisk
-          placeholder="John Doe"
-        />
-        <View className="items-center justify-center w-44 h-32 bg-background rounded-2xl p-4 overflow-hidden">
-          <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-            renderItem={({ item }) => (
-              <Paper shadow border rounded className="h-24 w-24 p-2 mr-2">
-                <Text selectable={false}>{item}</Text>
-              </Paper>
-            )}
-            decelerationRate={'fast'}
-            snapToInterval={96 + 8}
-            horizontal
-            style={{
-              width: 120,
-            }}
-          />
+      </Dialog>
+      <Input placeholder="Search for a component" value={search} onChangeText={setSearch} />
+      {filteredComponents.map((component) => (
+        <NavLink key={component.name} label={component.name} />
+      ))}
+      {filteredComponents.length === 0 && (
+        <View className="p-3 border-b border-muted bg-card rounded-radius">
+          <Text>No components found.</Text>
         </View>
-        <Pill withRemoveButton variant="card">
-          Pill
-        </Pill>
-        <Switch label="Switch" size="md" />
-      </Container>
+      )}
     </ScrollView>
   );
 }
+
+export const components = [
+  {
+    name: 'Input',
+    description: 'A text input field.',
+  },
+  {
+    name: 'Select',
+    description: 'A select input field.',
+  },
+  {
+    name: 'MultiSelect',
+    description: 'A multi select input field.',
+  },
+  {
+    name: 'Form',
+    description: 'Form components.',
+  },
+  {
+    name: 'Dialog',
+    description: 'Dialog component',
+  },
+  {
+    name: 'Action-Sheet',
+    description: 'Action Sheet component',
+  },
+  {
+    name: 'Bottom-Sheet',
+    description: 'Bottom Sheet component',
+  },
+  {
+    name: 'Alert-Dialog',
+    description: 'Alert Dialog component',
+  },
+  {
+    name: 'Accordion',
+    description: 'Accordion component',
+  },
+  {
+    name: 'Avatar',
+    description: 'Avatar component',
+  },
+  {
+    name: 'Progress',
+    description: 'Progress component',
+  },
+  {
+    name: 'Slider',
+    description: 'Radio component',
+  },
+  {
+    name: 'Radio',
+    description: 'Radio component',
+  },
+  {
+    name: 'Checkbox',
+    description: 'Checkbox component',
+  },
+  {
+    name: 'Switch',
+    description: 'Switch component',
+  },
+  {
+    name: 'Skeleton',
+    description: 'Skeleton component',
+  },
+  {
+    name: 'Table',
+    description: 'Table component',
+  },
+  {
+    name: 'Data-Table',
+    description: 'Data Table component',
+  },
+  {
+    name: 'Toggle',
+    description: 'Toggle component',
+  },
+  {
+    name: 'Toggle-Group',
+    description: 'Toggle Group component',
+  },
+  {
+    name: 'Chip',
+    description: 'Chip component',
+  },
+  {
+    name: 'Tab',
+    description: 'Tabs component',
+  },
+  {
+    name: 'Calendar',
+    description: 'Calendar component',
+  },
+  {
+    name: 'WheelPicker',
+    description: 'Wheel picker component',
+  },
+];
+const NavLink = ({ label = '' }) => {
+  return (
+    <Pressable
+      onPress={() => {
+        router.push(`/components/${label}`);
+      }}
+    >
+      <View className="w-full p-3 border-b border-muted flex-row items-center justify-between bg-card rounded-radius">
+        <Text>{label}</Text>
+        <ChevronRightIcon className="w-5 h-5" color={useColor('foreground')} size={24} />
+      </View>
+    </Pressable>
+  );
+};

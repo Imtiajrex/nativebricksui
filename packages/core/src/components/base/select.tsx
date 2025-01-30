@@ -74,43 +74,39 @@ const SelectContent = forwardRef<
   const { open, onOpenChange } = SelectPrimitive.useRootContext();
 
   return (
-    <SelectPrimitive.Portal hostName={portalHost}>
-      <Modal visible={open} onRequestClose={() => onOpenChange(false)} transparent>
-        <SelectPrimitive.Overlay
-          style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}
-        >
-          <Animated.View entering={FadeIn} exiting={FadeOut} className={'px-4'}>
-            <SelectPrimitive.Content
-              ref={ref}
+    <Modal visible={open} onRequestClose={() => onOpenChange(false)} transparent>
+      <SelectPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
+        <Animated.View entering={FadeIn} exiting={FadeOut} className={'px-4'}>
+          <SelectPrimitive.Content
+            ref={ref}
+            className={cn(
+              'relative z-50 max-h-96 min-w-[50%] w-full rounded-md border border-border bg-popover shadow-md shadow-foreground/10 py-2 px-1 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+              position === 'popper' &&
+                'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
+              open
+                ? 'web:zoom-in-95 web:animate-in web:fade-in-0'
+                : 'web:zoom-out-95 web:animate-out web:fade-out-0',
+              className
+            )}
+            position={position}
+            {...props}
+          >
+            <SelectScrollUpButton />
+            <SelectPrimitive.Viewport
               className={cn(
-                'relative z-50 max-h-96 min-w-[50%] w-full rounded-md border border-border bg-popover shadow-md shadow-foreground/10 py-2 px-1 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+                'p-1',
                 position === 'popper' &&
-                  'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
-                open
-                  ? 'web:zoom-in-95 web:animate-in web:fade-in-0'
-                  : 'web:zoom-out-95 web:animate-out web:fade-out-0',
-                className
+                  'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+                viewPortClassName
               )}
-              position={position}
-              {...props}
             >
-              <SelectScrollUpButton />
-              <SelectPrimitive.Viewport
-                className={cn(
-                  'p-1',
-                  position === 'popper' &&
-                    'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
-                  viewPortClassName
-                )}
-              >
-                {children}
-              </SelectPrimitive.Viewport>
-              <SelectScrollDownButton />
-            </SelectPrimitive.Content>
-          </Animated.View>
-        </SelectPrimitive.Overlay>
-      </Modal>
-    </SelectPrimitive.Portal>
+              {children}
+            </SelectPrimitive.Viewport>
+            <SelectScrollDownButton />
+          </SelectPrimitive.Content>
+        </Animated.View>
+      </SelectPrimitive.Overlay>
+    </Modal>
   );
 });
 SelectContent.displayName = SelectPrimitive.Content.displayName;

@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, FormInput, FormSelect, toast } from '@nativebricks/core';
-import React from 'react';
+import { Button, toast } from '@nativebricks/core';
 import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 import { z } from 'zod';
@@ -26,27 +25,6 @@ export default function FormPage() {
   };
   return (
     <View className="container">
-      <FormInput
-        control={control}
-        name={'name'}
-        label="Full Name"
-        placeholder="Ex: Ok"
-        helperText="Enter your full name"
-      />
-      <FormInput
-        control={control}
-        name={'email'}
-        label="Email"
-        placeholder="Ex: example@gmail.com"
-      />
-      <FormSelect
-        control={control}
-        name={'job'}
-        label="Your Job"
-        options={['designer', 'developer', 'manager']}
-        placeholder="Select your job"
-      />
-      <FormInput control={control} name={'password'} label="Password" />
       <Button onPress={handleSubmit(submitHandler)}>
         <Text className="text-sm font-medium">Submit</Text>
       </Button>

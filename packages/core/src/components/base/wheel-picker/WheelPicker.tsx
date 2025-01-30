@@ -23,9 +23,6 @@ export type WheelPickerProps = {
   itemHeight?: number;
   containerStyle?: ViewStyle;
   containerProps?: Omit<ViewProps, 'style'>;
-  scaleFunction?: (x: number) => number;
-  rotationFunction?: (x: number) => number;
-  opacityFunction?: (x: number) => number;
   visibleRest?: number;
   decelerationRate?: 'normal' | 'fast' | number;
   flatListProps?: Partial<Omit<FlashListProps<string | null>, 'data' | 'renderItem'>>;
@@ -42,9 +39,6 @@ const WheelPicker: React.FC<WheelPickerProps> = ({
   itemStyle = {},
   itemTextStyle = {},
   itemHeight = 40,
-  scaleFunction = (x: number) => 1.0 ** x,
-  rotationFunction = (x: number) => 1 - Math.pow(1 / 2, x),
-  opacityFunction = (x: number) => Math.pow(1 / 3, x),
   visibleRest = 2,
   decelerationRate = 'fast',
   containerProps = {},
@@ -122,6 +116,7 @@ const WheelPicker: React.FC<WheelPickerProps> = ({
     return (
       <AnimatedFlashList
         {...flatListProps}
+        nestedScrollEnabled
         ref={flatListRef}
         showsVerticalScrollIndicator={showScrollIndicator}
         onScroll={(e) => {
@@ -143,9 +138,6 @@ const WheelPicker: React.FC<WheelPickerProps> = ({
             textStyle={itemTextStyle}
             height={itemHeight}
             currentScrollIndex={currentScrollIndex}
-            scaleFunction={scaleFunction}
-            rotationFunction={rotationFunction}
-            opacityFunction={opacityFunction}
             visibleRest={visibleRest}
           />
         )}
@@ -159,10 +151,7 @@ const WheelPicker: React.FC<WheelPickerProps> = ({
     itemHeight,
     itemStyle,
     itemTextStyle,
-    opacityFunction,
     paddedOptions,
-    rotationFunction,
-    scaleFunction,
     selectedIndex,
     visibleRest,
     offsets,
