@@ -1,6 +1,5 @@
-import { colorScheme as nativeColorScheme } from 'nativewind';
 import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
-import { create, TailwindFn, TwConfig, useDeviceContext } from 'twrnc';
+import { create, TailwindFn, TwConfig, useDeviceContext, useAppColorScheme } from 'twrnc';
 import { useColorScheme } from '../lib/useColorScheme';
 
 const ThemeContext = createContext<{
@@ -30,9 +29,11 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
       }),
     [tailwindConfig, colors, colorScheme]
   );
+  const [_colorScheme, _toggleColorScheme, setTwrncColorScheme] = useAppColorScheme(tw);
+
   useDeviceContext(tw);
   useEffect(() => {
-    nativeColorScheme.set(colorScheme);
+    setTwrncColorScheme(colorScheme);
   }, [colorScheme]);
   return (
     <ThemeContext.Provider
