@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import ActionSheet, { ActionSheetProps, ActionSheetRef } from 'react-native-actions-sheet';
 import { Text } from '../../../base';
 import { cn } from '../../../lib/utils';
+import { useColor } from '../../../lib/useColor';
 
 remapProps(ActionSheet, {
   containerClassName: 'containerStyle',
@@ -36,6 +37,9 @@ export const BottomSheet = forwardRef<BottomSheet, BottomSheetProps>((props, ref
       onClose={() => setIsBottomSheetOpen(false)}
       gestureEnabled
       containerClassName={cn('bg-background', props.containerClassName)}
+      containerStyle={{
+        backgroundColor: useColor('background'),
+      }}
       {...props}
     >
       <View className={cn('bg-background px-4 pb-4 pt-2 gap-2', props.contentClassName)}>
