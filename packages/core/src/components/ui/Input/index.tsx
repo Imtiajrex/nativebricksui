@@ -25,8 +25,9 @@ export function Input(props: InputProps) {
         onBlur={onBlur}
         ref={inputRef}
         {...props}
+        placeholderClassName={cn('text-muted-foreground', props.placeholderClassName)}
         className={cn(
-          'flex-1 ',
+          'flex-1 text-foreground placeholder-muted-foreground bg-transparent',
           props.leading && 'pl-1',
           props.trailing && 'pr-1',
           props.className
