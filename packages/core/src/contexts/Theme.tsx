@@ -32,9 +32,9 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
   const [_colorScheme, _toggleColorScheme, setTwrncColorScheme] = useAppColorScheme(tw);
 
   useDeviceContext(tw);
-  useEffect(() => {
+  if (colorScheme !== _colorScheme) {
     setTwrncColorScheme(colorScheme);
-  }, [colorScheme]);
+  }
   return (
     <ThemeContext.Provider
       value={{
