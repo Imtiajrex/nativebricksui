@@ -29,10 +29,6 @@ function withMonorepoPaths(config) {
     path.resolve(workspaceRoot, 'node_modules'),
   ];
 
-  config.resolver.extraNodeModules = {
-    '~': path.resolve(__dirname, '../../packages/core/src'),
-    // "@nativebricks/primitives": path.resolve(__dirname, '../../packages/primitives/src'),
-  };
 
   // #3 - Force resolving nested modules to the folders below
   config.resolver.disableHierarchicalLookup = true;

@@ -1,9 +1,11 @@
-import { Input, useColor } from '@nativebricks/core';
+import { Input, PasswordInput, useColor } from '@nativebricks/core';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { User } from 'lucide-react-native';
+import { PinInput } from '@nativebricks/core';
 
 export default function InputPage() {
+  const [code, setCode] = useState('');
   return (
     <View className="container">
       <Input
@@ -15,7 +17,18 @@ export default function InputPage() {
         }
       />
       <Input placeholder="Ex: example@gmail.com" state="invalid" />
-      <Input />
+      <PasswordInput
+        isTogglePasswordButtonEnabled
+        autoComplete="off"
+        importantForAutofill="noExcludeDescendants"
+      />
+      <PinInput
+        pin={code}
+        onPinChange={setCode}
+        numberOfPins={4}
+        check={(code) => console.log('checking', code)}
+        secret
+      />
     </View>
   );
 }

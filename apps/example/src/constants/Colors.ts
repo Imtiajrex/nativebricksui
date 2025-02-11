@@ -30,9 +30,9 @@ export default {
   dark: {
     background: 'rgb(9, 9, 10)',
     foreground: 'rgb(255, 255, 253)',
-    card: 'rgb(38, 38, 38)',
+    card: 'rgb(25,25,25)',
     'card-foreground': 'rgb(255, 255, 253)',
-    popover: 'rgb(9, 9, 10)',
+    popover: 'rgb(25,25,25)',
     'popover-foreground': 'rgb(255, 255, 253)',
     primary: 'rgb(255, 255, 253)',
     'primary-foreground': 'rgb(0,0,0)',

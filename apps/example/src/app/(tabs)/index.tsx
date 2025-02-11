@@ -1,4 +1,4 @@
-import { Button, Dialog, Input, Select, Text, useColor } from '@nativebricks/core';
+import { Button, Dialog, Input, Select, Text, useColor, useColorScheme } from '@nativebricks/core';
 import { router, Stack } from 'expo-router';
 import { ChevronRightIcon } from 'lucide-react-native';
 import React, { useState, useRef } from 'react';
@@ -10,12 +10,20 @@ export default function index() {
   );
   const dialogRef = useRef(null);
   const [value, setValue] = useState('');
+  const { colorScheme, setColorScheme } = useColorScheme();
   return (
     <ScrollView
       className="flex-1"
       contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/10"
     >
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
+      <Button
+        onPress={() => {
+          setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
+        }}
+      >
+        <Text>Toggle Color ({colorScheme})</Text>
+      </Button>
       <Button onPress={() => dialogRef.current?.show()}>Open Dialog</Button>
       <Dialog ref={dialogRef}>
         <Text className="">Dialog</Text>
