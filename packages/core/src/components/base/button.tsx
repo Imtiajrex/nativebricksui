@@ -75,7 +75,9 @@ const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
       });
     }, [children]);
     return (
-      <TextClassContext.Provider value={extractedTextClasses}>
+      <TextClassContext.Provider
+        value={cn(buttonTextVariants({ variant, size }), extractedTextClasses)}
+      >
         <Pressable
           className={cn(
             props.disabled && 'opacity-50 pointer-events-none',

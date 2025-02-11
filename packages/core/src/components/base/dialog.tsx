@@ -52,7 +52,7 @@ const DialogOverlayNative = forwardRef<DialogPrimitive.OverlayRef, DialogPrimiti
 DialogOverlayNative.displayName = 'DialogOverlayNative';
 
 const DialogOverlay = Platform.select({
-  DialogOverlayWeb,
+  web: DialogOverlayWeb,
   default: DialogOverlayNative,
 });
 
