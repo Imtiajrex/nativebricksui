@@ -6,18 +6,18 @@ import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
 
 const toggleVariants = cva(
-  'web:group web:inline-flex items-center justify-center rounded-md web:ring-offset-background web:transition-colors web:hover:bg-muted active:bg-muted web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2',
+  'group inline-flex items-center justify-center rounded-md ring-offset-background transition-colors hover:bg-muted active:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   {
     variants: {
       variant: {
         default: 'bg-transparent',
         outline:
-          'border border-input bg-transparent web:hover:bg-accent active:bg-accent active:bg-accent',
+          'border border-input bg-transparent hover:bg-accent active:bg-accent active:bg-accent',
       },
       size: {
-        default: 'h-10 px-3 native:h-12 native:px-[12]',
-        sm: 'h-9 px-2.5 native:h-10 native:px-[9]',
-        lg: 'h-11 px-5 native:h-14 native:px-6',
+        default: 'h-10 px-3 ',
+        sm: 'h-9 px-2.5 ',
+        lg: 'h-11 px-5 ',
       },
     },
     defaultVariants: {
@@ -27,11 +27,11 @@ const toggleVariants = cva(
   }
 );
 
-const toggleTextVariants = cva('text-sm native:text-base text-foreground font-medium', {
+const toggleTextVariants = cva('text-sm  text-foreground font-medium', {
   variants: {
     variant: {
       default: '',
-      outline: 'web:group-hover:text-accent-foreground web:group-active:text-accent-foreground',
+      outline: 'group-hover:text-accent-foreground group-active:text-accent-foreground',
     },
     size: {
       default: '',
@@ -52,7 +52,7 @@ const Toggle = forwardRef<
   <TextClassContext.Provider
     value={cn(
       toggleTextVariants({ variant, size }),
-      props.pressed ? 'text-accent-foreground' : 'web:group-hover:text-muted-foreground',
+      props.pressed ? 'text-accent-foreground' : 'group-hover:text-muted-foreground',
       className
     )}
   >
@@ -60,7 +60,7 @@ const Toggle = forwardRef<
       ref={ref}
       className={cn(
         toggleVariants({ variant, size }),
-        props.disabled && 'web:pointer-events-none opacity-50',
+        props.disabled && 'pointer-events-none opacity-50',
         props.pressed && 'bg-accent',
         className
       )}

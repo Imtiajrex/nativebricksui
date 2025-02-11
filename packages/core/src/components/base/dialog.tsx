@@ -20,7 +20,7 @@ const DialogOverlayWeb = forwardRef<DialogPrimitive.OverlayRef, DialogPrimitive.
       <DialogPrimitive.Overlay
         className={cn(
           'bg-black/25 flex justify-center items-center p-2 absolute top-0 right-0 bottom-0 left-0',
-          open ? 'web:animate-in web:fade-in-0' : 'web:animate-out web:fade-out-0',
+          open ? 'animate-in fade-in-0' : 'animate-out fade-out-0',
           className
         )}
         {...props}
@@ -52,7 +52,7 @@ const DialogOverlayNative = forwardRef<DialogPrimitive.OverlayRef, DialogPrimiti
 DialogOverlayNative.displayName = 'DialogOverlayNative';
 
 const DialogOverlay = Platform.select({
-  web: DialogOverlayWeb,
+  DialogOverlayWeb,
   default: DialogOverlayNative,
 });
 
@@ -74,10 +74,8 @@ const DialogContent = forwardRef<
         <Animated.View
           ref={ref}
           className={cn(
-            'max-w-lg gap-4 border border-border web:cursor-default bg-background p-6 shadow-lg web:duration-200 rounded-lg',
-            open
-              ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-              : 'web:animate-out web:fade-out-0 web:zoom-out-95',
+            'max-w-lg gap-4 border border-border cursor-default bg-background p-6 shadow-lg duration-200 rounded-lg',
+            open ? 'animate-in fade-in-0 zoom-in-95' : 'animate-out fade-out-0 zoom-out-95',
             className
           )}
           {...props}
@@ -86,7 +84,7 @@ const DialogContent = forwardRef<
           {showCloseButton && (
             <DialogPrimitive.Close
               className={
-                'absolute right-4 top-4 p-0.5 web:group rounded-sm opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
+                'absolute right-4 top-4 p-0.5 group rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none'
               }
             >
               <X
@@ -119,10 +117,7 @@ const DialogTitle = forwardRef<DialogPrimitive.TitleRef, DialogPrimitive.TitlePr
   ({ className, ...props }, ref) => (
     <DialogPrimitive.Title
       ref={ref}
-      className={cn(
-        'text-lg native:text-xl text-foreground font-semibold leading-none tracking-tight',
-        className
-      )}
+      className={cn('text-lg text-foreground font-semibold leading-none tracking-tight', className)}
       {...props}
     />
   )
@@ -135,7 +130,7 @@ const DialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('text-sm native:text-base text-muted-foreground', className)}
+    className={cn('text-sm text-muted-foreground', className)}
     {...props}
   />
 ));

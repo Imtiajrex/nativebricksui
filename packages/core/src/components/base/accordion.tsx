@@ -61,12 +61,12 @@ const AccordionTrigger = forwardRef<AccordionPrimitive.TriggerRef, AccordionPrim
     }));
 
     return (
-      <TextClassContext.Provider value="native:text-lg font-medium web:group-hover:underline">
+      <TextClassContext.Provider value=" font-medium group-hover:underline">
         <AccordionPrimitive.Header className="flex">
           <AccordionPrimitive.Trigger ref={ref} {...props} asChild>
             <Trigger
               className={cn(
-                'flex flex-row web:flex-1 items-center justify-between py-4 web:transition-all group web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-muted-foreground',
+                'flex flex-row flex-1 items-center justify-between py-4 transition-all group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-muted-foreground',
                 className
               )}
             >
@@ -87,11 +87,11 @@ const AccordionContent = forwardRef<AccordionPrimitive.ContentRef, AccordionPrim
   ({ className, children, ...props }, ref) => {
     const { isExpanded } = AccordionPrimitive.useItemContext();
     return (
-      <TextClassContext.Provider value="native:text-lg">
+      <TextClassContext.Provider value="">
         <AccordionPrimitive.Content
           className={cn(
-            'overflow-hidden text-sm web:transition-all',
-            isExpanded ? 'web:animate-accordion-down' : 'web:animate-accordion-up'
+            'overflow-hidden text-sm transition-all',
+            isExpanded ? 'animate-accordion-down' : 'animate-accordion-up'
           )}
           ref={ref}
           {...props}

@@ -36,7 +36,7 @@ const NavigationMenuList = forwardRef<
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
-      'web:group flex flex-1 flex-row web:list-none items-center justify-center gap-1',
+      'group flex flex-1 flex-row list-none items-center justify-center gap-1',
       className
     )}
     {...props}
@@ -47,7 +47,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  'web:group web:inline-flex flex-row h-10 native:h-12 native:px-3 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium web:transition-colors web:hover:bg-accent active:bg-accent web:hover:text-accent-foreground web:focus:bg-accent web:focus:text-accent-foreground web:focus:outline-none web:disabled:pointer-events-none disabled:opacity-50 web:data-[active]:bg-accent/50 web:data-[state=open]:bg-accent/50'
+  'group inline-flex flex-row h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent active:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50'
 );
 
 const NavigationMenuTrigger = forwardRef<
@@ -70,7 +70,7 @@ const NavigationMenuTrigger = forwardRef<
       ref={ref}
       className={cn(
         navigationMenuTriggerStyle(),
-        'web:group gap-1.5',
+        'group gap-1.5',
         value === itemValue && 'bg-accent',
         className
       )}
@@ -80,7 +80,7 @@ const NavigationMenuTrigger = forwardRef<
       <Animated.View style={chevronStyle}>
         <ChevronDown
           size={12}
-          className={cn('relative text-foreground h-3 w-3 web:transition web:duration-200')}
+          className={cn('relative text-foreground h-3 w-3 transition duration-200')}
         />
       </Animated.View>
     </NavigationMenuPrimitive.Trigger>
@@ -101,10 +101,10 @@ const NavigationMenuContent = forwardRef<
       <NavigationMenuPrimitive.Content
         ref={ref}
         className={cn(
-          'w-full native:border native:border-border native:rounded-lg native:shadow-lg native:bg-popover native:text-popover-foreground native:overflow-hidden',
+          'w-full border border-border rounded-lg shadow-lg bg-popover text-popover-foreground overflow-hidden',
           value === itemValue
-            ? 'web:animate-in web:fade-in web:slide-in-from-right-20'
-            : 'web:animate-out web:fade-out web:slide-out-to-left-20',
+            ? 'animate-in fade-in slide-in-from-right-20'
+            : 'animate-out fade-out slide-out-to-left-20',
           className
         )}
         {...props}
@@ -131,7 +131,7 @@ const NavigationMenuViewport = forwardRef<
     <View className={cn('absolute left-0 top-full flex justify-center')}>
       <View
         className={cn(
-          'web:origin-top-center relative mt-1.5 web:h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-lg web:animate-in web:zoom-in-90',
+          'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-lg animate-in zoom-in-90',
           className
         )}
         ref={ref}
@@ -156,7 +156,7 @@ const NavigationMenuIndicator = forwardRef<
       ref={ref}
       className={cn(
         'top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden',
-        value === itemValue ? 'web:animate-in web:fade-in' : 'web:animate-out web:fade-out',
+        value === itemValue ? 'animate-in fade-in' : 'animate-out fade-out',
         className
       )}
       {...props}

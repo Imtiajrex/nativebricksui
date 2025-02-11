@@ -23,7 +23,7 @@ const Menubar = forwardRef<MenubarPrimitive.RootRef, MenubarPrimitive.RootProps>
     <MenubarPrimitive.Root
       ref={ref}
       className={cn(
-        'flex flex-row h-10 native:h-12 items-center space-x-1 rounded-md border border-border bg-background p-1',
+        'flex flex-row h-10 items-center space-x-1 rounded-md border border-border bg-background p-1',
         className
       )}
       {...props}
@@ -41,7 +41,7 @@ const MenubarTrigger = forwardRef<MenubarPrimitive.TriggerRef, MenubarPrimitive.
       <MenubarPrimitive.Trigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none items-center rounded-sm px-3 py-1.5 text-sm native:h-10 native:px-5 native:py-0 font-medium web:outline-none web:focus:bg-accent active:bg-accent web:focus:text-accent-foreground',
+          'flex flex-row cursor-default select-none items-center rounded-sm px-3 py-1.5 text-sm  font-medium outline-none focus:bg-accent active:bg-accent focus:text-accent-foreground',
           value === itemValue && 'bg-accent text-accent-foreground',
           className
         )}
@@ -62,15 +62,12 @@ const MenubarSubTrigger = forwardRef<
   const Icon = Platform.OS === 'web' ? ChevronRight : open ? ChevronUp : ChevronDown;
   return (
     <TextClassContext.Provider
-      value={cn(
-        'select-none text-sm native:text-lg text-primary',
-        open && 'native:text-accent-foreground'
-      )}
+      value={cn('select-none text-sm text-primary', open && 'text-accent-foreground')}
     >
       <MenubarPrimitive.SubTrigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none items-center gap-2 web:focus:bg-accent active:bg-accent web:hover:bg-accent rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
+          'flex flex-row cursor-default select-none items-center gap-2 focus:bg-accent active:bg-accent hover:bg-accent rounded-sm px-2 py-1.5 outline-none',
           open && 'bg-accent',
           inset && 'pl-8',
           className
@@ -95,9 +92,7 @@ const MenubarSubContent = forwardRef<
       ref={ref}
       className={cn(
         'z-50 min-w-[8rem] overflow-hidden rounded-md border mt-1 border-border bg-popover p-1 shadow-md shadow-foreground/5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        open
-          ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-          : 'web:animate-out web:fade-out-0 web:zoom-out ',
+        open ? 'animate-in fade-in-0 zoom-in-95' : 'animate-out fade-out-0 zoom-out ',
         className
       )}
       {...props}
@@ -119,8 +114,8 @@ const MenubarContent = forwardRef<
         className={cn(
           'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md shadow-foreground/5 ',
           value === itemValue
-            ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-            : 'web:animate-out web:fade-out-0 web:zoom-out-95',
+            ? 'animate-in fade-in-0 zoom-in-95'
+            : 'animate-out fade-out-0 zoom-out-95',
           className
         )}
         {...props}
@@ -136,13 +131,13 @@ const MenubarItem = forwardRef<
     inset?: boolean;
   }
 >(({ className, inset, ...props }, ref) => (
-  <TextClassContext.Provider value="select-none text-sm native:text-lg text-popover-foreground web:group-focus:text-accent-foreground">
+  <TextClassContext.Provider value="select-none text-sm text-popover-foreground group-focus:text-accent-foreground">
     <MenubarPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default items-center gap-2 rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-accent active:bg-accent web:hover:bg-accent group',
+        'relative flex flex-row cursor-default items-center gap-2 rounded-sm px-2 py-1.5 outline-none focus:bg-accent active:bg-accent hover:bg-accent group',
         inset && 'pl-8',
-        props.disabled && 'opacity-50 web:pointer-events-none',
+        props.disabled && 'opacity-50 pointer-events-none',
         className
       )}
       {...props}
@@ -158,8 +153,8 @@ const MenubarCheckboxItem = forwardRef<
   <MenubarPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'relative flex flex-row web:cursor-default items-center web:group rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-accent active:bg-accent',
-      props.disabled && 'web:pointer-events-none opacity-50',
+      'relative flex flex-row cursor-default items-center group rounded-sm py-1.5  pl-8 pr-2 outline-none focus:bg-accent active:bg-accent',
+      props.disabled && 'pointer-events-none opacity-50',
       className
     )}
     checked={checked}
@@ -180,8 +175,8 @@ const MenubarRadioItem = forwardRef<MenubarPrimitive.RadioItemRef, MenubarPrimit
     <MenubarPrimitive.RadioItem
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default web:group items-center rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-accent active:bg-accent',
-        props.disabled && 'web:pointer-events-none opacity-50',
+        'relative flex flex-row cursor-default group items-center rounded-sm py-1.5 pl-8 pr-2 outline-none focus:bg-accent active:bg-accent',
+        props.disabled && 'pointer-events-none opacity-50',
         className
       )}
       {...props}
@@ -206,7 +201,7 @@ const MenubarLabel = forwardRef<
   <MenubarPrimitive.Label
     ref={ref}
     className={cn(
-      'px-2 py-1.5 text-sm native:text-base font-semibold text-foreground web:cursor-default',
+      'px-2 py-1.5 text-sm  font-semibold text-foreground cursor-default',
       inset && 'pl-8',
       className
     )}
@@ -229,10 +224,7 @@ MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName;
 const MenubarShortcut = ({ className, ...props }: TextProps) => {
   return (
     <Text
-      className={cn(
-        'ml-auto text-xs native:text-sm tracking-widest text-muted-foreground',
-        className
-      )}
+      className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
       {...props}
     />
   );

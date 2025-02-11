@@ -17,8 +17,8 @@ const Input = forwardRef<Input, TextInputProps>(
       <TextInput
         ref={ref}
         className={cn(
-          'px-3 h-full web:py-2 text-sm lg:text-sm native:text-lg native:leading-[1.25] web:focus:outline-none',
-          props.editable === false && 'opacity-50 web:cursor-not-allowed',
+          'px-3 h-full py-2 text-sm lg:text-sm focus:outline-none',
+          props.editable === false && 'opacity-50 cursor-not-allowed',
           className
         )}
         placeholderClassName={cn('text-muted-foreground', placeholderClassName)}
