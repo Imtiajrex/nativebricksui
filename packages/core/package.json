@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@nativebricks/core",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "description": "Native Bricks Core",
   "author": "Imtiaj Bin Aoual <imtiajbinaoual@gmail.com>",
   "license": "MIT",
