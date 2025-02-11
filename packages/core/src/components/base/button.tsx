@@ -3,7 +3,7 @@ import React, { forwardRef, useMemo } from 'react';
 import { Pressable } from 'react-native';
 import { Text, TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
-import { useExtractTextClasses } from '~/hooks/useExtractTextClasses';
+import { useExtractTextClasses } from '../../hooks/useExtractTextClasses';
 
 const buttonVariants = cva(
   'group flex items-center justify-center rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all translate-y-0 active:translate-y-0.5 ',
