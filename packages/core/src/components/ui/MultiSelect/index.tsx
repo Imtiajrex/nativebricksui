@@ -79,7 +79,7 @@ const BaseMultiSelect = <Option extends SelectOption>(
             )}
           </View>
         ) : (
-          <Text className="text-muted-foreground text-sm native:text-lg">{props.placeholder}</Text>
+          <Text className="text-muted-foreground text-sm ">{props.placeholder}</Text>
         )}
       </SelectTrigger>
       <SelectContent className="gap-1 p-2" viewPortClassName="gap-1">

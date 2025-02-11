@@ -12,11 +12,7 @@ const Text = forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn(
-          'text-base text-foreground web:select-text leading-none',
-          textClass,
-          className
-        )}
+        className={cn('text-base text-foreground select-text leading-none', textClass, className)}
         ref={ref}
         {...props}
       />

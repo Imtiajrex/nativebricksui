@@ -19,7 +19,7 @@ export function InputContainer(
   return (
     <Pressable
       className={cn(
-        'web:flex flex-row items-center overflow-hidden h-10 native:h-12 web:w-full rounded-input border border-input bg-card text-foreground gap-0',
+        'flex flex-row items-center overflow-hidden h-10 w-full rounded-input border border-input bg-card text-foreground gap-0',
         props.state == 'invalid' && 'border-destructive',
         props.state == 'valid' && 'border-success',
         props.state == 'focused' && 'border-primary',

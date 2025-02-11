@@ -5,7 +5,7 @@ import { cn } from '../../lib/utils';
 const Label = forwardRef<LabelPrimitive.TextRef, LabelPrimitive.TextProps>(
   ({ className, onPress, onLongPress, onPressIn, onPressOut, ...props }, ref) => (
     <LabelPrimitive.Root
-      className="web:cursor-default"
+      className="cursor-default"
       onPress={onPress}
       onLongPress={onLongPress}
       onPressIn={onPressIn}
@@ -14,7 +14,7 @@ const Label = forwardRef<LabelPrimitive.TextRef, LabelPrimitive.TextProps>(
       <LabelPrimitive.Text
         ref={ref}
         className={cn(
-          'text-sm text-foreground native:text-base font-medium leading-none web:peer-disabled:cursor-not-allowed web:peer-disabled:opacity-70',
+          'text-sm text-foreground font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
           className
         )}
         {...props}

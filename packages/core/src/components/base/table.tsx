@@ -54,7 +54,7 @@ const TableRow = forwardRef<View, TablePrimitive.RowProps>(({ className, ...prop
     <Pressable
       ref={ref}
       className={cn(
-        'flex-row min-w-full border-border border-b web:transition-colors web:hover:bg-muted/50 web:data-[state=selected]:bg-muted',
+        'flex-row min-w-full border-border border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
         className
       )}
       {...props}

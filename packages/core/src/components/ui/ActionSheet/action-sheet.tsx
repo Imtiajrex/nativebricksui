@@ -42,11 +42,7 @@ export const ActionSheet = forwardRef<ActionSheet, ActionSheetProps>((props, ref
         {props.description && <Text className='text-center text-sm'>{props.description}</Text>} */}
         <View className="bg-card rounded-xl overflow-hidden">
           <View className="py-4 gap-1">
-            {props.title && (
-              <Text className="text-center text-sm native:text-base font-medium">
-                {props.title}
-              </Text>
-            )}
+            {props.title && <Text className="text-center text-sm font-medium">{props.title}</Text>}
             {props.description && (
               <Text className="text-center text-sm text-muted-foreground">{props.description}</Text>
             )}

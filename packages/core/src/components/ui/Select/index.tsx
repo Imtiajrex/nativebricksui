@@ -56,12 +56,12 @@ const BaseSelect = <Option extends SelectOption>(
       props.renderSelectedOption ? (
         props.renderSelectedOption({ option: selectedOption })
       ) : (
-        <Text className={cn('text-foreground text-sm native:text-lg', props.valueClassName)}>
+        <Text className={cn('text-foreground text-sm ', props.valueClassName)}>
           {selectedOption?.label}
         </Text>
       )
     ) : (
-      <Text className="text-muted-foreground text-sm native:text-lg">{props.placeholder}</Text>
+      <Text className="text-muted-foreground text-sm ">{props.placeholder}</Text>
     );
   }, [selectedOption, props.renderSelectedOption, props.valueClassName, props.placeholder]);
   return (

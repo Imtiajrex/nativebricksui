@@ -1,26 +1,27 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { Pressable } from 'react-native';
-import { TextClassContext } from '../../components/base/text';
+import { Text, TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
+import { useExtractTextClasses } from '~/hooks/useExtractTextClasses';
 
 const buttonVariants = cva(
-  'group flex items-center justify-center rounded-md web:ring-offset-background web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 transition-all translate-y-0 active:translate-y-0.5 ',
+  'group flex items-center justify-center rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all translate-y-0 active:translate-y-0.5 ',
   {
     variants: {
       variant: {
-        default: 'bg-primary web:hover:opacity-90 active:opacity-90',
-        destructive: 'bg-destructive web:hover:opacity-90 active:opacity-90',
+        default: 'bg-primary hover:opacity-90 active:opacity-90',
+        destructive: 'bg-destructive hover:opacity-90 active:opacity-90',
         outline:
-          'border border-input bg-background web:hover:bg-accent web:hover:text-accent-foreground active:bg-accent',
-        secondary: 'bg-secondary web:hover:opacity-80 active:opacity-80',
-        ghost: 'web:hover:bg-accent web:hover:text-accent-foreground active:bg-accent',
-        link: 'web:underline-offset-4 web:hover:underline web:focus:underline ',
+          'border border-input bg-background hover:bg-accent hover:text-accent-foreground active:bg-accent',
+        secondary: 'bg-secondary hover:opacity-80 active:opacity-80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground active:bg-accent',
+        link: 'underline-offset-4 hover:underline focus:underline ',
       },
       size: {
-        default: 'h-10 px-4 py-2 native:h-12 native:px-5 native:py-3',
+        default: 'h-10 px-4 py-2 ',
         sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8 native:h-14',
+        lg: 'h-11 rounded-md px-8 ',
         icon: 'h-10 w-10',
       },
     },
@@ -32,7 +33,7 @@ const buttonVariants = cva(
 );
 
 const buttonTextVariants = cva(
-  'web:whitespace-nowrap text-sm native:text-base font-medium text-foreground web:transition-colors',
+  'whitespace-nowrap text-sm font-medium text-foreground transition-colors',
   {
     variants: {
       variant: {
@@ -46,7 +47,7 @@ const buttonTextVariants = cva(
       size: {
         default: '',
         sm: '',
-        lg: 'native:text-lg',
+        lg: '',
         icon: '',
       },
     },
@@ -58,23 +59,34 @@ const buttonTextVariants = cva(
 );
 
 type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    children: React.ReactNode;
+  };
 
 const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, children, ...props }, ref) => {
+    const extractedTextClasses = useExtractTextClasses(className);
+    const renderChildren = useMemo(() => {
+      return React.Children.map(children, (child) => {
+        if (typeof child === 'string' || typeof child === 'number') {
+          return <Text>{child}</Text>;
+        }
+        return child;
+      });
+    }, [children]);
     return (
-      <TextClassContext.Provider
-        value={buttonTextVariants({ variant, size, className: 'web:pointer-events-none' })}
-      >
+      <TextClassContext.Provider value={extractedTextClasses}>
         <Pressable
           className={cn(
-            props.disabled && 'opacity-50 web:pointer-events-none',
+            props.disabled && 'opacity-50 pointer-events-none',
             buttonVariants({ variant, size, className })
           )}
           ref={ref}
           role="button"
           {...props}
-        />
+        >
+          {renderChildren}
+        </Pressable>
       </TextClassContext.Provider>
     );
   }
