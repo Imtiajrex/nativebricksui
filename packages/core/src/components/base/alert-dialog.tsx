@@ -54,7 +54,7 @@ const AlertDialogOverlayNative = forwardRef<
 AlertDialogOverlayNative.displayName = 'AlertDialogOverlayNative';
 
 const AlertDialogOverlay = Platform.select({
-  AlertDialogOverlayWeb,
+  web: AlertDialogOverlayWeb,
   default: AlertDialogOverlayNative,
 });
 

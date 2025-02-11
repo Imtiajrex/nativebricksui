@@ -15,8 +15,8 @@ const TooltipContent = forwardRef<
   <TooltipPrimitive.Portal hostName={portalHost}>
     <TooltipPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
       <Animated.View
-        entering={Platform.select({ undefined, default: FadeIn })}
-        exiting={Platform.select({ undefined, default: FadeOut })}
+        entering={Platform.select({ web: undefined, default: FadeIn })}
+        exiting={Platform.select({ web: undefined, default: FadeOut })}
       >
         <TextClassContext.Provider value="text-sm text-popover-foreground">
           <TooltipPrimitive.Content

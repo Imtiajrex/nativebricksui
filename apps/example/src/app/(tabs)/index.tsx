@@ -16,9 +16,7 @@ export default function index() {
       contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/10"
     >
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
-      <Button onPress={() => dialogRef.current?.show()}>
-        <Text className="">Open Dialog</Text>
-      </Button>
+      <Button onPress={() => dialogRef.current?.show()}>Open Dialog</Button>
       <Dialog ref={dialogRef}>
         <Text className="">Dialog</Text>
         <Select
