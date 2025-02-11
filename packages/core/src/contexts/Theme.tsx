@@ -1,6 +1,7 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
-import { create, TailwindFn, TwConfig, useDeviceContext, useAppColorScheme } from 'twrnc';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { create, TailwindFn, TwConfig, useAppColorScheme, useDeviceContext } from 'twrnc';
 import { useColorScheme } from '../lib/useColorScheme';
+import { PortalHost } from '../components/ui/Portal';
 
 const ThemeContext = createContext<{
   tailwind: TailwindFn | null;
@@ -29,10 +30,10 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
       }),
     [tailwindConfig, colors, colorScheme]
   );
-  const [_colorScheme, _toggleColorScheme, setTwrncColorScheme] = useAppColorScheme(tw);
+  const [twrncColorScheme, _, setTwrncColorScheme] = useAppColorScheme(tw);
 
   useDeviceContext(tw);
-  if (colorScheme !== _colorScheme) {
+  if (colorScheme !== twrncColorScheme) {
     setTwrncColorScheme(colorScheme);
   }
   return (
@@ -41,8 +42,8 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
         tailwind: tw,
       }}
     >
-      {/* <View className={cn('flex-1', colorScheme === 'dark' ? 'dark' : '')}>{children}</View> */}
       {children}
+      <PortalHost />
     </ThemeContext.Provider>
   );
 }
