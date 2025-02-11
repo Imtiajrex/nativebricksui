@@ -35,6 +35,7 @@ export default function Layout() {
   );
 }
 const Root = () => {
+  console.log(useColor('foreground'));
   return (
     <NavigationThemeProvider
       value={{
@@ -45,7 +46,7 @@ const Root = () => {
           card: useColor('card'),
           primary: useColor('primary'),
           text: useColor('foreground'),
-          notification: useColor('card'),
+          notification: useColor('foreground'),
         },
         dark: useColorScheme().colorScheme === 'dark',
       }}
@@ -54,7 +55,6 @@ const Root = () => {
         <title>Native Bricks UI</title>
       </Head>
       <Slot />
-      <PortalHost />
     </NavigationThemeProvider>
   );
 };

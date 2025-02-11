@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
 import { create, TailwindFn, TwConfig, useAppColorScheme, useDeviceContext } from 'twrnc';
 import { useColorScheme } from '../lib/useColorScheme';
 import { PortalHost } from '../components/ui/Portal';
+import { Platform, View } from 'react-native';
 
 const ThemeContext = createContext<{
   tailwind: TailwindFn | null;
@@ -33,6 +34,12 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
   const [twrncColorScheme, _, setTwrncColorScheme] = useAppColorScheme(tw);
 
   useDeviceContext(tw);
+  useEffect(() => {
+    if (colorScheme && Platform.OS === 'web' && window && window.document) {
+      document.body.classList.add(colorScheme);
+      document.body.classList.remove(colorScheme === 'dark' ? 'light' : 'dark');
+    }
+  }, [colorScheme]);
   if (colorScheme !== twrncColorScheme) {
     setTwrncColorScheme(colorScheme);
   }
