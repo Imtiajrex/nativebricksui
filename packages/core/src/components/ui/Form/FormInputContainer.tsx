@@ -6,7 +6,6 @@ export type FormInputContainerProps = {
   description?: string;
   helperText?: string;
   asterisk?: boolean;
-  children: React.ReactNode;
   message?: string;
   labelClassName?: string;
   descriptionClassName?: string;
@@ -15,7 +14,11 @@ export type FormInputContainerProps = {
   containerClassName?: string;
   asteriskClassName?: string;
 };
-export default function FormInputContainer(props: FormInputContainerProps) {
+export function FormInputContainer(
+  props: FormInputContainerProps & {
+    children: React.ReactNode;
+  }
+) {
   return (
     <View className={cn('flex flex-col gap-1', props.containerClassName)}>
       {props.label && (
