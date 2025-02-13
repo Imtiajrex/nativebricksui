@@ -12,6 +12,7 @@ declare module '@react-native/virtualized-lists' {
     ListHeaderComponentClassName?: string;
   }
 }
+
 declare module 'react-native' {
   interface ScrollViewProps
     extends ViewProps,

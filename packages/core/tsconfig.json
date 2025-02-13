@@ -1,16 +1,8 @@
 {
   "compilerOptions": {
     "strict": true,
-    "baseUrl": "./src",
-    "paths": {},
     "jsx": "react-jsx"
   },
   "extends": "expo/tsconfig.base",
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "nativewind-env.d.ts",
-    "src/contexts/Theme.tsx",
-    "plugin.ts"
-  ]
+  "include": ["./**/*.ts", "./**/*.tsx", "nativewind-env.d.ts"]
 }

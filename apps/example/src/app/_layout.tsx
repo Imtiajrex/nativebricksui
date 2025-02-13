@@ -1,5 +1,4 @@
-import Colors from '@/constants/Colors';
-import { PortalHost, ThemeProvider, useColor, useColorScheme } from '@nativebricks/core';
+import { ThemeProvider, useColor, useColorScheme } from '@nativebricks/core';
 import { DefaultTheme, ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
 import { Slot } from 'expo-router';
 import Head from 'expo-router/head';
@@ -9,6 +8,7 @@ import 'react-native-reanimated';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import '../components/gesture-handler';
 import '../global.css';
+import { DEFAULT_COLORS } from '@nativebricks/core';
 
 // This is the default configuration
 configureReanimatedLogger({
@@ -28,14 +28,17 @@ LogBox.ignoreLogs([
 export default function Layout() {
   return (
     <GestureHandlerRootView>
-      <ThemeProvider tailwindConfig={require('../../tailwind.config')} colors={Colors}>
+      <ThemeProvider
+        colors={DEFAULT_COLORS}
+        tailwindConfig={require('../../tailwind.config')}
+        initialColorScheme="light"
+      >
         <Root />
       </ThemeProvider>
     </GestureHandlerRootView>
   );
 }
 const Root = () => {
-  console.log(useColor('foreground'));
   return (
     <NavigationThemeProvider
       value={{
@@ -43,10 +46,10 @@ const Root = () => {
         colors: {
           background: useColor('background'),
           border: useColor('border'),
-          card: useColor('card'),
-          primary: useColor('primary'),
-          text: useColor('foreground'),
-          notification: useColor('foreground'),
+          card: useColor('background-emphasis'),
+          primary: useColor('brand'),
+          text: useColor('content'),
+          notification: useColor('content'),
         },
         dark: useColorScheme().colorScheme === 'dark',
       }}

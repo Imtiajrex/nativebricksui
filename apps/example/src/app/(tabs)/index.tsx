@@ -1,7 +1,6 @@
-import { Button, Dialog, Input, Select, Text, useColor, useColorScheme } from '@nativebricks/core';
+import { Button, Icon, Input, Text, useColorScheme } from '@nativebricks/core';
 import { router, Stack } from 'expo-router';
-import { ChevronRightIcon } from 'lucide-react-native';
-import React, { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 export default function index() {
   const [search, setSearch] = useState('');
@@ -9,31 +8,23 @@ export default function index() {
     component.name.toLowerCase().includes(search.toLowerCase())
   );
   const dialogRef = useRef(null);
-  const [value, setValue] = useState('');
   const { colorScheme, setColorScheme } = useColorScheme();
   return (
     <ScrollView
-      className="flex-1"
-      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-primary/10"
+      className="flex-1 bg-background"
+      contentContainerClassName="px-4 max-w-4xl w-full mx-auto py-8 gap-2 bg-background"
     >
       <Stack.Screen options={{ headerTitle: 'Native Bricks Components' }} />
+      <Button onPress={() => {}}>Open Dialog</Button>
       <Button
         onPress={() => {
-          setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
+          setColorScheme(colorScheme === 'light' ? 'dark' : 'light');
         }}
+        variant="light"
       >
-        <Text>Toggle Color ({colorScheme})</Text>
+        Chnage Theme
       </Button>
-      <Button onPress={() => dialogRef.current?.show()}>Open Dialog</Button>
-      <Dialog ref={dialogRef}>
-        <Text className="">Dialog</Text>
-        <Select
-          options={['Option 1', 'Option 2', 'Option 3']}
-          placeholder="Select an option"
-          value={value}
-          onChange={setValue}
-        />
-      </Dialog>
+
       <Input placeholder="Search for a component" value={search} onChangeText={setSearch} />
       {filteredComponents.map((component) => (
         <NavLink key={component.name} label={component.name} />
@@ -51,6 +42,14 @@ export const components = [
   {
     name: 'Input',
     description: 'A text input field.',
+  },
+  {
+    name: 'Button',
+    description: 'Button components.',
+  },
+  {
+    name: 'Popover',
+    description: 'Popover component.',
   },
   {
     name: 'Select',
@@ -152,9 +151,9 @@ const NavLink = ({ label = '' }) => {
         router.push(`/components/${label}`);
       }}
     >
-      <View className="w-full p-3 border-b border-muted flex-row items-center justify-between bg-card rounded-radius">
+      <View className="w-full p-3 border-b border-border flex-row items-center justify-between bg-background-emphasis rounded-radius">
         <Text>{label}</Text>
-        <ChevronRightIcon className="w-5 h-5" color={useColor('foreground')} size={24} />
+        <Icon name="arrow-right-line" className="fill-content-subtle" />
       </View>
     </Pressable>
   );

@@ -4,7 +4,7 @@ const Colors = require('./src/constants/Colors');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/core/src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "../../packages/core/**/*.{js,jsx,ts,tsx}"],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -33,6 +33,6 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    require('@nativebricks/core/plugin').default(Colors.default)
+    require('@nativebricks/core/tailwind/plugin').default()
   ],
 };
