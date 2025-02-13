@@ -1,13 +1,18 @@
 import { Controller } from 'react-hook-form';
 import { Input, InputProps, PasswordInput, PinInput, PinInputProps } from '../Input';
+import { FormInputContainer, FormInputContainerProps } from './FormInputContainer';
 import { FormControlProps, FormFields } from './types';
-
-export const FormInput = <T extends FormFields>(props: InputProps & FormControlProps<T>) => {
+export type FormInputProps<T extends FormFields> = FormInputContainerProps &
+  InputProps &
+  FormControlProps<T>;
+export const FormInput = <T extends FormFields>(props: FormInputProps<T>) => {
   if (props.control && props.name) {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <Input {...props} value={field.value} onChangeText={field.onChange} />
+          <FormInputContainer {...props} message={fieldState.error?.message}>
+            <Input {...props} value={field.value} onChangeText={field.onChange} />
+          </FormInputContainer>
         )}
         name={props.name!}
         control={props.control}
@@ -18,15 +23,24 @@ export const FormInput = <T extends FormFields>(props: InputProps & FormControlP
     throw new Error('name is required when control is provided');
   }
 
-  return <Input {...props} />;
+  return (
+    <FormInputContainer {...props}>
+      <Input {...props} />
+    </FormInputContainer>
+  );
 };
 
-export const FormPinInput = <T extends FormFields>(props: PinInputProps & FormControlProps<T>) => {
+export type FormPinInputProps<T extends FormFields> = FormInputContainerProps &
+  PinInputProps &
+  FormControlProps<T>;
+export const FormPinInput = <T extends FormFields>(props: FormPinInputProps<T>) => {
   if (props.control && props.name) {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <PinInput {...props} pin={field.value} onPinChange={field.onChange} />
+          <FormInputContainer {...props} message={fieldState.error?.message}>
+            <PinInput {...props} pin={field.value} onPinChange={field.onChange} />
+          </FormInputContainer>
         )}
         name={props.name!}
         control={props.control}
@@ -37,17 +51,23 @@ export const FormPinInput = <T extends FormFields>(props: PinInputProps & FormCo
     throw new Error('name is required when control is provided');
   }
 
-  return <PinInput {...props} />;
+  return (
+    <FormInputContainer {...props}>
+      <PinInput {...props} />
+    </FormInputContainer>
+  );
 };
-
-export const FormPasswordInput = <T extends FormFields>(
-  props: InputProps & FormControlProps<T>
-) => {
+export type FormPasswordInputProps<T extends FormFields> = FormInputContainerProps &
+  InputProps &
+  FormControlProps<T>;
+export const FormPasswordInput = <T extends FormFields>(props: FormPasswordInputProps<T>) => {
   if (props.control && props.name) {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <PasswordInput {...props} value={field.value} onChangeText={field.onChange} />
+          <FormInputContainer {...props} message={fieldState.error?.message}>
+            <PasswordInput {...props} value={field.value} onChangeText={field.onChange} />
+          </FormInputContainer>
         )}
         name={props.name!}
         control={props.control}
@@ -58,5 +78,9 @@ export const FormPasswordInput = <T extends FormFields>(
     throw new Error('name is required when control is provided');
   }
 
-  return <PasswordInput {...props} />;
+  return (
+    <FormInputContainer {...props}>
+      <PasswordInput {...props} />
+    </FormInputContainer>
+  );
 };

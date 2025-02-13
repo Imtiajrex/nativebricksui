@@ -10,8 +10,5 @@ export const Form = {
   MultiSelect: wrapFormInputContainer(FormSelects.FormMultiSelect),
 };
 
-export const FormInput = wrapFormInputContainer(FormInputs.FormInput);
-export const FormPinInput = wrapFormInputContainer(FormInputs.FormPinInput);
-export const FormPasswordInput = wrapFormInputContainer(FormInputs.FormPasswordInput);
-export const FormSelect = wrapFormInputContainer(FormSelects.FormSelect);
-export const FormMultiSelect = wrapFormInputContainer(FormSelects.FormMultiSelect);
+export * from './FormInput';
+export * from './FormSelect';

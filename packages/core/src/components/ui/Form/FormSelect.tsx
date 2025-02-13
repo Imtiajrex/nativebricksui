@@ -3,13 +3,18 @@ import { Select } from '../Select';
 import { SelectProps } from '../Select/types';
 import { FormControlProps, FormFields } from './types';
 import { MultiSelect, MultiSelectProps } from '../MultiSelect';
-
-export const FormSelect = <T extends FormFields>(props: SelectProps<any> & FormControlProps<T>) => {
+import { FormInputContainer, FormInputContainerProps } from './FormInputContainer';
+export type FormSelectProps<T extends FormFields> = FormInputContainerProps &
+  SelectProps<any> &
+  FormControlProps<T>;
+export const FormSelect = <T extends FormFields>(props: FormSelectProps<T>) => {
   if (props.control && props.name) {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <Select {...props} value={field.value} onChange={field.onChange} />
+          <FormInputContainer {...props} message={fieldState.error?.message}>
+            <Select {...props} value={field.value} onChange={field.onChange} />
+          </FormInputContainer>
         )}
         name={props.name!}
         control={props.control}
@@ -20,17 +25,24 @@ export const FormSelect = <T extends FormFields>(props: SelectProps<any> & FormC
     throw new Error('name is required when control is provided');
   }
 
-  return <Select {...props} />;
+  return (
+    <FormInputContainer {...props}>
+      <Select {...props} />
+    </FormInputContainer>
+  );
 };
+export type FormMultiSelectProps<T extends FormFields> = FormInputContainerProps &
+  MultiSelectProps<any> &
+  FormControlProps<T>;
 
-export const FormMultiSelect = <T extends FormFields>(
-  props: MultiSelectProps<any> & FormControlProps<T>
-) => {
+export const FormMultiSelect = <T extends FormFields>(props: FormMultiSelectProps<T>) => {
   if (props.control && props.name) {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <MultiSelect {...props} value={field.value} onChange={field.onChange} />
+          <FormInputContainer {...props} message={fieldState.error?.message}>
+            <MultiSelect {...props} value={field.value} onChange={field.onChange} />
+          </FormInputContainer>
         )}
         name={props.name!}
         control={props.control}
@@ -41,5 +53,9 @@ export const FormMultiSelect = <T extends FormFields>(
     throw new Error('name is required when control is provided');
   }
 
-  return <MultiSelect {...props} />;
+  return (
+    <FormInputContainer {...props}>
+      <MultiSelect {...props} />
+    </FormInputContainer>
+  );
 };
