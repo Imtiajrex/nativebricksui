@@ -17,9 +17,15 @@ type ThemeProviderProps = {
     dark?: Record<string, string>;
   };
   children: ReactNode;
+  initialColorScheme?: 'light' | 'dark';
 };
-export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProviderProps) {
-  const { colorScheme } = useColorScheme();
+export function ThemeProvider({
+  tailwindConfig,
+  colors,
+  children,
+  initialColorScheme,
+}: ThemeProviderProps) {
+  const { colorScheme, setColorScheme } = useColorScheme();
   const tw = useMemo(
     () =>
       create({
@@ -40,6 +46,11 @@ export function ThemeProvider({ tailwindConfig, colors, children }: ThemeProvide
       document.body.classList.remove(colorScheme === 'dark' ? 'light' : 'dark');
     }
   }, [colorScheme]);
+  useEffect(() => {
+    if (initialColorScheme) {
+      setColorScheme(initialColorScheme);
+    }
+  }, [initialColorScheme, setColorScheme]);
   if (colorScheme !== twrncColorScheme) {
     setTwrncColorScheme(colorScheme);
   }
