@@ -11,7 +11,7 @@ export type FormInputContainerProps = {
   descriptionClassName?: string;
   helperTextClassName?: string;
   messageClassName?: string;
-  containerClassName?: string;
+  formInputContainerClassName?: string;
   asteriskClassName?: string;
 };
 export function FormInputContainer(
@@ -20,7 +20,7 @@ export function FormInputContainer(
   }
 ) {
   return (
-    <View className={cn('flex flex-col gap-1', props.containerClassName)}>
+    <View className={cn('flex flex-col gap-1', props.formInputContainerClassName)}>
       {props.label && (
         <Text className={cn('text-sm font-semibold text-foreground', props.labelClassName)}>
           {props.label}

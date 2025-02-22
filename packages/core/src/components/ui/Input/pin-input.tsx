@@ -15,6 +15,8 @@ export type PinInputProps = {
   containerClassName?: string;
   pinContainerClassName?: string;
   pinTextClassName?: string;
+  pinContainerActiveClassName?: string;
+  pinTextActiveClassName?: string;
 };
 export function PinInput({
   pin,
@@ -26,6 +28,8 @@ export function PinInput({
   containerClassName,
   pinContainerClassName,
   pinTextClassName,
+  pinContainerActiveClassName,
+  pinTextActiveClassName,
 }: PinInputProps) {
   const inputRef = React.useRef<TextInput>(null);
   const [isFocused, setIsFocused] = React.useState(false);
@@ -53,11 +57,21 @@ export function PinInput({
         isActive={activeIndex === i}
         className={pinContainerClassName}
         textClassName={pinTextClassName}
-        activeClassName={pinContainerClassName}
-        activeTextClassName={pinTextClassName}
+        activeClassName={pinContainerActiveClassName}
+        activeTextClassName={pinContainerActiveClassName}
       />
     ));
-  }, [numberOfPins, pin, isFocused, secret, secretDelay]);
+  }, [
+    numberOfPins,
+    pin,
+    isFocused,
+    secret,
+    secretDelay,
+    pinContainerClassName,
+    pinTextClassName,
+    pinContainerActiveClassName,
+    pinTextActiveClassName,
+  ]);
   return (
     <>
       <Pressable
