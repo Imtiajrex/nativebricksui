@@ -13,7 +13,7 @@ import { Pressable, Text, View } from 'react-native';
 import { Separator } from '../../base/separator';
 import { cn } from '../../../lib/utils';
 import { Input } from '../Input';
-import { type Option } from '../../../base';
+import { type Option as OptionType } from '../../../base';
 
 export const useOptions = ({
   options,
@@ -102,7 +102,7 @@ export const useOptions = ({
   const onValueChange = useMemo(
     () =>
       props.onChange
-        ? (option: Option) => {
+        ? (option: OptionType) => {
             props.onChange?.(option?.value!);
           }
         : undefined,

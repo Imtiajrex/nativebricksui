@@ -64,22 +64,18 @@ type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> &
   };
 
 const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
-  ({ className, variant, size, children, ...props }, ref) => {
-    const extractedTextClasses = useExtractTextClasses(className);
+  ({ className, variant, size, ...props }, ref) => {
     return (
-      <TextClassContext.Provider
-        value={cn(buttonTextVariants({ variant, size }), extractedTextClasses)}
-      >
-        <Pressable
-          className={cn(
-            props.disabled && 'opacity-50 pointer-events-none',
-            buttonVariants({ variant, size, className })
-          )}
-          ref={ref}
-          role="button"
-          {...props}
-        />
-      </TextClassContext.Provider>
+      <Pressable
+        className={cn(
+          props.disabled && 'opacity-50 pointer-events-none',
+          buttonTextVariants({ variant, size }),
+          buttonVariants({ variant, size, className })
+        )}
+        ref={ref}
+        role="button"
+        {...props}
+      />
     );
   }
 );

@@ -5,12 +5,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '../../base/popover';
 import { iconWithClassName } from '../../../lib/iconWithClassName';
 import { InputContainer, InputContainerProps } from '../misc/InputContainer';
 import { TimePicker, TimePickerProps } from './TimePicker';
+import { cn } from '../../../lib/utils';
 
 export type TimeInputProps = InputContainerProps & {
   placeholder?: string;
   timePickerProps?: Omit<TimePickerProps, 'onChange'>;
   value?: string;
   onChange?: TimePickerProps['onChange'];
+  popoverContentClassName?: string;
 };
 iconWithClassName(Clock);
 export function TimeInput({
@@ -19,11 +21,12 @@ export function TimeInput({
   leading,
   trailing,
   placeholder,
+  popoverContentClassName,
   ...props
 }: TimeInputProps) {
   const renderContent = useMemo(() => {
     return (
-      <PopoverContent className="w-72 bg-background" align="start">
+      <PopoverContent className={cn('w-72 bg-background', popoverContentClassName)} align="start">
         <TimePicker
           containerClassName="flex-1"
           pickSecond={false}
@@ -32,7 +35,7 @@ export function TimeInput({
         />
       </PopoverContent>
     );
-  }, [props.timePickerProps, props.onChange]);
+  }, [props.timePickerProps, props.onChange, popoverContentClassName]);
   return (
     <Popover>
       <PopoverTrigger>

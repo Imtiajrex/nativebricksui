@@ -11,7 +11,7 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 export type PopoverContentRef = PopoverPrimitive.ContentRef;
 
 const PopoverPortal = Platform.select({
-  web: (props: any) => <Modal {...props} />,
+  web: (props: any) => <PopoverPrimitive.Overlay {...props} />,
   native: (props: any) => <Modal {...props} />,
 })!;
 const PopoverContent = forwardRef<

@@ -5,12 +5,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '../../../base';
 import { iconWithClassName } from '../../../lib/iconWithClassName';
 import { InputContainer, InputContainerProps } from '../misc/InputContainer';
 import { DatePicker, DatePickerProps } from './DatePicker';
+import { cn } from '../../../lib/utils';
 
 export type DateInputProps = InputContainerProps & {
   placeholder?: string;
   datePickerProps?: Omit<DatePickerProps, 'onChange'>;
   value?: Date;
   onChange?: DatePickerProps['onChange'];
+  popoverContentClassName?: string;
 };
 iconWithClassName(Clock);
 export function DateInput({
@@ -19,11 +21,12 @@ export function DateInput({
   leading,
   trailing,
   placeholder,
+  popoverContentClassName,
   ...props
 }: DateInputProps) {
   const renderContent = useMemo(() => {
     return (
-      <PopoverContent className="w-72 bg-background" align="start">
+      <PopoverContent className={cn('w-72 bg-background', popoverContentClassName)} align="start">
         <DatePicker
           containerClassName="flex-1"
           {...props.datePickerProps}
@@ -31,7 +34,7 @@ export function DateInput({
         />
       </PopoverContent>
     );
-  }, [props.datePickerProps, props.onChange]);
+  }, [props.datePickerProps, props.onChange, popoverContentClassName]);
   return (
     <Popover>
       <PopoverTrigger>
