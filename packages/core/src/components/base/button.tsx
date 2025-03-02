@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { forwardRef, useMemo } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable } from './pressable';
 import { Text, TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
 import { useExtractTextClasses } from '../../hooks/useExtractTextClasses';
@@ -66,14 +66,6 @@ type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> &
 const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
   ({ className, variant, size, children, ...props }, ref) => {
     const extractedTextClasses = useExtractTextClasses(className);
-    const renderChildren = useMemo(() => {
-      return React.Children.map(children, (child) => {
-        if (typeof child === 'string' || typeof child === 'number') {
-          return <Text>{child}</Text>;
-        }
-        return child;
-      });
-    }, [children]);
     return (
       <TextClassContext.Provider
         value={cn(buttonTextVariants({ variant, size }), extractedTextClasses)}
@@ -86,9 +78,7 @@ const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
           ref={ref}
           role="button"
           {...props}
-        >
-          {renderChildren}
-        </Pressable>
+        />
       </TextClassContext.Provider>
     );
   }
