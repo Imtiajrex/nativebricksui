@@ -35,7 +35,6 @@ export default function Layout() {
   );
 }
 const Root = () => {
-  console.log(useColor('foreground'));
   return (
     <NavigationThemeProvider
       value={{
