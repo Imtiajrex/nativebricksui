@@ -9,6 +9,7 @@ import {
   useColorScheme,
   WheelPicker,
 } from '@nativebricks/core';
+import { PortalHost } from '@nativebricks/core/src/base';
 import React, { useCallback, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
@@ -111,7 +112,12 @@ const DateSheet = () => {
         title="Date Sheet"
         contentClassName="max-w-4xl mx-auto w-full px-4"
       >
-        <DateInput containerClassName="max-w-sm self-center" onChange={updateDate} />
+        <PortalHost name="date-sheet" />
+        <DateInput
+          containerClassName="max-w-sm self-center"
+          onChange={updateDate}
+          portalHost="date-sheet"
+        />
       </BottomSheet>
     </View>
   );

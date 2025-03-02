@@ -13,6 +13,7 @@ export type DateInputProps = InputContainerProps & {
   value?: Date;
   onChange?: DatePickerProps['onChange'];
   popoverContentClassName?: string;
+  portalHost?: string;
 };
 iconWithClassName(Clock);
 export function DateInput({
@@ -22,11 +23,16 @@ export function DateInput({
   trailing,
   placeholder,
   popoverContentClassName,
+  portalHost,
   ...props
 }: DateInputProps) {
   const renderContent = useMemo(() => {
     return (
-      <PopoverContent className={cn('w-72 bg-background', popoverContentClassName)} align="start">
+      <PopoverContent
+        className={cn('w-72 bg-background', popoverContentClassName)}
+        align="start"
+        portalHost={portalHost}
+      >
         <DatePicker
           containerClassName="flex-1"
           {...props.datePickerProps}
@@ -34,7 +40,7 @@ export function DateInput({
         />
       </PopoverContent>
     );
-  }, [props.datePickerProps, props.onChange, popoverContentClassName]);
+  }, [props.datePickerProps, props.onChange, popoverContentClassName, portalHost]);
   return (
     <Popover>
       <PopoverTrigger>
