@@ -17,10 +17,6 @@ export type DateInputProps = InputContainerProps & {
 };
 iconWithClassName(Clock);
 export function DateInput({
-  state,
-  containerClassName,
-  leading,
-  trailing,
   placeholder,
   popoverContentClassName,
   portalHost,

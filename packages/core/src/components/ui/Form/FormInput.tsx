@@ -10,8 +10,17 @@ export const FormInput = <T extends FormFields>(props: FormInputProps<T>) => {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <FormInputContainer {...props} message={fieldState.error?.message}>
-            <Input {...props} value={field.value} onChangeText={field.onChange} />
+          <FormInputContainer
+            state={!fieldState.error?.message ? 'default' : 'invalid'}
+            {...props}
+            message={fieldState.error?.message}
+          >
+            <Input
+              state={!fieldState.error?.message ? 'default' : 'invalid'}
+              {...props}
+              value={field.value}
+              onChangeText={field.onChange}
+            />
           </FormInputContainer>
         )}
         name={props.name!}
@@ -38,8 +47,17 @@ export const FormPinInput = <T extends FormFields>(props: FormPinInputProps<T>) 
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <FormInputContainer {...props} message={fieldState.error?.message}>
-            <PinInput {...props} pin={field.value} onPinChange={field.onChange} />
+          <FormInputContainer
+            state={!fieldState.error?.message ? 'default' : 'invalid'}
+            {...props}
+            message={fieldState.error?.message}
+          >
+            <PinInput
+              state={!fieldState.error?.message ? 'default' : 'invalid'}
+              {...props}
+              pin={field.value}
+              onPinChange={field.onChange}
+            />
           </FormInputContainer>
         )}
         name={props.name!}
@@ -65,8 +83,17 @@ export const FormPasswordInput = <T extends FormFields>(props: FormPasswordInput
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <FormInputContainer {...props} message={fieldState.error?.message}>
-            <PasswordInput {...props} value={field.value} onChangeText={field.onChange} />
+          <FormInputContainer
+            state={!fieldState.error?.message ? 'default' : 'invalid'}
+            {...props}
+            message={fieldState.error?.message}
+          >
+            <PasswordInput
+              state={!fieldState.error?.message ? 'default' : 'invalid'}
+              {...props}
+              value={field.value}
+              onChangeText={field.onChange}
+            />
           </FormInputContainer>
         )}
         name={props.name!}

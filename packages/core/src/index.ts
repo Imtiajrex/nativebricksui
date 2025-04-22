@@ -8,6 +8,8 @@ export * from './components/base/sonner';
 export * from './components/base/switch';
 export * from './components/base/table';
 export * from './components/base/text';
+export * from './components/base/view';
+export * from './components/base/pressable';
 export * from './components/base/toggle';
 export * from './components/base/toggle-group';
 export * from './components/base/wheel-picker';
