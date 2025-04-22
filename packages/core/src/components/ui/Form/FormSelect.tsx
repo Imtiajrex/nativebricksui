@@ -12,8 +12,17 @@ export const FormSelect = <T extends FormFields>(props: FormSelectProps<T>) => {
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <FormInputContainer {...props} message={fieldState.error?.message}>
-            <Select {...props} value={field.value} onChange={field.onChange} />
+          <FormInputContainer
+            state={!fieldState.error?.message ? 'default' : 'invalid'}
+            {...props}
+            message={fieldState.error?.message}
+          >
+            <Select
+              state={!fieldState.error?.message ? 'default' : 'invalid'}
+              {...props}
+              value={field.value}
+              onChange={field.onChange}
+            />
           </FormInputContainer>
         )}
         name={props.name!}
@@ -40,8 +49,17 @@ export const FormMultiSelect = <T extends FormFields>(props: FormMultiSelectProp
     return (
       <Controller
         render={({ field, fieldState }) => (
-          <FormInputContainer {...props} message={fieldState.error?.message}>
-            <MultiSelect {...props} value={field.value} onChange={field.onChange} />
+          <FormInputContainer
+            state={!fieldState.error?.message ? 'default' : 'invalid'}
+            {...props}
+            message={fieldState.error?.message}
+          >
+            <MultiSelect
+              state={!fieldState.error?.message ? 'default' : 'invalid'}
+              {...props}
+              value={field.value}
+              onChange={field.onChange}
+            />
           </FormInputContainer>
         )}
         name={props.name!}

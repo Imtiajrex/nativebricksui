@@ -17,7 +17,6 @@ const transpilePackages = [
   'twrnc',
   'sonner',
   'sonner-native',
-  'victory-native',
   'zod',
   'class-variance-authority',
   '@rn-primitives/accordion',
@@ -52,7 +51,6 @@ const transpilePackages = [
   '@rn-primitives/types',
   '@rn-primitives/utils',
   '@shopify/flash-list',
-  '@shopify/react-native-skia',
 ];
 
-export { transpilePackages };
+module.exports = { transpilePackages };

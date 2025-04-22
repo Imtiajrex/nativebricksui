@@ -15,15 +15,7 @@ export type TimeInputProps = InputContainerProps & {
   popoverContentClassName?: string;
 };
 iconWithClassName(Clock);
-export function TimeInput({
-  state,
-  containerClassName,
-  leading,
-  trailing,
-  placeholder,
-  popoverContentClassName,
-  ...props
-}: TimeInputProps) {
+export function TimeInput({ placeholder, popoverContentClassName, ...props }: TimeInputProps) {
   const renderContent = useMemo(() => {
     return (
       <PopoverContent className={cn('w-72 bg-background', popoverContentClassName)} align="start">

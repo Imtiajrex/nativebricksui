@@ -120,7 +120,7 @@ const WheelPickerContainer = ({
   );
 };
 
-const years = getNumberOptions(1900, new Date().getFullYear()).toReversed();
+const years = getNumberOptions(1900, new Date().getFullYear()).reverse();
 const numericMonths = Array.from({ length: 12 }, (_, i) => formatNumber(i + 1));
 const fullMonths = numericMonths.map((month) => dayjs(`2021-${month}-01`).format('MMMM'));
 const shortMonths = numericMonths.map((month) => dayjs(`2021-${month}-01`).format('MMM'));

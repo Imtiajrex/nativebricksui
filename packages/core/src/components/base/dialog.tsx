@@ -41,9 +41,9 @@ const DialogOverlayNative = forwardRef<DialogPrimitive.OverlayRef, DialogPrimiti
         {...props}
         ref={ref}
       >
-        <Animated.View entering={FadeIn.duration(150)} exiting={FadeOut.duration(150)}>
+        <View>
           <>{children as any}</>
-        </Animated.View>
+        </View>
       </DialogPrimitive.Overlay>
     );
   }
@@ -71,7 +71,7 @@ const DialogContent = forwardRef<
   return (
     <Modal visible={open} transparent onRequestClose={close}>
       <DialogOverlay className={cn('w-full h-full', props.overlayClassName)}>
-        <Animated.View
+        <View
           ref={ref}
           className={cn(
             'max-w-lg gap-4 border border-border cursor-default bg-background p-6 shadow-lg duration-200 rounded-lg',
@@ -93,7 +93,7 @@ const DialogContent = forwardRef<
               />
             </DialogPrimitive.Close>
           )}
-        </Animated.View>
+        </View>
       </DialogOverlay>
     </Modal>
   );

@@ -17,6 +17,7 @@ export type PinInputProps = {
   pinTextClassName?: string;
   pinContainerActiveClassName?: string;
   pinTextActiveClassName?: string;
+  state?: 'default' | 'invalid' | 'valid' | 'focused';
 };
 export function PinInput({
   pin,

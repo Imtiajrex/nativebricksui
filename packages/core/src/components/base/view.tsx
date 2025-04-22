@@ -15,7 +15,7 @@ const View = forwardRef<ViewRef, SlottableViewProps>(
 
     return (
       <TextClassContext.Provider value={cn(prevContextClasses, textClasses)}>
-        <Component className={cn('bg-background', className)} ref={ref} {...props}>
+        <Component className={className} ref={ref} {...props}>
           {renderChildren(children)}
         </Component>
       </TextClassContext.Provider>
