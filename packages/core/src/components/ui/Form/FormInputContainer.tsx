@@ -17,6 +17,7 @@ export type FormInputContainerProps = {
 export function FormInputContainer(
   props: FormInputContainerProps & {
     children: React.ReactNode;
+    state?: 'default' | 'focused' | 'invalid' | 'valid';
   }
 ) {
   return (
@@ -24,7 +25,9 @@ export function FormInputContainer(
       {props.label && (
         <Text className={cn('text-sm font-semibold text-foreground', props.labelClassName)}>
           {props.label}
-          {props.asterisk && <Text className={cn('text-error', props.asteriskClassName)}>*</Text>}
+          {props.asterisk && (
+            <Text className={cn('text-destructive', props.asteriskClassName)}>*</Text>
+          )}
         </Text>
       )}
       {props.description && (
@@ -39,7 +42,14 @@ export function FormInputContainer(
         </Text>
       )}
       {props.message && (
-        <Text className={cn('text-xs text-muted-foreground', props.messageClassName)}>
+        <Text
+          className={cn(
+            'text-xs text-muted-foreground',
+            props.state === 'invalid' && 'text-destructive',
+            props.state === 'valid' && 'text-success',
+            props.messageClassName
+          )}
+        >
           {props.message}
         </Text>
       )}

@@ -4,6 +4,8 @@ import { Pressable } from './pressable';
 import { Text, TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
 import { useExtractTextClasses } from '../../hooks/useExtractTextClasses';
+import { ActivityIndicator } from 'react-native';
+import { useColor } from '../../lib/useColor';
 
 const buttonVariants = cva(
   'group flex items-center justify-center rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all translate-y-0 active:translate-y-0.5 ',
@@ -61,21 +63,33 @@ const buttonTextVariants = cva(
 type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> &
   VariantProps<typeof buttonVariants> & {
     children: React.ReactNode;
+    isLoading?: boolean;
   };
 
 const Button = forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, isLoading, children, ...props }, ref) => {
+    const buttonTextClasses = buttonTextVariants({ variant, size });
     return (
       <Pressable
         className={cn(
           props.disabled && 'opacity-50 pointer-events-none',
-          buttonTextVariants({ variant, size }),
+          buttonTextClasses,
           buttonVariants({ variant, size, className })
         )}
         ref={ref}
         role="button"
         {...props}
-      />
+        disabled={isLoading || props.disabled}
+      >
+        {isLoading && (
+          <ActivityIndicator
+            animating={isLoading}
+            size="small"
+            color={useColor(buttonTextClasses)}
+          />
+        )}
+        {!isLoading && children}
+      </Pressable>
     );
   }
 );
