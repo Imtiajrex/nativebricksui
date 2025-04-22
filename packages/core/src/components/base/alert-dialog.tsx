@@ -44,9 +44,7 @@ const AlertDialogOverlayNative = forwardRef<
       ref={ref}
       asChild
     >
-      <Animated.View entering={FadeIn.duration(150)} exiting={FadeOut.duration(150)}>
-        {children}
-      </Animated.View>
+      <View>{children}</View>
     </AlertDialogPrimitive.Overlay>
   );
 });
@@ -71,7 +69,7 @@ const AlertDialogContent = forwardRef<
           ref={ref}
           className={cn(
             'z-50 max-w-lg gap-4 border border-border bg-background p-6 shadow-lg shadow-foreground/10 duration-200 rounded-lg',
-            open ? 'animate-in fade-in-0 zoom-in-95' : 'animate-out fade-out-0 zoom-out-95',
+            open ? 'fade-in-0 zoom-in-95' : 'fade-out-0 zoom-out-95',
             className
           )}
           {...props}

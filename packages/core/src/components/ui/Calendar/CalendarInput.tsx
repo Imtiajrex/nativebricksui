@@ -1,4 +1,4 @@
-import { Calendar as CalendarIcon } from 'lucide-react-native';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { useCallback, useMemo } from 'react';
 import { Text, View } from 'react-native';
 import { DateData } from 'react-native-calendars';
@@ -27,14 +27,7 @@ export type CalendarInputProps = InputContainerProps & {
   calendarProps?: CalendarProps;
 } & InputProps;
 iconWithClassName(CalendarIcon);
-export function CalendarInput({
-  state,
-  containerClassName,
-  leading,
-  trailing,
-  placeholder,
-  ...props
-}: CalendarInputProps) {
+export function CalendarInput({ state, placeholder, ...props }: CalendarInputProps) {
   const renderContent = useMemo(() => {
     return <CalendarPicker {...props.calendarProps} {...props} />;
   }, [props.calendarProps, props.onChange, props.value]);
@@ -156,8 +149,18 @@ const CalendarPicker = (props: CalendarProps & InputProps) => {
         onDayPress={onDayPress}
         markingType={props.type == 'single' ? 'dot' : 'period'}
         markedDates={markedDates}
+        renderArrow={renderArrow}
         {...props}
       />
     </PopoverContent>
+  );
+};
+
+const renderArrow = (direction: any) => {
+  const foregroundColor = useColor('foreground');
+  return direction === 'left' ? (
+    <ChevronLeft size={20} color={foregroundColor} />
+  ) : (
+    <ChevronRight size={20} color={foregroundColor} />
   );
 };

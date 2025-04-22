@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@nativebricks/core",
-  "version": "0.0.74",
+  "version": "0.0.93",
   "description": "Native Bricks Core",
   "author": "Imtiaj Bin Aoual <imtiajbinaoual@gmail.com>",
   "license": "MIT",
@@ -39,7 +39,6 @@
     "twrnc": "^4.6.0",
     "sonner": "^1.7.0",
     "sonner-native": "^0.16.1",
-    "victory-native": "^41.12.5",
     "zod": "^3.23.8",
     "class-variance-authority": "^0.7.0",
     "@rn-primitives/accordion": "^1.1.0",
@@ -73,8 +72,7 @@
     "@rn-primitives/tooltip": "^1.1.0",
     "@rn-primitives/types": "^1.1.0",
     "@rn-primitives/utils": "^1.1.0",
-    "@shopify/flash-list": "^1.7.2",
-    "@shopify/react-native-skia": "^1.7.1"
+    "@shopify/flash-list": "^1.7.2"
   },
   "peerDependencies": {
     "nativewind": "*",

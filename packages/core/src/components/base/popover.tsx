@@ -1,10 +1,8 @@
-import * as PopoverPrimitive from '../primitives/popover';
 import { forwardRef } from 'react';
-import { Modal, Platform, StyleSheet } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { Modal, Platform } from 'react-native';
 import { TextClassContext } from '../../components/base/text';
 import { cn } from '../../lib/utils';
-import { Pressable } from './pressable';
+import * as PopoverPrimitive from '../primitives/popover';
 
 const Popover = PopoverPrimitive.Root;
 
@@ -23,20 +21,25 @@ const PopoverContent = forwardRef<
 
   return (
     <PopoverPortal visible={open} transparent hostName={portalHost}>
-      <Animated.View entering={FadeIn.duration(200)} exiting={FadeOut}>
+      <PopoverPrimitive.Overlay
+        className="flex-1"
+        onPress={() => {
+          onOpenChange(false);
+        }}
+      >
         <TextClassContext.Provider value="text-popover-foreground">
           <PopoverPrimitive.Content
             ref={ref}
             align={align}
             sideOffset={sideOffset}
             className={cn(
-              'z-50 rounded-md cursor-auto border border-border bg-popover p-4 shadow-md shadow-foreground/5 outline-none data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 animate-in zoom-in-95 fade-in-0',
+              'z-50 rounded-md cursor-auto border border-border bg-popover p-4 shadow-md shadow-foreground/5 outline-none  zoom-in-95 fade-in-0',
               className
             )}
             {...props}
           />
         </TextClassContext.Provider>
-      </Animated.View>
+      </PopoverPrimitive.Overlay>
     </PopoverPortal>
   );
 });

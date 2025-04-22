@@ -3,7 +3,6 @@
     "strict": true,
     "jsx": "react-jsx"
   },
-  "extends": "expo/tsconfig.base",
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
